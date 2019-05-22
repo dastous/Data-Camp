@@ -1,2 +1,2 @@
 # Data-Camp
-#MMAI#Data-Camp#Completed
+#Data-Camp#Completed
