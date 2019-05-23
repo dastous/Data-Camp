@@ -1,0 +1,43 @@
+#Pending state transitions
+#You'll often need to briefly deviate from the flow of a conversation, for example to authenticate a user, before returning to the topic of discussion.
+
+#In these cases, it's often simpler - and easier to debug - if you save some actions/states as pending rather than adding ever more complicated rules.
+
+#Here, you're going to define a policy_rules dictionary, where the keys are tuples of the current state and the received intent, and the values are tuples of the next state, the bot's response, and a state for which to set a pending transition.
+
+#Instructions
+#100 XP
+#Complete the policy_rules dictionary by filling in the values:
+#A user starts in the INIT state.
+#If the user is in the INIT state and tries to place an order, you should ask for their number and create a pending transition to the AUTHED state.
+#This is the only policy rule which creates a pending transition, so the others simply have a pending state value of None.
+#The pending state has been added as the second argument of the send_message() function, which now returns the new state as well as the pending state. Call this send_message() function inside send_messages(), unpacking the output into the variables state and pending.
+#Hit 'Submit Answer' to send the messages to the bot!
+
+# Define the states
+INIT=0
+AUTHED=1
+CHOOSE_COFFEE=2
+ORDERED=3
+
+# Define the policy rules
+policy_rules = {
+    (INIT, "order"): (INIT, "you'll have to log in first, what's your phone number?", AUTHED),
+    (INIT, "number"): (AUTHED, "perfect, welcome back!", None),
+    (AUTHED, "order"): (CHOOSE_COFFEE, "would you like Colombian or Kenyan?", None),    
+    (CHOOSE_COFFEE, "specify_coffee"): (ORDERED, "perfect, the beans are on their way!", None)
+}
+
+# Define send_messages()
+def send_messages(messages):
+    state = INIT
+    pending = None
+    for msg in messages:
+        state, pending = send_message(state, pending, msg)
+
+# Send the messages
+send_messages([
+    "I'd like to order some coffee",
+    "555-1234",
+    "kenyan"
+])
