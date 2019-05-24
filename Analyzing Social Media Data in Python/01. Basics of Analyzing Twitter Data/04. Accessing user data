@@ -1,0 +1,23 @@
+#Accessing user data
+#Much of the data which we want to know about the Twitter data is stored in child JSON objects. We will access several parts of the user's information with the user child JSON object.
+
+#The tweet from the previous exercise has been loaded for you.
+
+#Instructions
+#100 XP
+#Print the user handle with key screen_name.
+#Print the user follower count with key followers_count.
+#Print the user self-defined location with key location.
+#Print the user self-defined description with key description.
+
+# Print user handle
+print(tweet['user']['screen_name'])
+
+# Print user follower count
+print(tweet['user']['followers_count'])
+
+# Print user location
+print(tweet['user']['location'])
+
+# Print user description
+print(tweet['user']['description'])
