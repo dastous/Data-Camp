@@ -1,0 +1,22 @@
+#Accessing user-defined location
+#In the slides, we saw that we could obtain user location via user-generated text, including the tweet itself and the location field in the user's description. These are the two most imprecise methods of obtaining user location, but also possibly more readily available.
+
+#In this exercise, you're going extract the user-defined location from a single example tweet as well as a large set of tweets. We've added another line to our flatten_tweets() function which will allow you to access user-defined location within the data frame.
+
+#tweet_obj['user-location'] = tweet_obj['user']['location']
+#In addition, the single tweet in JSON format tweet_json and the State of the Union tweets in JSON format tweets_sotu_json have been loaded for you.
+
+#Instructions
+#100 XP
+#Print out the user-defined location of a single tweet in the Twitter JSON.
+#Flatten the Twitter JSON of the State of the Union tweets.
+#Print out the first 10 user-defined locations in tweets_sotu with the value_counts() and head() functions.
+
+# Print out the location of a single tweet
+print(tweet_json['user']['location'])
+
+# Flatten and load the SOTU tweets into a dataframe
+tweets_sotu = pd.DataFrame(flatten_tweets(tweets_sotu_json))
+
+# Print out top five user-defined locations
+print(tweets_sotu['user-location'].value_counts().head())
