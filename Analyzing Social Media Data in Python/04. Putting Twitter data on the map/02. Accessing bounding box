@@ -1,0 +1,19 @@
+#Accessing bounding box
+#Most tweets which have coordinate-level geographical information attached to them typically come in the form of a bounding box. Bounding boxes are a set of four longitudinal/latitudinal coordinates which denote a particular area in which the user can be located. The bounding box is located in the place value of the Twitter JSON.
+
+#The dataset has been loaded for you as a DataFrame in tweets_sotu.
+
+#Instructions
+#100 XP
+#Complete the getBoundingBox() function by accessing the coordinates value within the bounding box dictionary.
+#Apply the getBoundingBox() function to the appropriate column in the tweets_sotu DataFrame.
+
+def getBoundingBox(place):
+    """ Returns the bounding box coordinates."""
+    return place['bounding_box']['coordinates']
+
+# Apply the function which gets bounding box coordinates
+bounding_boxes = tweets_sotu['place'].apply(getBoundingBox)
+
+# Print out the first bounding box coordinates
+print(bounding_boxes.values[0])
