@@ -1,0 +1,26 @@
+#Plotting centroid coordinates
+#Because we can't plot whole bounding boxes, we summarize the bounding box location into a single point called a centroid. Plotting these on a Basemap map is straightforward. Once we calculate the centroids, we separate the longitudes and latitudes, then pass to the .scatter() method.
+
+#The Basemap object m has been created for you. The dataset tweets_sotu and function calculateCentroid() have also been loaded.
+
+#Instructions
+#100 XP
+#Calculate the centroids and store in centroids.
+#Set the argument zorder in fillcontinents such that the continents appear behind the points.
+#Plot the points. Remember to set the latlon argument to the correct value.
+
+# Calculate the centroids for the dataset
+# and isolate longitudue and latitudes
+centroids = tweets_sotu['place'].apply(calculateCentroid)
+lon = [x[0] for x in centroids]
+lat = [x[1] for x in centroids]
+
+# Draw continents, coastlines, countries, and states
+m.fillcontinents(color='white', zorder=0)
+m.drawcoastlines(color='gray')
+m.drawcountries(color='gray')
+m.drawstates(color='gray')
+
+# Draw the points and show the plot
+m.scatter(lon, lat, latlon = True, alpha = 0.7)
+plt.show()
