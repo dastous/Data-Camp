@@ -1,0 +1,23 @@
+#Coloring by sentiment
+#We want to be able to differentiate by place with our Twitter analysis. One distinguishing factor between places is how the State of the Union speech was received. For this purpose, we'll use the sentiment analysis we covered in Chapter 2 to evaluate how the speech was received in different parts of the country.
+
+#The tweets_sotu dataset has been loaded for you, as well as lon, lat, and the Basemap map m. SentimentIntensityAnalyzer is instantiated as sid in your workspace.
+
+#Instructions
+#100 XP
+#Calculate the sentiment scores and store them.
+#Draw the points, setting the color argument to sentiment_score and the colormap to 'coolwarm'.
+
+# Generate sentiment scores
+sentiment_scores = tweets_sotu['text'].apply(sid.polarity_scores)
+
+# Isolate the compound element
+sentiment_scores = [x['compound'] for x in sentiment_scores]
+
+# Draw the points
+m.scatter(lon, lat, latlon = True, 
+           c = sentiment_scores,
+           cmap = 'coolwarm', alpha = 0.7)
+           
+# Show the plot
+plt.show()
