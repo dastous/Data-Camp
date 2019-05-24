@@ -1,0 +1,27 @@
+#Creating retweet network
+#Social media is, by nature, networked data. Twitter networks manifest in multiple ways. One of the most important types of networks that appear in Twitter are retweet networks. We can represent these as directed graphs, with the retweeting user as the source and the retweeted person as the target. With Twitter data in our flattened DataFrame, we can import these into networkx and create a retweet network.
+
+#For this exercise and the rest of this course we'll be using a dataset based on the 2018 State of the Union speech given by Donald Trump. Those tweets have been loaded for you in sotu_retweets.
+
+#Instructions
+#100 XP
+#Import networkx as nx.
+#Use the user's screen name as the source argument.
+#Use the retweeted user's screen name as the target argument.
+#Ensure that the network is a directed graph in the create_using argument.
+
+# Import networkx
+import networkx as nx
+
+# Create retweet network from edgelist
+G_rt = nx.from_pandas_edgelist(
+    sotu_retweets,
+    source = 'user-screen_name',
+    target = 'retweeted_status-user-screen_name',
+    create_using = nx.DiGraph())
+ 
+# Print the number of nodes
+print('Nodes in RT network:', len(G_rt.nodes()))
+
+# Print the number of edges
+print('Edges in RT network:', len(G_rt.edges()))
