@@ -1,0 +1,27 @@
+#Creating reply network
+#Reply networks have a markedly different structure to retweet networks. While retweet networks often signal agreement, replies can signal discussion, deliberation, and disagreement. The network properties are the same, however: the network is directed, the source is the replier and the target is the user who is being replied to.
+
+#For this exercise we are going to create a reply network from a slightly different sample of State of the Union tweets. Those tweets have been loaded for you in sotu_replies.
+
+#Instructions
+#100 XP
+#Create the reply network from a pandas edge list.
+#Use the user's screen name as the source argument.
+#Use the screen name being replied to as the target argument.
+#Ensure that the network is a directed graph in the create_using argument.
+
+# Import networkx
+import networkx as nx
+
+# Create reply network from edgelist
+G_reply = nx.from_pandas_edgelist(
+    sotu_replies,
+    source = 'user-screen_name',
+    target = 'in_reply_to_screen_name',
+    create_using = nx.DiGraph())
+    
+# Print the number of nodes
+print('Nodes in reply network:', len(G_reply.nodes()))
+
+# Print the number of edges
+print('Edges in reply network:', len(G_reply.edges()))
