@@ -1,0 +1,27 @@
+#Looking for text in all the wrong places
+#Recall that relevant text may not only be in the main text field of the tweet. It may also be in the extended_tweet, the retweeted_status, or the quoted_status. We need to check all of these fields to make sure we've accounted for all the of the relevant text. We'll do this often so we're going to create a function which does this.
+
+#The first two lines check if the main text field or the extended_tweet contain the text. You will need to check the rest.
+
+#Instructions
+#100 XP
+#Finish the check_word_in_tweet function by doing the following:
+
+#Check if the field quoted_status-text contains the word.
+#Check if the field quoted_status-extended_tweet-full_text contains the word.
+#Check if the field retweeted_status-text contains the word.
+#Check if the field retweeted_status-extended_tweet-full_text contains the word.
+
+def check_word_in_tweet(word, data):
+    """Checks if a word is in a Twitter dataset's text. 
+    Checks text and extended tweet (140+ character tweets) for tweets,
+    retweets and quoted tweets.
+    Returns a logical pandas Series.
+    """
+    contains_column = data['text'].str.contains(word, case = False)
+    contains_column |= data['extended_tweet-full_text'].str.contains(word, case = False)
+    contains_column |= data['quoted_status-text'].str.contains(word, case = False)
+    contains_column |= data['quoted_status-extended_tweet-full_text'].str.contains(word, case = False)
+    contains_column |= data['retweeted_status-text'].str.contains(word, case = False)
+    contains_column |= data['retweeted_status-extended_tweet-full_text'].str.contains(word, case = False)
+    return contains_column
