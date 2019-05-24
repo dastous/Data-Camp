@@ -1,0 +1,35 @@
+#Calculating the centroid
+#The bounding box can range from a city block to a whole state or even country. For simplicity's sake, one way we can deal with handling these data is by translating the bounding box into what's called a centroid, or the center of the bounding box. The calculation of the centroid is straight forward -- we calculate the midpoints of the lines created by the latitude and longitudes.
+
+#numpy has been imported as np.
+
+#Instructions
+#100 XP
+#Obtain the first set of coordinates from the place JSON.
+#Calculate the central longitude by adding up the longitude list and dividing by two.
+#Do the same for the latitudes.
+#Apply the calculateCentroid() function to the place column.
+
+def calculateCentroid(place):
+    """ Calculates the centroid from a bounding box."""
+    # Obtain the coordinates from the bounding box.
+    coordinates = place['bounding_box']['coordinates'][0]
+        
+    longs = np.unique( [x[0] for x in coordinates] )
+    lats  = np.unique( [x[1] for x in coordinates] )
+
+    if len(longs) == 1 and len(lats) == 1:
+        # return a single coordinate
+        return (longs[0], lats[0])
+    elif len(longs) == 2 and len(lats) == 2:
+        # If we have two longs and lats, we have a box.
+        central_long = np.sum(longs) / 2
+        central_lat  = np.sum(lats) / 2
+    else:
+        raise ValueError("Non-rectangular polygon not supported: %s" % 
+            ",".join(map(lambda x: str(x), coordinates)) )
+
+    return (central_long, central_lat)
+    
+# Calculate the centroids of place     
+centroids = tweets_sotu['place'].apply(calculateCentroid)
