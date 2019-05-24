@@ -1,0 +1,13 @@
+#Generating mean frequency
+#We need to produce a metric which can be graphed over time. Our function check_word_in_tweet() returns a boolean Series. Remember that the boolean value True == 1, so we can produce a column for each keyword we're interested in and use it to understand its over time prevalence.
+
+#Instructions
+#100 XP
+#Create a column called python and store the results of check_word_in_tweet() for the string '#python' in it.
+#Do the same, but with a column called rstats and the string '#rstats'.
+
+# Create a python column
+ds_tweets['python'] = check_word_in_tweet('#python', ds_tweets)
+
+# Create an rstats column
+ds_tweets['rstats'] = check_word_in_tweet('#rstats', ds_tweets)
