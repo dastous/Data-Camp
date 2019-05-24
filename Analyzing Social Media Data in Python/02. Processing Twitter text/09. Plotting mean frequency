@@ -1,0 +1,27 @@
+#Plotting mean frequency
+#Lastly, we'll create a per-day average of the mentions of both hashtags and plot them across time. We'll first create proportions from the two boolean Series by the day, then we'll plot them.
+
+#matplotlib.pyplot has been imported as plt and ds_tweets has been loaded for you.
+
+#Instructions
+#100 XP
+#Generate the mean number of tweets with the python column with .resample() and .mean() methods. .resample() takes one argument, '1 d', to produce daily averages.
+#Do the same with the rstats column.
+#Plot a line for #python usage with mean_python. Use mean_python.index.day as the x-axis.
+#Do the same with mean_rstats.
+
+# Average of python column by day
+mean_python = ds_tweets['python'].resample('1 d').mean()
+
+# Average of rstats column by day
+mean_rstats = ds_tweets['rstats'].resample('1 d').mean()
+
+# Plot mean python by day(green)/mean rstats by day(blue)
+plt.plot(mean_python.index.day, mean_python, color = 'green')
+plt.plot(mean_rstats.index.day, mean_rstats, color='blue')
+
+# Add labels and show
+plt.xlabel('Day'); plt.ylabel('Frequency')
+plt.title('Language mentions over time')
+plt.legend(('#python', '#rstats'))
+plt.show()
