@@ -1,0 +1,27 @@
+#Ratios
+#While not strictly a measure of importance to a network, the idea of being "ratio'd" is a network measure which is particular to Twitter and is typically used to judge the unpopularity of a tweet. "The Ratio," as it is called, is calculated by taking the number of replies and dividing it by the number of retweets. For our purposes, it makes conceptual sense to take only the in-degrees of both the retweet and reply networks.
+
+#The networks G_rt and G_reply, and column_names = ['screen_name', 'degree'] have been loaded for you.
+
+#Instructions
+#100 XP
+#Calculate the in-degree for the retweet network with the graph method .in_degree().
+#Do the same for the reply network.
+#Merge the two DataFrames together using .merge().
+#Calculate the ratio. The column names are degree_reply and degree_rt.
+
+# Calculate in-degrees and store in DataFrame
+degree_rt = pd.DataFrame(list(G_rt.in_degree()), columns = column_names)
+degree_reply = pd.DataFrame(list(G_reply.in_degree()), columns = column_names)
+
+# Merge the two DataFrames on screen name
+ratio = degree_rt.merge(degree_reply, on = 'screen_name', suffixes = ('_rt', '_reply'))
+
+# Calculate the ratio
+ratio['ratio'] = ratio['degree_reply'] / ratio['degree_rt']
+
+# Exclude any tweets with less than 5 retweets
+ratio = ratio[ratio['degree_rt'] >= 5]
+
+# Print out first five with highest ratio
+print(ratio.sort_values('ratio', ascending = False).head())
