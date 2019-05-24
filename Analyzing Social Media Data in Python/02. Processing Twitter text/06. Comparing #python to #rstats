@@ -1,0 +1,23 @@
+#Comparing #python to #rstats
+#Now that we have a function to check whether or not the word is in the tweet in multiple places, we can deploy this across multiple words and compare them. Let's return to our example with the data science hashtag dataset. We want to see how many times that #rstats occurs compared to #python.
+
+#The data science hashtag dataset ds_tweets has been loaded for you.
+
+#Instructions
+#100 XP
+#Use the function check_word_in_tweet() to find all instances of #python in the text fields of ds_tweets.
+#Do the same with #rstats.
+#Print proportion of tweets mentioning #python by summing python with np.sum() and dividing it by ds_tweets.shape[0].
+#Do the same for rstats.
+
+# Find mentions of #python in all text fields
+python = check_word_in_tweet('#python', ds_tweets)
+
+# Find mentions of #rstats in all text fields
+rstats = check_word_in_tweet('#rstats', ds_tweets)
+
+# Print proportion of tweets mentioning #python
+print("Proportion of #python tweets:", np.sum(python) / ds_tweets.shape[0])
+
+# Print proportion of tweets mentioning #rstats
+print("Proportion of #rstats tweets:", np.sum(rstats) / ds_tweets.shape[0])
