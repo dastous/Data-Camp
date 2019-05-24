@@ -1,0 +1,52 @@
+#Creating Basemap map
+#Basemap allows you to create maps in Python. The library builds projections for latitude and longitude coordinates and then passes the plotting work on to matplotlib. This means you can build extra features based on the power of matplotlib.
+
+#In this exercise, we're going to set up a map of the continental United States on a Mercator projection. The corner coordinates of this map are provided for you below.
+
+#Instructions 1/2
+#50 XP
+#Import Basemap from mpl_toolkits.basemap.
+#Instantiate Basemap. Use each element of us_boundingbox in order as arguments.
+
+# Import Basemap
+from mpl_toolkits.basemap import Basemap
+import matplotlib.pyplot as plt
+
+# Set up the US bounding box
+us_boundingbox = [-125, 22, -64, 50] 
+
+# Set up the Basemap object
+m = Basemap(llcrnrlon = us_boundingbox[0],
+            llcrnrlat = us_boundingbox[1],
+            urcrnrlon = us_boundingbox[2],
+            urcrnrlat = us_boundingbox[3],
+            projection='merc')
+            
+#Instructions 2/2
+#50 XP
+#Instantiate Basemap. Use each element of us_boundingbox in order as arguments.
+#Draw the continents , coastlines, and countries with Basemap methods .fillcontinents(), .drawcoastlines(), and .drawcountries(), respectively.
+
+# Import Basemap
+from mpl_toolkits.basemap import Basemap
+import matplotlib.pyplot as plt
+
+# Set up the US bounding box
+us_boundingbox = [-125, 22, -64, 50] 
+
+# Set up the Basemap object
+m = Basemap(llcrnrlon = us_boundingbox[0],
+            llcrnrlat = us_boundingbox[1],
+            urcrnrlon = us_boundingbox[2],
+            urcrnrlat = us_boundingbox[3],
+            projection='merc')
+
+# Draw continents in white,
+# coastlines and countries in gray
+m.fillcontinents(color='white')
+m.drawcoastlines(color='gray')
+m.drawcountries(color='gray')
+
+# Draw the states and show the plot
+m.drawstates(color='gray')
+plt.show()
