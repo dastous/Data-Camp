@@ -1,0 +1,34 @@
+#Visualizing retweet network
+#Visualizing retweets networks is an important exploratory data analysis step because it allows us to visually inspect the structure of the network, understand if there is any user that has disproportionate influence, and if there are different spheres of conversation.
+
+#A retweet network visualized with a force directed algorithm may look something like this.
+
+#Retweet network visualization
+
+#We are going to use a layout which runs quicker to see the plot, but the syntax is nearly the same.
+
+#networkx has been imported as nx, and the network has been loaded in G_rt for you.
+
+#Instructions
+#100 XP
+#Generate sizes with a list comprehension. Obtain the second item in x for all elements returned by the .degree() method.
+#Pass the network name as the first argument to nx.draw_networkx().
+#Pass the layout positions as the second argument to draw_networkx.
+#Pass the sizes list to node_size.
+
+
+# Create random layout positions
+pos = nx.random_layout(G_rt)
+
+# Create size list
+sizes = [x[1] for x in G_rt.degree()]
+
+# Draw the network
+nx.draw_networkx(G_rt, pos, 
+    with_labels = False, 
+    node_size = sizes,
+    width = 0.1, alpha = 0.7,
+    arrowsize = 2, linewidths = 0)
+
+# Turn axis off and show
+plt.axis('off'); plt.show()
