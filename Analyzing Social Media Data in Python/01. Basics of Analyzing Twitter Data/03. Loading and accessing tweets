@@ -1,0 +1,24 @@
+#Loading and accessing tweets
+#In the video, we loaded a tweet we collected using tweepy into Python. Tweets arrive from the Streaming API in JSON format and need to be converted into a Python data structure.
+
+#In this exercise, we'll load a single tweet into Python and print out some fields.
+
+#The tweet JSON has been loaded for you and is stored in tweet_json.
+
+#Instructions
+#100 XP
+#Import the json module.
+#Convert the tweet JSON stored in tweet_json from JSON to Python object using json's .loads() method.
+#Print the tweet text and id using the appropriate keys.
+
+# Load JSON
+import json
+
+# Convert from JSON to Python object
+tweet = json.loads(tweet_json)
+
+# Print tweet text
+print(tweet['text'])
+
+# Print tweet id
+print(tweet['id'])
