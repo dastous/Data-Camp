@@ -1,0 +1,23 @@
+#Finding keywords
+#Counting known keywords is one of the first ways you can analyze text data in a Twitter dataset. In this dataset, you're going to count the number of times specific hashtags occur in a collection of tweets about data science. To this end, you're going to use the string methods in the pandas Series object to do this.
+
+#pandas and numpy have been imported as pd and np, respectively. A more fully-featured flatten_tweets and data_science_json have also been loaded for you.
+
+#Instructions
+#100 XP
+#Flatten the tweets with flatten_tweets() and store them in flat_tweets.
+#Convert tweets to DataFrame using the pandas DataFrame constructor.
+#Find mentions of #python in 'text', ignoring case.
+#Print proportion of tweets mentioning #python by summing python with np.sum() and dividing it by the total number of tweets.
+
+# Flatten the tweets and store them
+flat_tweets = flatten_tweets(data_science_json)
+
+# Convert to DataFrame
+ds_tweets = pd.DataFrame(flat_tweets)
+
+# Find mentions of #python in 'text'
+python = ds_tweets['text'].str.contains('#python', case=False)
+
+# Print proportion of tweets mentioning #python
+print("Proportion of #python tweets:", np.sum(python) / python.shape[0])
