@@ -1,0 +1,23 @@
+#Creating time series data frame
+#Time series data is used when we want to analyze or explore variation over time. This is useful when exploring Twitter text data if we want to track the prevalence of a word or set of words.
+
+#The first step in doing this is converting the DataFrame into a format which can be handled using pandas time series methods. That can be done by converting the index to a datetime type.
+
+#Instructions
+#100 XP
+#Print the first five rows of created_at in ds_tweets with the .head() method.
+#Convert that column to a datetime type with the Pandas' .to_datetime() method.
+#Print the first five rows once again.
+#Set index to created_at with .set_index().
+
+# Print created_at to see the original format of datetime in Twitter data
+print(ds_tweets['created_at'].head())
+
+# Convert the created_at column to np.datetime object
+ds_tweets['created_at'] = pd.to_datetime(ds_tweets['created_at'])
+
+# Print created_at to see new format
+print(ds_tweets['created_at'].head())
+
+# Set the index of ds_tweets to created_at
+ds_tweets = ds_tweets.set_index('created_at')
