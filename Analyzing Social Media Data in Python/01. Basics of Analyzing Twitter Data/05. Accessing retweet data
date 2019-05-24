@@ -1,0 +1,23 @@
+#Accessing retweet data
+#Now we're going to work with a tweet JSON that contains a retweet. A retweet has the same structure as a regular tweet, except that it has another tweet stored in retweeted_status.
+
+#The new tweet has been loaded as rt.
+
+#Instructions
+#100 XP
+#Print the text of the tweet.
+#Print the text of the tweet which has been retweeted, which is contained in retweeted_status.
+#Print the user handle of the tweet.
+#Print the user handle of the tweet which has been retweeted, which is contained in retweeted_status.
+
+# Print the text of the tweet
+print(rt['text'])
+
+# Print the text of tweet which has been retweeted
+print(rt['retweeted_status']['text'])
+
+# Print the user handle of the tweet
+print(rt['user']['screen_name'])
+
+# Print the user handle of the tweet which has been retweeted
+print(rt['retweeted_status']['user']['screen_name'])
