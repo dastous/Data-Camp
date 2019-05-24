@@ -1,0 +1,25 @@
+#Loading tweets into a DataFrame
+#Now it's time to import data into a pandas DataFrame so we can analyze tweets at scale.
+
+#We will work with a dataset of tweets which contain the hashtag '#rstats' or '#python'. This dataset is stored as a list of tweet JSON objects in data_science_json.
+
+#This course touches on a lot of concepts you may have forgotten, so if you ever need a quick refresher, download the pandas basics Cheat Sheet and keep it handy!
+
+#Instructions
+#100 XP
+#Import pandas (remember, by convention we'll alias it as pd).
+#Flatten the data_science_json tweets with flatten_tweets() and store them in tweets.
+#Create a DataFrame from tweets using pd.DataFrame().
+#Print out the text from the first 5 tweets.
+
+# Import pandas
+import pandas as pd
+
+# Flatten the tweets and store in `tweets`
+tweets = flatten_tweets(data_science_json)
+
+# Create a DataFrame from `tweets`
+ds_tweets = pd.DataFrame(tweets)
+
+# Print out the first 5 tweets from this dataset
+print(ds_tweets['text'].values[0:5])
