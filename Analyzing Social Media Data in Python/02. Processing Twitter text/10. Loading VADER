@@ -1,0 +1,20 @@
+#Loading VADER
+#Sentiment analysis provides us a small glimpse of the meaning of texts with a rather directly interpretable method. While it has its limitations, it's a good place to begin working with textual data. There's a number of out-of-the-box tools in Python we can use for sentiment analysis.
+
+#ds_tweets with the datetime index has been loaded for you.
+
+#Instructions
+#100 XP
+#Load SentimentIntensityAnalyzer from nltk.sentiment.vader.
+#Instantiate a new SentimentIntensityAnalyzer object.
+#Generate sentiment scores with the .apply() method and the analyzer's polarity_scores() function.
+
+
+# Load SentimentIntensityAnalyzer
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+# Instantiate new SentimentIntensityAnalyzer
+sid = SentimentIntensityAnalyzer()
+
+# Generate sentiment scores
+sentiment_scores = ds_tweets['text'].apply(sid.polarity_scores)
