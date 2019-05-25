@@ -1,0 +1,24 @@
+#Logistics Planning Problem 2
+#You are again consulting for kitchen oven manufacturer helping to plan their logistics. This time you are attempting to put together a plan for the next six months (Jan.-Jun.). There are still two warehouse locations (New York, and Atlanta), and four regional customer locations (East, South, Midwest, West). The cost for shipping for each of the warehouse locations to the regional customer's is listed in the table below. Your goal is to determine the number of shipments from each warehouse to customers that provides the lowest costs.
+
+#Customer	New York	Atlanta
+#East	$211	$232
+#South	$232	$212
+#Midwest	$240	$230
+#West	$300	$280
+#A Python dictionary named, costs containing the costs of the model, and three lists months, warehouse, and customers have been created for you. costs has been printed for you, you can explore the lists in the console as well. Additionally, the model has been initialized for you.
+
+#Instructions
+#100 XP
+#Define the decision variables in the model by first using list comprehension to iterate over the months, warehouse, and customers lists to create a list of keys. Use that list of keys with LpVariable.dicts() to define the variables needed.
+#Define the objective function by adding all the costs of shipping from a particular warehouse and customer over the six months.
+
+# Define decision variables
+key = [(m, w, c) for m in months for w in warehouse for c in customers]
+var_dict = LpVariable.dicts('num_of_shipments', 
+                            key, 
+                            lowBound=0, cat='Integer')
+
+# Use the LpVariable dictionary variable to define objective
+model += lpSum([costs[(w, c)] * var_dict[(m, w, c)] 
+                for m in months for w in warehouse for c in customers])
