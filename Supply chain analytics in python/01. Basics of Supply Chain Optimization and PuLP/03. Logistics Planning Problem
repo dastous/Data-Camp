@@ -1,0 +1,76 @@
+#Logistics Planning Problem
+#You are consulting for kitchen oven manufacturer helping to plan their logistics for next month. There are two warehouse locations (New York, and Atlanta), and four regional customer locations (East, South, Midwest, West). The expected demand next month for East it is 1,800, for South it is 1,200, for the Midwest it is 1,100, and for West it is 1000. The cost for shipping each of the warehouse locations to the regional customer's is listed in the table below. Your goal is to fulfill the regional demand at the lowest price.
+
+#Customer	New York	Atlanta
+#East	$211	$232
+#South	$232	$212
+#Midwest	$240	$230
+#West	$300	$280
+#Two Python dictionaries costs and var_dict have been created for you containing the costs and decision variables of the model. You can explore them in the console.
+
+#Instructions 1/4
+#25 XP
+#Initialize the model.
+
+from pulp import *
+
+# Initialize Model
+model = LpProblem("Minimize Transportation Costs", sense=LpMinimize)
+
+#Instructions 2/4
+#25 XP
+#Create a list for the warehouse locations, the regional customers and the regional_demand respectively, making sure the demand and customer indices match, and zip the customers and regional_demand lists to build the demand dictionary.
+
+from pulp import *
+
+# Initialize Model
+model = LpProblem("Minimize Transportation Costs", LpMinimize)
+
+# Build the lists and the demand dictionary
+warehouse = ['New York', 'Atlanta']
+customers = ['East', 'South', 'Midwest', 'West']
+regional_demand = [1800, 1200, 1100, 1000]
+demand = dict(zip(customers, regional_demand))
+
+#Instructions 3/4
+#25 XP
+#Our decision variables in this exercise are the number of shipments for each warehouse and customer combination. You want to minimize the total cost of shipping. The total cost of shipping is the shipping costs along a route multiplied by the number of shipments along that route. Define the objective function using lpSum() with list comprehension, using the var_dict dictionary that was created for you, iterating over customers.
+
+from pulp import *
+
+# Initialize Model
+model = LpProblem("Minimize Transportation Costs", LpMinimize)
+
+# Build the lists and the demand dictionary
+warehouse = ['New York', 'Atlanta']
+customers = ['East', 'South', 'Midwest', 'West']
+regional_demand = [1800, 1200, 1100, 1000]
+demand = dict(zip(customers, regional_demand))
+
+# Define Objective
+model += lpSum([costs[(w, c)] * var_dict[(w, c)] 
+                for c in customers for w in warehouse])
+                
+#Instructions 4/4
+#25 XP
+#Define the constraint using lpSum. Loop through the list of customers, and for each sum the shipments from the warehouses and set it equal to the customer demand. Remember we now have the customer demand as a dictionary with the customer name as the key.
+
+from pulp import *
+
+# Initialize Model
+model = LpProblem("Minimize Transportation Costs", LpMinimize)
+
+# Build the lists and the demand dictionary
+warehouse = ['New York', 'Atlanta']
+customers = ['East', 'South', 'Midwest', 'West']
+regional_demand = [1800, 1200, 1100, 1000]
+demand = dict(zip(customers, regional_demand))
+
+# Define Objective
+model += lpSum([costs[(w, c)] * var_dict[(w, c)] 
+                for c in customers for w in warehouse])
+
+# For each customer, sum warehouse shipments and set equal to customer demand
+for c in customers:
+    model += lpSum([var_dict[(w, c)] for w in warehouse]) == demand[c]
+
