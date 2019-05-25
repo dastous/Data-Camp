@@ -1,0 +1,37 @@
+#Solving Production Plan Exercise
+#In this exercise you are working on a production plan for manufacturing kitchen cabinets over the next four months. There are setup, production, and inventory storing costs. You are given the starting inventory, the production capacity and the demand for cabinets for each month. Your goal is to determine how many cabinets should be produced, and the ending inventory in each period that minimizes the overall costs over the four months.
+
+#The PuLP model has been completed for you and stored in the variable model. The model’s decision variables include, x which equals the quantity of cabinets produced in a month, and s which shows the inventory at the end of a month. Additionally, a Python list of the different time periods named time has been created for you.
+
+#Instructions 1/3
+#35 XP
+#Complete the code that prints the text description of the model status.
+#Complete the code that prints out the value of all of the model variables.
+
+# Print status
+print(LpStatus[model.status])
+
+# Print variables
+for v in model.variables():
+    print(v.name, "=", v.varValue)
+    
+#Instructions 2/3
+#35 XP
+#Complete the code to print a Pandas DataFrame, with the amount of cabinets produced, and the ending inventory by month.
+
+# Print status
+print(LpStatus[model.status])
+
+# Print variables
+o = [{'prod':x[t].varValue, 'stock':s[t].varValue} for t in time]
+print(pd.DataFrame(o, index=time))
+
+#Instructions 3/3
+#30 XP
+#Complete the code to print the overall costs of the plan by printing the value of the objective function.
+
+# Print status
+print(LpStatus[model.status])
+
+# Print Objective Fun. Value
+print("Total Cost = ", value(model.objective))
