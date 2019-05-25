@@ -1,0 +1,64 @@
+#Preventative Maintenance Scheduling
+#At a quarry they use diamond saws to cut slabs of marble. For preventative maintenance the saws are only allowed to run for 4 consecutive hours, afterwards a 1 hour inspection is completed before they are allowed to go back into service. The quarry operates 10-hour shifts. At the end of the shift if the saw blades have not been used for 4 consecutive hours the remaining time will be used at the start of the next shift. The expected number of saw blades needed for each hour is listed below. Our goal is to determine the minimum number of saw blades are needed for the shift.
+
+#Expected Workload - (Note that the chart at hour 0)
+
+#Hour	Saws Needed
+#0	7
+#1	7
+#2	7
+#3	6
+#4	5
+#5	6
+#6	6
+#7	7
+#8	7
+#9	6
+#The model has been initialized for you.
+
+#Instructions 1/3
+#35 XP
+#Using LpVariable.dicts() and hours define the decision variable as the number of saw blades starting to be used on a specific hour, choosing the appropriate lower bound and category.
+
+# The class has been initialize, and hours defined
+model = LpProblem("Minimize Staffing", LpMinimize)
+hours = list(range(10))
+
+# Define Decision Variables
+x = LpVariable.dicts('saws_', hours, lowBound=0, cat='Integer')
+
+#Instructions 2/3
+#30 XP
+#Complete the code to define the objective function, to measure the total number of saw blades needed, by using lpSum() and list comprehension.
+
+# The class has been initialize, and x, and hours defined
+model = LpProblem("Minimize Staffing", LpMinimize)
+hours = list(range(10))
+x = LpVariable.dicts('saws_', hours, lowBound=0, cat='Integer')
+
+# Define Objective
+model += lpSum([x[i] for i in hours])
+
+#Instructions 3/3
+#35 XP
+#Complete the code to define the ten constraints on the number of saw blades needed each hour.
+
+# The class has been initialize, and x, hours and objective fuction defined
+model = LpProblem("Minimize Staffing", LpMinimize)
+hours = list(range(10))
+x = LpVariable.dicts('saws_', hours, lowBound=0, cat='Integer')
+model += lpSum([x[i] for i in hours])
+
+# Define Constraints
+model += x[0] + x[2] + x[3] + x[4] + x[5] + x[7] + x[8] + x[9] >= 7
+model += x[0] + x[1] + x[3] + x[4] + x[5] + x[6] + x[8] + x[9] >= 7
+model += x[0] + x[1] + x[2] + x[4] + x[5] + x[6] + x[7] + x[9] >= 7
+model += x[0] + x[1] + x[2] + x[3] + x[5] + x[6] + x[7] + x[8] >= 6
+model += x[1] + x[2] + x[3] + x[4] + x[6] + x[7] + x[8] + x[9] >= 5
+model += x[0] + x[2] + x[3] + x[4] + x[5] + x[7] + x[8] + x[9] >= 6
+model += x[0] + x[1] + x[3] + x[4] + x[5] + x[6] + x[8] + x[9] >= 6
+model += x[0] + x[1] + x[2] + x[4] + x[5] + x[6] + x[7] + x[9] >= 7
+model += x[0] + x[1] + x[2] + x[3] + x[5] + x[6] + x[7] + x[8] >= 7
+model += x[1] + x[2] + x[3] + x[4] + x[6] + x[7] + x[8] + x[9] >= 6
+
+model.solve()
