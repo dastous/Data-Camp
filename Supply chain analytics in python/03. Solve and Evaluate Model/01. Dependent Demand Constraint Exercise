@@ -1,0 +1,25 @@
+#Dependent Demand Constraint Exercise
+#You are developing a production plan for 5 products (A through E). One unit of product E comprises 2 units of A, and 1 unit of C. Product C is also sold directly to customers. Your planning horizon is 3 months. You are looking to determine how much of each product to produce by month that meets the customer's demand and minimizes the total costs.
+
+#A Pandas DataFrame named demand is printed in the console and contains the monthly customer demand for each product. Additionally, the code of the PuLP model to initialize, define decision variables, objective function, and constraint so production is greater than or equal to demand has been given to you.
+
+#Instructions
+#100 XP
+#Complete the code for the constraints that includes the dependent demand for products A, and C.
+
+# Initialize, Define Decision Vars., Objective Function, and Constraints
+model = LpProblem("Aggregate Production Planning", LpMinimize)
+time = [0, 1, 2]
+prod = ['A', 'B', 'C', 'D', 'E']
+X = LpVariable.dicts("prod", [(t, p) for p in prod for t in time], 
+                     lowBound=0, cat="Integer")
+model += lpSum([costs.loc[t, p]*X[(t, p)] for p in prod for t in time])
+for p in prod:
+    for t in time:
+        model += X[(t, p)] >= demand.loc[t, p]
+        
+# Define Dependent Demand Constraints
+for t in time:
+    model += 2 * X[(t, 'E')] <= X[(t, 'A')]
+    model += 1 * X[(t, 'E')] + demand.loc[t, 'C'] <= X[(t, 'C')]
+    
