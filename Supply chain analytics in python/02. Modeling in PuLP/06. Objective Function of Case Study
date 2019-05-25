@@ -1,0 +1,39 @@
+#Objective Function of Case Study
+#Continue the case study of the Capacitated Plant Location model of a car manufacture. You are given four Pandas data frames demand, var_cost, fix_cost, and cap containing the regional demand (thous. of cars), variable production costs (thous. $US), fixed production costs (thous. $US), and production capacity (thous. of cars). Two python lists loc, and size have also been created, containing the different locations, and the two types of plant capacities. All these variables have been printed to the console for your viewing. The code to initialize, and defined the decision variables has been completed for you.
+
+#Instructions 1/2
+#50 XP
+#Complete the code to define portion of the objective function that sums the fixed costs, by using lpSum() and list comprehension.
+
+# Initialize, and Define Decision Vars.
+model = LpProblem("Capacitated Plant Location Model", LpMinimize)
+loc = ['USA', 'Germany', 'Japan', 'Brazil', 'India']
+size = ['Low_Cap','High_Cap']
+x = LpVariable.dicts("production_", [(i,j) for i in loc for j in loc],
+                     lowBound=0, upBound=None, cat='Continuous')
+y = LpVariable.dicts("plant_", 
+                     [(i,s) for s in size for i in loc], cat='Binary')
+
+# Define objective function
+model += (lpSum([fix_cost.loc[i,s] * y[(i,s)] 
+                 for s in size for i in loc])
+          )
+          
+#Instructions 2/2
+#50 XP
+#Complete the code to define portion of the objective function that sums the variable costs, by using lpSum and list comprehension.
+
+# Initialize, and Define Decision Vars.
+model = LpProblem("Capacitated Plant Location Model", LpMinimize)
+loc = ['USA', 'Germany', 'Japan', 'Brazil', 'India']
+size = ['Low_Cap','High_Cap']
+x = LpVariable.dicts("production_", [(i,j) for i in loc for j in loc],
+                     lowBound=0, upBound=None, cat='Continous')
+y = LpVariable.dicts("plant_", 
+                     [(i,s) for s in size for i in loc], cat='Binary')
+
+# Define objective function
+model += (lpSum([fix_cost.loc[i,s] * y[(i,s)] 
+                 for s in size for i in loc])
+          + lpSum([var_cost.loc[i,j] * x[(i,j)] 
+                   for i in loc for j in loc]))
