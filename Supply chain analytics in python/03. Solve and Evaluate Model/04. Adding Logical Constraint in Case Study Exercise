@@ -1,0 +1,25 @@
+#Adding Logical Constraint in Case Study Exercise
+#Continue the case study of the Capacitated Plant Location model of a car manufacture. You are given four Pandas data frames demand, var_cost, fix_cost, and cap containing the regional demand (thous. of cars), variable production costs (thous. $US), fixed production costs (thous. $US), and production capacity (thous. of cars). Two python lists loc, and size have also been created, containing the different locations, and the two types of plant capacities. All these variables have been printed to the console for your viewing. The code to initialize, defined the decision variables, create the objective function, and constraints has been completed for you.
+
+#Instructions
+#100 XP
+#Add a logical constraint so that if the high capacity plant in USA is open, then a low capacity plant in Germany is also opened.
+
+# Initialize, Define Decision Vars., Object. Fun., and Constraints
+model = LpProblem("Capacitated Plant Location Model", LpMinimize)
+loc = ['USA', 'Germany', 'Japan', 'Brazil', 'India']
+size = ['Low_Cap','High_Cap']
+x = LpVariable.dicts("production_", [(i,j) for i in loc for j in loc],
+                     lowBound=0, upBound=None, cat='Integer')
+y = LpVariable.dicts("plant_", 
+                     [(i,s) for s in size for i in loc], cat='Binary')
+model += (lpSum([fix_cost.loc[i,s] * y[(i,s)] for s in size for i in loc])
+          + lpSum([var_cost.loc[i,j] * x[(i,j)] for i in loc for j in loc]))
+for j in loc:
+    model += lpSum([x[(i, j)] for i in loc]) == demand.loc[j,'Dmd']
+for i in loc:
+    model += lpSum([x[(i, j)] for j in loc]) <= lpSum([cap.loc[i,s]*y[(i,s)] 
+                                                       for s in size])
+
+# Define logical constraint
+model += y[('USA','High_Cap')] - y[('Germany','Low_Cap')] <= 0
