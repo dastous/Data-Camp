@@ -1,0 +1,29 @@
+#Logical Constraint Exercise
+#Your customer has ordered six products to be delivered over the next month. You will need to ship multiple truck loads to deliver all of the products. There is a weight limit on your trucks of 25,000 lbs. For cash flow reasons you desire to ship the most profitable combination of products that can fit on your truck.
+
+#Product	Weight (lbs)	Profitability ($US)
+#A	12,583	102,564
+#B	9,204	130,043
+#C	12,611	127,648
+#D	12,131	155,058
+#E	12,889	238,846
+#F	11,529	197,030
+#Two Python dictionaries weight, and prof, and a list prod have been created for you containing the weight, profitability, and name of each product. You can explore them in the console.
+
+#Instructions
+#100 XP
+#Add a constraint to ensure the total weight of the truck is less than or equal to 25,000 lbs.
+#Add a constraint so that the model will, at most, select only one of the products between D, E, and F.
+
+# Initialized model, defined decision variables and objective
+model = LpProblem("Loading Truck Problem", LpMaximize)
+x = LpVariable.dicts('ship_', prod, cat='Binary')
+model += lpSum([prof[i] * x[i] for i in prod])
+
+# Define Constraint
+model += lpSum([weight[i] * x[i] for i in prod]) <= 25000
+model += x['D'] + x['E'] + x['F'] <=1
+
+model.solve()
+for i in prod:
+    print("{} status {}".format(i, x[i].varValue))
