@@ -1,0 +1,36 @@
+#Shadow Price and Slack Exercise Pt1
+#You are planning what cupcakes a bakery should make. The bakery can make either:
+
+#regular size cupcake: profit = $5
+#a jumbo cupcake twice the regular size: profit = $10
+#There are 2 constraints on oven hours (30) and worker hours (65). This scenario has been modeled in PuLP for you and a solution found. The model status, decision variables values, objective value (i.e. profit), the shadow prices and slack of the constraints have been printed in the shell.
+
+#The sample script is a copy of that code. You will adjust the constraints to see how the optimal solution changes.
+
+#Instructions 1/4 X4
+#25 XP X4
+#1-Increase the 1st constraint to 31. Run the code and see the change in the objective compared to the original solution.
+#2-Increase the 2nd constraint to 80. Run the code and see no change in the objective compared to the original solution.
+#3-Decrease the 2nd constraint to 60. Run the code and see no change in the objective compared to the original solution.
+#4-Decrease the 2nd constraint to 59. Run the code and see a change in the objective value, and the amount of production.
+
+
+# Define Constraints, Solve, Print Status, Variables, Objective
+model = LpProblem("Maximize Bakery Profits", LpMaximize)
+R = LpVariable('Regular_production', lowBound=0, cat='Continuous')
+J = LpVariable('Jumbo_production', lowBound=0, cat='Continuous')
+model += 5 * R + 10 * J, "Profit"
+
+# Adjust the constraint
+model += 0.5 * R + 1 * J <= 31
+model += 1 * R + 2.5 * J <= 65
+
+# Solve Model, Print Status, Variables, Objective, Shadow and Slack
+model.solve()
+print("Model Status: {}".format(pulp.LpStatus[model.status]))
+for v in model.variables():
+    print(v.name, "=", v.varValue)
+print("Objective = $", value(model.objective))
+o = [{'name':name, 'shadow price':c.pi, 'slack': c.slack} 
+     for name, c in model.constraints.items()]
+     
