@@ -1,0 +1,23 @@
+#Solving the Model Case Study Exercise
+#Continue the case study of the Capacitated Plant Location model of a car manufacture. The PuLP model has been completed and solved for you. It is stored in the variable model.
+
+#The decision variables x and y respectively represent the production quantities of the different regions, and if a production plant is opened. Additionally, two python lists loc and size have also been created, containing the different locations, and the two types of plant capacities. Finally, the input data for the model has been printed to the console for reference.
+
+#Instructions
+#100 XP
+#Print the values of how much is produced and shipped from one region to another.
+#Next, print the status value of the different regional plants of low and high capacity.
+#Finally, print the objective value.
+
+# Print the Production Quantities
+o = [{'prod':'{} to {}'.format(i,j), 'quantity':x[(i,j)].varValue} 
+     for i in loc for j in loc]
+print(pd.DataFrame(o))
+
+# Print the Plant Values of the different regions
+o = [{'lowCap':y[(i,size[0])].varValue, 'highCap':y[(i,size[1])].varValue}
+     for i in loc]
+print(pd.DataFrame(o, index=loc))
+
+# Print the Objective Value
+print('Objective = ', value(model.objective))
