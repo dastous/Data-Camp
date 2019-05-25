@@ -1,0 +1,19 @@
+#Decision Variables of Case Study
+#Continue the case study of the Capacitated Plant Location model of a car manufacture. You are given four Pandas data frames demand, var_cost, fix_cost, and cap containing the regional demand (thous. of cars), variable production costs (thous. $US), fixed production costs (thous. $US), and production capacity (thous. of cars). All these variables have been printed to the console for your viewing.
+
+#Instructions
+#100 XP
+#Initialize the class.
+#Define the decision variables using LpVariable.dicts and python's list comprehension.
+
+# Initialize Class
+model = LpProblem("Capacitated Plant Location Model", LpMinimize)
+
+# Define Decision Variables
+loc = ['USA', 'Germany', 'Japan', 'Brazil', 'India']
+size = ['Low_Cap','High_Cap']
+x = LpVariable.dicts("production_",
+                     [(i,j) for i in loc for j in loc],
+                     lowBound=0, upBound=None, cat='Continuous')
+y = LpVariable.dicts("plant_", 
+                     [(i,s) for s in size for i in loc], cat='Binary')
