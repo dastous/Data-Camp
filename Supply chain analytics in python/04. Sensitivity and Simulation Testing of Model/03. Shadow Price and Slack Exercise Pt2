@@ -1,0 +1,24 @@
+#Shadow Price and Slack Exercise Pt2
+#In this exercise you are working on the production plan for a company over the next 4 months. Your goal is to determine how much should be produced to minimize the production (fixed + variable), and storage costs while meeting the customers demand. The are constraints on the production capacity and demand each month.
+
+#Instructions
+#100 XP
+#Complete the code, near the bottom of the sample code, to create a Pandas DataFrame that shows the slack of the constraints.
+
+model = LpProblem("Production Planning", LpMinimize)
+time = [1, 2, 3, 4]
+s = LpVariable.dicts("stock_in", [0, 1, 2, 3, 4], lowBound=0, cat="Integer")
+x = LpVariable.dicts("prod_in", time, lowBound=0, cat="Integer")
+y = LpVariable.dicts("plant_on_", time, lowBound=0, cat="Binary")
+model += lpSum([d.loc[t,"unit_prod"]*x[t] + d.loc[t,"unit_inv"]*s[t] 
+                + d.loc[t,"fixed_setup"]*y[t] for t in time])
+s[0] = 100
+for t in time:
+    model += s[t-1] + x[t] == d.loc[t,"demand"] + s[t]
+    model += x[t] <= d.loc[t,"prod_cap"]*y[t]
+model.solve()
+
+# Print the Constraint Slack
+o = [{'name':name, 'slack':c.slack} 
+     for name, c in model.constraints.items()]
+print(o)
