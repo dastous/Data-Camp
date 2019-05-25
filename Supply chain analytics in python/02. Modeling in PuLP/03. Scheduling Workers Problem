@@ -1,0 +1,58 @@
+#Scheduling Workers Problem
+#You are looking to hire workers to work in a warehouse. Each worker is expected to work 5 consecutive days and then have two days off. The chart below has the estimated number of workers you will need each day. You are looking to hire the minimum number of workers to handle the workload for each day.
+
+#Expected Workload
+
+#Day of Week	Employees Needed
+#0 = Monday	31
+#1 = Tuesday	45
+#2 = Wednesday	40
+#3 = Thursday	40
+#4 = Friday	48
+#5 = Saturday	30
+#6 = Sunday	25
+#The pulp module has been imported and the model has been initialized for you. Also, the variable days has been defined for you as a list of number from 0-6.
+
+#Instructions 1/3
+#35 XP
+#Complete the code to define the decision variable as the number of workers starting on a specific day using LpVariable.dicts(), and days.
+
+# The class has been initialize, and days defined
+model = LpProblem("Minimize Staffing", LpMinimize)
+days = list(range(7))
+
+# Define Decision Variables
+x = LpVariable.dicts('staff_', [0,1,2,3,4,5,6], lowBound=0, cat='Integer')
+
+#Instructions 2/3
+#35 XP
+#Complete the code to define the objective function, to measure the total number of workers, by using lpSum() and list comprehension.
+
+# The class has been initialize, and x, and days defined
+model = LpProblem("Minimize Staffing", LpMinimize)
+days = list(range(7))
+x = LpVariable.dicts('staff_', days, lowBound=0, cat='Integer')
+
+# Define Objective
+model += lpSum([x[i] for i  in days])
+
+#Instructions 3/3
+#30 XP
+#Complete the code to define the seven constraints on the number of workers working on a day.
+
+# The class has been initialize, and x, days, and objective function defined
+model = LpProblem("Minimize Staffing", LpMinimize)
+days = list(range(7))
+x = LpVariable.dicts('staff_', days, lowBound=0, cat='Integer')
+model += lpSum([x[i] for i in days])
+
+# Define Constraints
+model += x[0] + x[3] + x[4] + x[5] + x[6] >= 31
+model += x[0] + x[1] + x[4] + x[5] + x[6] >= 45
+model += x[0] + x[1] + x[2] + x[5] + x[6] >= 40
+model += x[0] + x[1] + x[2] + x[3] + x[6] >= 40
+model += x[0] + x[1] + x[2] + x[3] + x[4] >= 48
+model += x[1] + x[2] + x[3] + x[4] + x[5] >= 30
+model += x[2] + x[3] + x[4] + x[5] + x[6] >= 25
+
+model.solve()
