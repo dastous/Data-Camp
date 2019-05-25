@@ -1,0 +1,52 @@
+#Travelling Salesman Problem (TSP)
+#The Traveling Salesman Problem (TSP) is a popular problem and has applications is logistics. In the TSP a salesman is given a list of cities, and the distance between each pair. He is looking for the shortest route going from the origin through all points before going back to the origin city again. This is a computationally difficult problem to solve but Miller-Tucker-Zemlin (MTZ) showed it can be completed using Integer Linear Programing. In this exercise you are going to define the objective and some constraints for of the TSP for a small dataset with 15 cities (see the image below). Your goal is to try out using LpVariable.dicts with list comprehension.
+
+#Photo of Cities
+
+#Three Python variables n, cities, and dist have been created for you 1. The n variable is the number of cities, cities is a list of the cities numbered and dist is a pandas DataFrame with the pairwise distance between each city. You can explore them in the console. Additionally, the model has been initialized for you.
+
+#1 Dataset come from Gerhard Reinelt,TSPLIB - A Traveling Salesman Problem Library, ORSA Journal on Computing,
+
+#Instructions 1/3
+#35 XP
+#Use LpVariable.dicts to create a dictionary x holding binary variables for each city to city pair, and to create a dictionary u holding an integer LpVariable for each city.
+
+# Define Decision Variables
+x = LpVariable.dicts('X', [(c1, c2) for c1 in cities for c2 in cities], 
+                     cat='Binary')
+u = LpVariable.dicts('U', [c1 for c1 in cities], 
+                     lowBound=0, upBound=(n-1), cat='Integer')
+                     
+#Instructions 2/3
+#35 XP
+#Define the objective function by summing together, the distance between each pair of cities multiplied by the binary decision variable x that you created earlier.
+
+# Define Decision Variables
+x = LpVariable.dicts('X', [(c1, c2) for c1 in cities for c2 in cities], 
+                     cat='Binary')
+u = LpVariable.dicts('U', [c1 for c1 in cities], 
+                     lowBound=0, upBound=(n-1), cat='Integer')
+
+# Define Objective
+model += lpSum([dist.iloc[c1, c2] * x[(c1, c2)] 
+                for c1 in cities for c2 in cities])
+                
+#Instructions 3/3
+#30 XP
+#Use the x binary variable to define a set of constraints to requires that each city be arrived at from exactly one other city, and a second set of constraints that requires that from each city there is a departure to exactly one other city.
+
+# Define Decision Variables
+x = LpVariable.dicts('X', [(c1, c2) for c1 in cities for c2 in cities], 
+                     cat='Binary')
+u = LpVariable.dicts('U', [c1 for c1 in cities], 
+                     lowBound=0, upBound=(n-1), cat='Integer')
+
+# Define Objective
+model += lpSum([dist.iloc[c1, c2] * x[(c1, c2)] 
+                for c1 in cities for c2 in cities])
+
+# Define Constraints
+for c2 in cities:
+    model += lpSum([x[(c1, c2)] for c1 in cities]) == 1
+for c1 in cities:
+    model += lpSum([x[(c1, c2)] for c2 in cities]) == 1
