@@ -1,0 +1,30 @@
+#Logical Constraints Exercise 2
+#You work at a trucking distribution center and you need to decide which of 6 customer locations you will send a truck to. Your goal is to minimize the distance a truck travels.
+
+#Product	Distance
+#A	86
+#B	95
+#C	205
+#D	229
+#E	101
+#F	209
+#A dictionary dist, and a list cust have been created for you containing the distance, and name of each customer location. These inputs have been printed in console for you.
+
+#Instructions
+#100 XP
+#Update the constraints so that the model selects at least one location
+#Add the constraint so that if location A is selected then location D is also selected.
+#Add the constraint so that if location B is selected then location E is also selected.
+
+model = LpProblem("Loading Truck Problem", LpMinimize)
+x = LpVariable.dicts('ship_', cust, cat='Binary')
+model += lpSum([dist[i]*x[i] for i in cust])
+
+# Define Constraint
+model += x['A'] + x['B'] + x['C'] + x['D'] + x['E'] + x['F'] >= 1
+model += x['A'] - x['D'] <= 0
+model += x['B'] - x['E'] <= 0
+
+model.solve()
+for i in cust:
+    print("{} status {}".format(i, x[i].varValue))
