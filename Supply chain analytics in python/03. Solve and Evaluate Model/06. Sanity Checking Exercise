@@ -1,0 +1,43 @@
+#Sanity Checking Exercise
+#You are working on the production planning for a factory over the next 4 months. As inputs, you are given the starting inventory as 100 units, the fixed production costs of running the plant ($US), the unit production costs ($US), the costs for storing inventory ($US), monthly production capacity, and the monthly demand.
+
+#All of our input variables are stored in a Pandas DataFrame named d and it's printed for you in the console. Your goal is to determine if he production line should be on or off, the amount of production, and amount of inventory to meet the monthly demand at the lowest costs.
+
+#Instructions 1/3
+#30 XP
+#Question
+#A PuLP model has been created for you to answer the problem. The model status, the value of the objective function, and the monthly production have been printed in the console. Use this info to determine if the decision variables and objective function are in their expected ranges. Find which statement is true.
+
+#Possible Answers
+
+#It does not makes sense that month 3 has the lowest production because it has the lowest production costs.
+#* The plant is producing each month, and should be incurring the fixed production costs each month. Therefore, the value of the objective function seems too low. It should be at minimum $320,000 because of the fix production costs alone.
+#There is excess production capacity (i.e. production capacity is greater than demand) each month. Therefore, there is no need to produce more than the demand in the first month.
+#All above are correct.
+
+#Instructions 2/3
+#35 XP
+#You now suspect that the value of the objective function is too low. Therefore, complete the code that will write the model specifications to a file, named production_planning_lp.txt, and print them to the console.
+
+# Write model specifications to a file
+file_name = 'production_planning_lp.txt'
+model.writeLP(file_name)
+f = open(file_name)
+print(f.read())
+f.close()
+
+#Instructions 3/3
+#35 XP
+#You notice in the model specification that it did not include the fixed costs in the objective function. Finish defining the objective function to ensure that it includes the fixed costs.
+
+# Initialize, Define Decision Vars.
+model = LpProblem("Production Planning", LpMinimize)
+time = [1, 2, 3, 4]
+s = LpVariable.dicts("stock", [0, 1, 2, 3, 4], lowBound=0, cat="Integer")
+x = LpVariable.dicts("prod", time, lowBound=0, cat="Integer")
+y = LpVariable.dicts("plant_on", time, lowBound=0, cat="Binary")
+
+# Define Objective to Include Fixed Costs
+model += lpSum([d.loc[t,"unit_prod"] * x[t] + d.loc[t,"unit_inv"]*s[t] 
+                + d.loc[t,"fixed"] * y[t]
+                for t in time])
