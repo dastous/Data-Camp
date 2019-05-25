@@ -1,0 +1,24 @@
+#Constraint Combination Exercise
+#You are working on a distribution plan for a warehouse network. The network has two warehouses (W1, and W2) and each can ship three different types of products (A, B, and C). W1 is small and can either ship 10 products A per a week or 15 products B per a week or 20 products C per a week. You are looking to minimize the total costs.
+
+#A Pandas DataFrame named demand is printed in the console and contains the monthly demand for each product. Additionally, the code of the PuLP model to initialize, define decision variables, objective function, and constraint so total shipment of each product equals its demand.
+
+#Instructions
+#100 XP
+#Complete the code for the constraint that models the shipping limitations of warehouse W1 for 4 weeks.
+
+# Initialize, Define Decision Vars., Objective Function, and Constraints
+model = LpProblem("Distribution Planning", LpMinimize)
+wh = ['W1','W2']
+prod = ['A', 'B', 'C']
+X = LpVariable.dicts("ship", [(w, p, c) for c in cust for p in prod for w in wh], 
+                     lowBound=0, cat="Integer")
+model += lpSum([X[(w, p, c)]*costs.loc[(w, p), c]  for c in cust for p in prod for w in wh])
+for c in cust:
+    for p in prod:
+        model += lpSum([X[(w, p, c)] for w in wh]) == demand.loc[p, c]
+
+# Define Dependent Demand Constraints
+model += ((1/10) * lpSum([X[('W1', 'A', c)] for c in cust]) 
+          + (1/15) * lpSum([X[('W1', 'B', c)] for c in cust])
+          + (1/20) * lpSum([X[('W1', 'C', c)] for c in cust])) <= 4
