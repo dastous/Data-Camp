@@ -1,0 +1,48 @@
+#Simulation Testing Capacitated Model
+#Continue the case study of the Capacitated Plant Location model of a car manufacture. The PuLP model has been completed and solved for you. It is stored in the variable model. The decision variables x, and y respectively represent the production quantities of the different regions, and if a production plant is opened. Additionally, two python lists loc, and size have also been created, containing the different locations, and the two types of plant capacities. Finally, the input data for the model has been printed to the console for you for reference.
+
+#Instructions 1/4
+#25 XP
+#Complete the code of the objective function that uses the random.normalvariate() method to add noise to the variable costs estimates, centered at 0.5 (thousands of $US dollars) with a standard deviation of 0.5 (thousands of $US dollars).
+
+# Define Objective
+model += (lpSum([fix_cost.loc[i,s] * y[(i,s)] for s in size for i in loc])
+          + lpSum([(var_cost.loc[i,j] + random.normalvariate(0,5))*x[(i,j)] 
+                   for i in loc for j in loc]))
+                   
+#Instructions 2/4
+#25 XP
+#Add noise to the regional demand estimates. Set the parameters of the random.normalvariate() method where the mean=0 and the standard deviation is 5% of the demand estimate.
+
+# Define the Constraints
+for j in loc:
+    rd = random.normalvariate(0, demand.loc[j,'Dmd']*0.05)
+    model += lpSum([x[(i, j)] for i in loc]) == (demand.loc[j,'Dmd'] + rd)
+    
+#Instructions 3/4
+#25 XP
+#A function named run_pulp_model(fix_cost, var_cost, demand, cap) has been created for you to solve and return results of the PuLP model for simulation testing. Complete the code to call the function 100 times, saving the results in a list.
+
+# Call the function 100 times and append results to list
+output = []
+for i in range(100):
+    output.append(run_pulp_model(fix_cost,var_cost,demand,cap))
+df = pd.DataFrame(output)
+
+#Instructions 4/4
+#25 XP
+#Plot the histogram of the production in Brazil (this could take a bit longer than usual to run).
+
+# Import matplotlib
+import matplotlib.pyplot as plt
+
+# Call the function 100 times and append results to list
+output = []
+for i in range(100):
+    output.append(run_pulp_model(fix_cost, var_cost, demand, cap))
+df = pd.DataFrame(output)
+
+# Plot histogram of Brazil Production
+plt.hist(df['Brazil'])
+plt.title('Histogram of Prod. In Brazil Region')
+plt.show()
