@@ -1,0 +1,20 @@
+#Trying out lpSum
+#In this exercise you are making two types (premium and budget) of ice cream, using heavy cream, whole milk, and sugar. One version is a premium version containing more cream than your budget version. You are looking to find the mixture of ingredients that minimizes the total costs of ingredients.
+
+#Ingredient	$/cup
+#Cream	$1.5
+#Milk	$0.125
+#Sugar	$0.10
+#Two Python lists called prod_type and ingredient have been created for you, along with a dictionary var_dict containing the decision variables of the model. You can explore them in the console.
+
+#Instructions
+#100 XP
+#Define the objective function using lpSum() with list comprehension and the information in the table above. Iterate over the product types and multiply the dictionary variable by the correct ingredient cost.
+
+# Define Objective Function
+model += lpSum([1.5 * var_dict[(i, 'cream')] 
+                + .125 * var_dict[(i, 'milk')] 
+                + .1 * var_dict[(i, 'sugar')]
+                
+                # Iterate over product types
+                for i in prod_type])
