@@ -1,0 +1,69 @@
+#Simple Resource Scheduling Exercise
+#In this exercise you are planning the production at a glass manufacturer. This manufacturer only produces wine and beer glasses:
+
+#there is a maximum production capacity of 60 hours
+#each batch of wine and beer glasses takes 6 and 5 hours respectively
+#the warehouse has a maximum capacity of 150 rack spaces
+#each batch of the wine and beer glasses takes 10 and 20 spaces respectively
+#the production equipment can only make full batches, no partial batches
+#Also, we only have orders for 6 batches of wine glasses. Therefore, we do not want to produce more than this. Each batch of the wine glasses earns a profit of $5 and the beer $4.5.
+
+#The objective is to maximize the profit for the manufacturer.
+
+#puLP has already been imported for you.
+
+#Instructions 1/4
+#25 XP
+#Complete the code that initializes the model using the LpProblem() function. Remember you want to model the objective function as the amount of profit earned.
+
+# Initialize Class
+model = LpProblem("Maximize Glass Co. Profits", LpMaximize)
+
+#Instructions 2/4
+#25 XP
+#Define the model variables for the number of wine and beer produced. In terms of profit, the sky is the limit, but we definitely want to ensure we're not losing money.
+
+# Initialize class
+model = LpProblem("Maximize Glass Co. Profits", LpMaximize)
+
+# Define Decision Variables
+wine = LpVariable('Wine', lowBound=0, upBound=None, cat='Integer')
+beer = LpVariable('Beer', lowBound=0, upBound=None, cat='Integer')
+
+#Instructions 3/4
+#25 XP
+#Write the objective function. How does each wine and beer glass produced affect profit?
+
+# Initialize Class
+model = LpProblem("Maximize Glass Co. Profits", LpMaximize)
+
+# Define Decision Variables
+wine = LpVariable('Wine', lowBound=0, upBound=None, cat='Integer')
+beer = LpVariable('Beer', lowBound=0, upBound=None, cat='Integer')
+
+# Define Objective Function
+model += 5 * wine + 4.5 * beer
+
+#Instructions 4/4
+#25 XP
+#Define the 3 model constraints. Think about the production capacity, reflect on the warehouse capacity, and don't forget about the current amount of orders.
+
+# Initialize Class
+model = LpProblem("Maximize Glass Co. Profits", LpMaximize)
+
+# Define Decision Variables
+wine = LpVariable('Wine', lowBound=0, upBound=None, cat='Integer')
+beer = LpVariable('Beer', lowBound=0, upBound=None, cat='Integer')
+
+# Define Objective Function
+model += 5 * wine + 4.5 * beer
+
+# Define Constraints
+model += 6 * wine + 5 * beer <= 60
+model += 10 * wine + 20 * beer <= 150
+model += wine <= 6
+
+# Solve Model
+model.solve()
+print("Produce {} batches of wine glasses".format(wine.varValue))
+print("Produce {} batches of beer glasses".format(beer.varValue))
