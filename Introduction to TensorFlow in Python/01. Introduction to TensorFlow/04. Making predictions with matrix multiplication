@@ -1,0 +1,23 @@
+#Making predictions with matrix multiplication
+#In later chapters, you will learn to train linear regression models. This process will yield a vector of parameters that can be multiplied by the input data to generate a vector of predictions. In the exercise, we will use the following tensors:
+
+#X=[1 2 5 6 2 1 8 10] b=[1 2] y = [6 4 20 23]
+#X is the matrix of input data, b is the parameter vector, and y is the target vector. You will use matmul() to perform matrix multiplication of X by b to generate predictions, ypred, which you will compare with y. Note that we have imported matmul(), constant(), and subtract(), which subtracts the second argument from the first.
+
+#Instructions
+#100 XP
+#Define X, b, and y as constants.
+#Compute the predicted value vector, ypred, by multiplying the input data, X, by the parameters, b. Use matrix multiplication, rather than the element-wise product.
+#Use subtract() to compute the error as the deviation of the predicted values, ypred, from the true values or "targets," y.
+
+# Define X, b, and y as constants
+X = constant([[1, 2], [2, 1], [5, 8], [6, 10]])
+b = constant([[1], [2]])
+y = constant([[6], [4], [20], [23]])
+
+# Compute ypred using X and b
+ypred = matmul(X,b)
+
+# Compute and print the error as y - ypred
+error = subtract(y, ypred)
+print(error.numpy())
