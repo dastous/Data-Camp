@@ -1,0 +1,16 @@
+#Evaluating models
+#When you train a model, you will typically divide your data into three subsets: train, validation, and test. During the training phase, you will use the train and validation subsets. As you do this, you will adjust the number epochs, the learning rate, and other "hyperparameters" to reduce the train and validation set losses. Once this process is complete, you will evaluate your model on a separate test set.
+
+#We will focus on the evaluation phase in this exercise. A pretrained model has been defined and is available as model. You can apply its .evaluate(x,y) method to compute the loss and metric values for features x and labels y. Furthermore, the data is available as train_features, train_labels, test_features, and test_labels.
+
+#Instructions
+#100 XP
+#Evaluate the model using the train data.
+#Evaluate the model using the test data.
+
+
+# Evaluate the model using the train data
+model.evaluate(train_features, train_labels)
+
+# Evaluate the model using the test data
+model.evaluate(test_features, test_labels)
