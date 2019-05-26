@@ -1,0 +1,23 @@
+#Defining constants with convenience functions
+#A constant is the simplest category of tensor. It can't be trained, which makes it a bad choice for a model's parameters, but a good choice for input data. Input data may be transformed after it is defined or loaded, but is typically not modified by the training process.
+
+#In this exercise, we will practice defining constants using some of the operations discussed in the video. Note that we have not imported the entire tensorflow API and will not import it for most exercises. You can complete this exercise using the operations fill(), ones_like(), and constant(), which have been imported from tensorflow version 2.0 and are available in the IPython shell.
+
+#Instructions
+#100 XP
+#Define a 3x4 tensor, x, using fill() where each element has the value 9.
+#Create a tensor, y, with the same shape as x, but with all values set to one using ones_like().
+#Define a 1-dimensional constant(), z, which contains the following elements: [1, 2, 3, 4].
+#Print z as a numpy array using .numpy().
+
+# Define a 3x4 tensor with all values equal to 9
+x = fill([3, 4], 9)
+
+# Define a tensor of ones with the same shape as x
+y = ones_like(x)
+
+# Define the one-dimensional vector, z
+z = constant([1, 2, 3, 4])
+
+# Print z as a numpy array
+print(z.numpy())
