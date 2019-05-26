@@ -1,0 +1,27 @@
+#The linear algebra of dense layers
+#There are two ways to define a dense layer in tensorflow. The first involves the use of low-level, linear algebraic operations. The second makes use of high-level keras operations. In this exercise, we will use the first method to construct the network shown in the image below.
+
+#This image depicts an neural network with 10 inputs nodes and 3 output nodes.
+
+#We will use the credit card default data introduced in the video. Here, you are given a tensor of inputs, borrower_features, which consists of 1 example and 10 features, including education, marital status, and previous payment size.
+
+#You will want to take this input data, initialize a set of weights of shape 10x3, compute the product of the inputs and weights, and then apply an activation function. Note that Variable(), ones(), matmul(), keras(), array(), and float32 have been imported for you.
+
+#Instructions
+#100 XP
+#Define the input layer as borrower_features with a 32-bit float data type.
+#Initialize weights as a variable using a 10x3 tensor of ones.
+#Compute the product of inputs by weights using matrix multiplication.
+#Use a sigmoid activation function to transform product.
+
+# Define inputs as a 32-bit float
+inputs = array(borrower_features, float32)
+
+# Initialize weights as 10x3 variable of ones
+weights = Variable(ones((10, 3)))
+
+# Perform matrix multiplication of the inputs by the weights
+product = matmul(inputs,weights)
+
+# Apply sigmoid transformation
+dense = keras.activations.sigmoid(product)
