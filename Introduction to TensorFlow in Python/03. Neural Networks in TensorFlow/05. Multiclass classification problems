@@ -1,0 +1,23 @@
+#Multiclass classification problems
+#In this exercise, we expand beyond binary classification to cover multiclass problems. A multiclass problem has targets that can take on three or more values. In the credit card dataset, for instance, the education variable can take on 6 different values, each corresponding to a different level of education (i.e. high school, university, etc.). We will use that as our target in this exercise and also expand the feature set from 3 to 10 columns.
+
+#As in the previous problem, you will define an input layer, dense layers, and an output layer. Importantly, however, the output layer will need to have 6 outputs. The tensor of features has been loaded and is available as borrower_features. Additionally, the constant(), float32, and keras.layers.Dense() operations are available.
+
+#Instructions
+#100 XP
+#Define the input layer as a 32-bit constant tensor using borrower_features.
+#Set the first dense layer to have 10 output nodes and a sigmoid activation function.
+#Set the second dense layer to have 8 output nodes and a rectified linear unit activation function.
+#Set the output layer to have 6 output nodes and the appropriate activation function.
+
+# Construct input layer from borrower features
+input_layer = constant(borrower_features,float32)
+
+# Define first dense layer
+dense_layer_1 = keras.layers.Dense(10,activation='sigmoid')(input_layer)
+
+# Define second dense layer
+dense_layer_2 = keras.layers.Dense(8,activation='relu')(dense_layer_1)
+
+# Define output layer
+output_layer = keras.layers.Dense(6,activation='softmax')(dense_layer_2)
