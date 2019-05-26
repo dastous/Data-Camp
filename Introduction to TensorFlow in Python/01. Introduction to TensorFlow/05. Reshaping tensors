@@ -1,0 +1,31 @@
+#Reshaping tensors
+#In many machine learning problems, you will need to reshape your input data. If, for instance, you loaded a 9-pixel, grayscale image of the letter H, it might have the following 2-dimensional representation:
+
+#[255 255 255 0 255 0 255 255 255]
+#Some models are designed to use image data as an input. Many, however, require you to transform the data into a vector. In this exercise, we will use the reshape() operation to practice transforming tensors. Note that ones() and reshape() operations have been imported.
+
+#Instructions 1/2
+#50 XP
+#Reshape the grayscale image into a 256x1 image_vector and a 4x4x4x4 image_tensor.
+
+# Define input image
+image = ones([16, 16])
+
+# Reshape image into a vector
+image_vector = reshape(image, (256, 1))
+
+# Reshape image into a higher dimensional tensor
+image_tensor = reshape(image, (4, 4, 4, 4))
+
+#Instructions 2/2
+#50 XP
+#Adapt image by adding three color channels and then adjust image_vector and image_tensor accordingly.
+
+# Add three color channels
+image = ones([16, 16, 3])
+
+# Reshape image into a vector
+image_vector = reshape(image, (768, 1))
+
+# Reshape image into a higher dimensional tensor
+image_tensor = reshape(image, (4, 4, 4, 4, 3))
