@@ -1,0 +1,25 @@
+#Setup a linear regression
+#A univariate linear regression identifies the relationship between a single feature and the target tensor. In this exercise, we will use the size of a property's lot and that property's price. Just as we discussed in the video, we will take the natural logarithms of both tensors, which are available as price_log and lot_size_log.
+
+#In this exercise, you will define the variables to train, the loss function, and the optimization operation. Remember that the target value is given by intercept+features*slope+error. Additionally, note that keras.losses.mse() and Variable() are available for you.
+
+#Instructions
+#100 XP
+#Define slope as a variable with an initial value of 0.1 and data type of 32-bit float.
+#Set loss_function() to take the model's variables, intercept and slope, as arguments.
+#Set the predicted value of price_log using intercept, lot_size_log, and slope, and without using add() or multiply().
+#Compute the mean squared error using price_log and pred_price_log.
+
+# Define the intercept and slope
+intercept = Variable(0.1, float32)
+slope = Variable(0.1, float32)
+
+# Set loss_function() to take the variables as arguments
+def loss_function(intercept, slope):
+	# Set the predicted values
+	pred_price_log = add(intercept,multiply(lot_size_log,slope))
+    # Return the MSE loss
+	return keras.losses.mse(price_log,pred_price_log)
+
+# Initialize an adam optimizer
+opt = keras.optimizers.Adam(0.1)
