@@ -1,0 +1,25 @@
+#Using the dense layer operation
+#We've now seen how to define dense layers in tensorflow using linear algebra. In this exercise, we'll skip the linear algebra and let keras work out the details. As we'll see, this will allow us to construct the network below using the same amount of code as we did in the previous exercises.
+
+#This image depicts an neural network with 10 inputs nodes and 3 output nodes.
+
+#We will need to define three dense hidden layers, each of which takes the previous layer as an input. Note that input data has been defined and is available as a 100x10 tensor: inputs. Additionally, keras.layers() is available.
+
+#Instructions
+#100 XP
+#Set dense1 to be a dense layer with 7 output nodes and a sigmoid activation function.
+#Define dense2 to be dense layer with 3 output nodes and a sigmoid activation function.
+#Define outputs to be a dense layer with 1 output node and a sigmoid activation function.
+#Print dense2 without using the .numpy() method and check its dimensions. Does this match your expectations, given the network diagram?
+
+# Define the first dense layer
+dense1 = keras.layers.Dense(7, activation='sigmoid')(inputs)
+
+# Define a dense layer with 3 output nodes
+dense2 = keras.layers.Dense(3, activation='sigmoid')(dense1)
+
+# Define a dense layer with 1 output node
+outputs = keras.layers.Dense(1, activation='sigmoid')(dense2)
+
+# Print dense layer 2 without using the numpy method
+print(dense2)
