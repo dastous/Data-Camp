@@ -1,0 +1,25 @@
+#The dangers of local minima
+#Consider the plot of the following function, which contains a global minimum, marked by the dot on the left, and several local minima, including the one marked by the dot on the right.
+
+#The graph is of a single variable function that contains multiple local minima and a global minimum.
+
+#In this exercise, you will see what happens when you try to find the global minimum of this function using keras.optimizers.SGD(). We have defined a loss function, loss(), which is identical to the function in the plot. We will minimize this function twice, starting from two different initial values. We will set initialization_1 to 5.0 and initialization_2 to 0.10.
+
+#Instructions
+#100 XP
+#Set opt to use the stochastic gradient descent optimizer (SGD) with a learning rate of 0.001.
+#Complete the minimization operation for initializer_1.
+#Complete the minimization operation for initializer_2.
+#Print initializer_1 and initializer_2 as numpy arrays and check whether the values differ. These are the minima that the algorithm identified.
+
+# Define optimization operation
+opt = keras.optimizers.SGD(learning_rate=0.001)
+
+for j in range(1000):
+	# Complete the minimization operation for initializer_1
+	opt.minimize(lambda: loss(initializer_1), var_list=[initializer_1])
+	# Complete the minimization operation for initializer_2
+	opt.minimize(lambda: loss(initializer_2), var_list=[initializer_2])
+
+# Print initializer_1 and initializer_2 as numpy arrays
+print(initializer_1.numpy(), initializer_2.numpy())
