@@ -1,0 +1,23 @@
+#Defining variables
+#Unlike a constant, a variable's value can be modified. This will be quite useful when we want to train a model by updating its parameters. Constants can't be used for this purpose, so variables are the natural choice.
+
+#Let's try defining and working with a variable. Note that Variable(), which is used to create a variable tensor, has been imported from tensorflow and is available to use in the exercise.
+
+#Instructions
+#100 XP
+#Define a variable, X, as the 1-dimensional tensor: [1, 2, 3, 4].
+#Print X. What did this tell you?
+#Apply .numpy() to X and assign it to Z.
+#Print Z. What did this tell you?
+
+# Define the 1-dimensional variable X
+X = Variable([1, 2, 3, 4])
+
+# Print the variable X
+print(X)
+
+# Convert X to a numpy array and assign it to Z
+Z = X.numpy()
+
+# Print Z
+print(Z)
