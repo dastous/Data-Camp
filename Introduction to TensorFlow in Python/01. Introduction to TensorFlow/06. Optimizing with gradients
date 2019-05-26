@@ -1,0 +1,25 @@
+#Optimizing with gradients
+#You are given a loss function, y=x2, which you want to minimize. You can do this by identifying points where the slope is zero using the GradientTape() operation. Gradient descent selects an initial value for x and then iterates until it finds an x that corresponds to a gradient of zero.
+
+#In practice, you will use a high level tensorflow operation to perform gradient descent automatically. In this exercise, however, you will simply guess that the minimum is at x=0 and then verify by computing the gradient. The following operations are available: GradientTape(), multiply(), and Variable().
+
+#Instructions
+#100 XP
+#Define x as a variable with the initial value 0.0.
+#Set the loss function, y, equal to x multiplied by x. Do not make use of operator overloading.
+#Define the gradient of y with respect to x.
+#Compute and print the gradient using the .numpy() method.
+
+# Define x as a variable equal to 0.0
+x = Variable(0.0)
+
+# Define y using the multiply operation and apply Gradient Tape
+with GradientTape() as tape:
+	tape.watch(x)
+	y = multiply(x,x)
+	
+# Compute the gradient of y with respect to x
+g = tape.gradient(y,x)
+
+# Compute and print the gradient using the numpy method
+print(g.numpy())
