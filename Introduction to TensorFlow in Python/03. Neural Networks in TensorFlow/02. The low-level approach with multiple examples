@@ -1,0 +1,23 @@
+#The low-level approach with multiple examples
+#In this exercise, we will build further intuition for the low-level approach by computing the dense layer output for multiple examples at the same time. We'll first perform matrix multiplication of the borrower_features tensor and the weights variable.
+
+#products=[3 2 1 1 2 2 1 1 1 1 23 24 49 49 29] [−1 −2 0.05]
+#We'll then apply the sigmoid function to the elements of products, yielding dense.
+
+#The borrower_features are taken from the dataset on credit card defaults, which we'll use throughout the chapter. In order, the columns are a measure of education, an indicator for marital status, and age. Note that matmul() and keras() have been imported.
+
+#Instructions
+#100 XP
+#Compute products by matrix multiplying the features tensor by the weights.
+#Use a sigmoid activation function to transform products.
+#Print products and dense as numpy arrays.
+
+# Compute the product of features and weights
+products = matmul(borrower_features,weights)
+
+# Apply a sigmoid activation function
+dense = keras.activations.sigmoid(products)
+
+# Print products and dense tensors as numpy arrays
+print(products.numpy())
+print(dense.numpy())
