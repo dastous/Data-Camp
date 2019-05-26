@@ -1,0 +1,27 @@
+#Multiple linear regression
+#In most cases, performing a univariate linear regression will not yield a model that is useful for making accurate predictions. You will instead want to include multiple features in your linear model. This technique is referred to as multiple linear regression.
+
+#In this exercise, you will setup a multiple linear regression. You will again use price_log as your target variable and lot_size_log as one of your features, but you will also add a second feature, bedrooms. Each of these tensors has been defined and is available. In addition to this, you will also switch from using the the mean squared error loss to the mean absolute error loss: keras.losses.mae(). Finally, note that predicted values are computed as follows: intercept + feature_1*slope_1 + feature_2*slope_2.
+
+#Instructions
+#100 XP
+#Define intercept, slope_1, and slope_2 as type Variable() with initial values of 0.1 and 32-bit float data types.
+#Set loss_function() to take all of the variables you defined as arguments.
+#Use the mean absolute error loss.
+#Complete the minimization operation.
+
+# Define variables for intercept, slope_1, and slope_2
+intercept = Variable(0.1,float32)
+slope_1 = Variable(0.1,float32)
+slope_2 = Variable(0.1,float32)
+
+# Define the loss function
+def loss_function(intercept, slope_1, slope_2):
+	# Use the mean absolute error loss
+	return keras.losses.mae(price_log, intercept+lot_size_log*slope_1+bedrooms*slope_2)
+
+# Define the optimize operation
+opt = keras.optimizers.Adam()
+
+# Perform one minimization step
+opt.minimize(lambda: loss_function(intercept, slope_1, slope_2), var_list=[intercept, slope_1, slope_2])
