@@ -1,0 +1,20 @@
+#Train a linear model
+#In this exercise, we will pick up where the previous exercise ended. The intercept and slope, intercept and slope, have been defined and initialized. Additionally, a function has been defined, loss_function(intercept, slope), which computes the loss using the data and model variables. The optimization operation has also been defined as opt.
+
+#You will now train a univariate linear model by minimizing the loss to find the optimal values of intercept and slope. Note that the opt operation will try to move closer to the optimum with each step, but will require many steps to find it. Thus, you must repeatedly execute the operation.
+
+#Instructions
+#100 XP
+#Apply the .minimize() method to the optimizer.
+#Pass loss_function() with the appropriate arguments as a lambda function to .minimize().
+#Supply the list of variables that need to be updated to var_list.
+#Print intercept and slope as numpy arrays.
+
+for j in range(500):
+	# Apply minimize, pass the loss function, and supply the variables
+    opt.minimize(lambda: loss_function(intercept, slope), var_list=[intercept, slope])
+    if j % 100 == 0:
+  	  print(loss_function(intercept, slope).numpy())
+
+# Print the intercept and slope as numpy arrays
+print(intercept.numpy(), slope.numpy())
