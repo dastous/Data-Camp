@@ -1,0 +1,22 @@
+#Preparing to batch train
+#Before we can train a linear model in batches, we must first define variables, a loss function, and an optimization operation. In this exercise, we will prepare to train a model that will predict price_batch, a batch of house prices, using lot_size_batch, a batch of lot sizes in square feet. In contrast to the previous lesson, we will do this by loading batches of data using pandas, converting it to numpy arrays, and then using it to minimize the loss function in steps.
+
+#Note that Variable(), keras(), and float32 have been imported for you.
+
+#Instructions
+#100 XP
+#Define intercept as having an initial value of 10.0 and a data type of 32-bit float.
+#Define a function called loss_function() that takes intercept, slope, features, and target as arguments.
+#Define the predicted values as predictions.
+#Define the mean squared error loss function using the actual and predicted price values
+
+# Define the intercept and slope
+intercept = Variable(10.0,float32)
+slope = Variable(0.5, float32)
+
+# Define the loss function
+def loss_function(intercept,slope,features,target):
+	# Define the predicted values
+	predictions = intercept+features*slope
+ 	# Define the MSE loss
+	return keras.losses.mse(target, predictions)
