@@ -1,0 +1,25 @@
+#Avoiding local minima
+#The previous problem showed how easy it is to get stuck in local minima. We had a simple optimization problem in one variable and gradient descent still failed to deliver the global minimum when we had to travel through a few local minima first. One way to avoid this problem is to use an optimizer, such as keras.optimizers.RMSprop(), that allows you to use momentum. A higher value of this parameter will allow the optimizer to build momentum and break through local minima.
+
+#We will demonstrate how momentum builds in an example that makes use of the loss function from the previous exercise, which has been defined for you as loss(). Again, two variables have been defined for you, momentum_1 and momentum_2, which are both initialized to 0.05.
+
+#Instructions
+#100 XP
+#Set the opt_1 operation to use a learning rate of 0.001 and a momentum of 0.0.
+#Set opt_2 to use the root mean square propagation (RMS) optimizer with a learning rate of 0.001 and a momentum of 0.99.
+#Define the minimization operation for opt_2.
+#Print momentum_1 and momentum_2 as numpy arrays.
+
+# Define the optimization operation for opt_1
+opt_1 = keras.optimizers.RMSprop(learning_rate=0.001, momentum=0.0)
+
+# Define the optimization operation for opt_2
+opt_2 = keras.optimizers.RMSprop(learning_rate=0.001,momentum=0.99)
+
+for j in range(100):
+	opt_1.minimize(lambda: loss(momentum_1), var_list=[momentum_1])
+    # Define the minimization operation for opt_2
+	opt_2.minimize(lambda: loss(momentum_2), var_list=[momentum_2])
+
+# Print momentum 1 and momentum 2 as numpy arrays
+print(momentum_1.numpy(), momentum_2.numpy())
