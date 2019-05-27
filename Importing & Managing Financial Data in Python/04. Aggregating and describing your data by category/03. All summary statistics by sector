@@ -1,0 +1,36 @@
+#All summary statistics by sector
+#You can apply the various summary statistics that you have learned about in the last chapter to a groupby object to obtain the result on a per-category basis. This includes the .describe() function, which provides several insights all at once!
+
+#Here, you will practice this with the NASDAQ listings. pandas has been imported as pd, and the NASDAQ stock exchange listings data is available in your workspace in the nasdaq DataFrame.
+
+#Instructions
+#100 XP
+#Inspect the nasdaq data using .info().
+#Create a new column market_cap_m that contains the market cap in millions of USD. On the next line, drop the column 'Market Capitalization'.
+#Group your nasdaq data by 'Sector' and assign to nasdaq_by_sector.
+#Call the method .describe() on nasdaq_by_sector, assign to summary, and print the result.
+#This works, but result is in long format and uses a pd.MultiIndex() that you saw earlier. Convert summary to wide format by calling .unstack().
+
+# Inspect NASDAQ data
+nasdaq.info()
+
+# Create market_cap_m
+nasdaq['market_cap_m'] = nasdaq['Market Capitalization'].div(1e6)
+
+# Drop the Market Capitalization column
+nasdaq.drop('Market Capitalization', axis=1, inplace=True)
+
+# Group nasdaq by Sector
+nasdaq_by_sector = nasdaq.groupby('Sector')
+
+# Create summary statistics by sector
+summary = nasdaq_by_sector.describe()
+
+# Print the summary
+print(summary)
+
+# Unstack 
+summary = summary.unstack()
+
+# Print the summary again
+print(summary)
