@@ -1,0 +1,25 @@
+#Import stock listing info from the NASDAQ
+#In this video, you learned how to use the pd.read_csv() function to import data from a csv file containing companies listed on the AmEx Stock Exchange into a pandas DataFrame. You can apply this same knowledge to import listing information in csv files from other stock exchanges.
+
+#The next step is to ensure that the contents of the DataFrame accurately reflect the meaning of your data. Two essential methods to understand your data are .head(), which displays the first five rows of your data by default, and .info(), which summarizes elements of a DataFrame such as content, data types, and missing values.
+
+#In this exercise, you will read the file nasdaq-listings.csv with data on companies listed on the NASDAQ and then diagnose issues with the imported data. You will fix these issues in the next exercise.
+
+#Instructions
+#100 XP
+#Load pandas as pd.
+#Use pd.read_csv() to load the file nasdaq-listings.csv into the variable nasdaq.
+#Use .head() to display the first 10 rows of the data. Which data type would you expect pandas to assign to each column? What symbol is used to represent a missing value?
+#Use .info() to identify dtype mismatches in the DataFrame summary. Specifically, are there any columns that should have a more appropriate type?
+
+# Import pandas library
+import pandas as pd
+
+# Import the data
+nasdaq = pd.read_csv('nasdaq-listings.csv')
+
+# Display first 10 rows
+print(nasdaq.head(10))
+
+# Inspect nasdaq
+nasdaq.info()
