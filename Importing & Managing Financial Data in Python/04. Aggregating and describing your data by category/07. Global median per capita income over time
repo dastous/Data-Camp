@@ -1,0 +1,38 @@
+#Global median per capita income over time
+#The seaborn barplot() function shows point estimates and confidence intervals as rectangular bars; the default function displays the mean, but it can also represent another summary statistic if you pass a particular numpy function to its estimator parameter:
+
+#seaborn.barplot(x=None, y=None, data=None, estimator=<function mean>, ...)
+#In this exercise, you will use an imported World Bank dataset containing global income per capita data for 189 countries since the year 2000. To practice displaying summary statistics per category, you will plot and compare the median global income per capita since 2000 to the mean.
+
+#pandas as pd, numpy as np, matplotlib.pyplot as plt, and seaborn as sns have been imported. The global income data is available in your workspace in income_trend.
+
+#Instructions
+#100 XP
+#Inspect income_trend using .info().
+#Create a sns.barplot() using the column 'Year' for x and 'Income per Capita' for y, and show the result after rotating the xticks by 45 degrees.
+#Use plt.close() after the initial plt.show() to be able to show a second plot.
+#Create a second sns.barplot() with the same x and y settings, using estimator=np.median to calculate the median, and show the result.
+
+# Inspect the data
+income_trend.info()
+
+# Create barplot
+sns.barplot(x='Year', y='Income per Capita', data=income_trend)
+
+# Rotate xticks
+plt.xticks(rotation=45)
+
+# Show the plot
+plt.show()
+
+# Close the plot
+plt.close()
+
+# Create second barplot
+sns.barplot(x='Year', y='Income per Capita', data=income_trend, estimator=np.median)
+
+# Rotate xticks
+plt.xticks(rotation=45)
+
+# Show the plot
+plt.show()
