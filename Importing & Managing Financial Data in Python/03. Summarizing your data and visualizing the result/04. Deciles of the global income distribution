@@ -1,0 +1,34 @@
+#Deciles of the global income distribution
+#A decile is a special kind of quantile obtained by dividing the distribution of a particular dataset by ten. Deciles (as well as any other kind of quantile) can be created by supplying the following numpy function to .quantile(), where start is the beginning of the interval (inclusive), stop is the end of the interval (exclusive), and step is the spacing between any two adjacent values:
+
+#np.arange(start, stop, step)
+#As you saw in the video, a standard bar graph is a great way to visualize the distribution of data. You can create one by adding kind='bar' as an argument to .plot().
+
+#Now it's your turn to apply this knowledge to plot a summary of the income distribution in deciles! pandas as pd, numpy as np, and matplotlib.pyplot as plt have been imported for you, and the income DataFrame from the previous exercise is available in your workspace.
+
+#Instructions
+#100 XP
+#Generate the percentages from 10% to 90% with increments of 10% using np.arange(), assign the result to quantiles, and print it.
+#Using quantiles and .quantile(), calculate the deciles for the income per capita as deciles, and print the result.
+#Plot and show the result as a bar chart with plt.tight_layout(). Title it 'Global Income per Capita - Deciles'.
+
+# Generate range of deciles
+quantiles = np.arange(start=.1, stop=.91, step=.1)
+
+# Print them
+print(quantiles)
+
+# Calculate deciles for 'Income per Capita'
+deciles = income['Income per Capita'].quantile(quantiles)
+
+# Print them
+print(deciles)
+
+# Plot deciles as a bar chart
+deciles.plot(kind='bar', title='Global Income per Capita - Deciles')
+
+# Make sure to use the tight layout!
+plt.tight_layout()
+
+# Show the plot
+plt.show()
