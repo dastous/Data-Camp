@@ -1,0 +1,33 @@
+#Highlighting values in the distribution
+#Sometimes it is necessary to manipulate your data in order to create a better visualization. Two methods that can take care of missing values are .dropna() and .fillna(). You can also remove outliers by filtering entries that are over or under a certain percentile by applying a condition using .quantile() to a particular column.
+
+#You also saw in the video how to emphasize a particular value in a plot by adding a vertical line at position x across the axes:
+
+#Axes.axvline(x=0, color=None, ...)
+#In this exercise, you will take a final look at global income distribution, and then remove outliers above the 95th percentile, plot the distribution, and highlight both the mean and median values. pandas as pd, seaborn as sns, and matplotlib.pyplot as plt have been imported, and the income DataFrame from previous exercises is available in your workspace.
+
+#Instructions
+#100 XP
+#Assign the column 'Income per Capita' to inc_per_capita.
+#Filter to keep only the rows in inc_per_capita that are lower than the 95th percentile. Reassign to the same variable.
+#Plot a default histogram for the filtered version of inc_per_capita and assign it to ax.
+#Use ax.axvline() with color='b' to highlight the mean of inc_per_capita in blue,
+#Use ax.axvline() with color='g' to highlight the median in green. Show the result!
+
+# Create inc_per_capita
+inc_per_capita = income['Income per Capita']
+
+# Filter out incomes above the 95th percentile
+inc_per_capita = inc_per_capita[inc_per_capita < inc_per_capita.quantile(.95)]
+
+# Plot histogram and assign to ax
+ax = sns.distplot(inc_per_capita)
+
+# Highlight mean
+ax.axvline(inc_per_capita.mean(), color='b')
+
+# Highlight median
+ax.axvline(inc_per_capita.median(), color='g')
+
+# Show the plot
+plt.show()
