@@ -1,0 +1,19 @@
+#Load listing info from a single sheet
+#As you just learned, you can import data from a sheet of an Excel file with the pd.read_excel() function by assigning the optional sheet_name argument to an integer indicating its position or a string containing its name.
+
+#pandas.read_excel(file, sheetname=0, na_values=None, ...)
+#Here, you will practice by importing NYSE data from a new file, listings.xlsx. pandas has been imported as pd.
+
+#Instructions
+#100 XP
+#Read only the 'nyse' worksheet of 'listings.xlsx' where the symbol 'n/a' represents missing values. Assign the result to nyse.
+#Display and inspect nyse with .head() and .info().
+
+# Import the data
+nyse = pd.read_excel('listings.xlsx', sheetname='nyse', na_values='n/a')
+
+# Display the head of the data
+print(nyse.head())
+
+# Inspect the data
+nyse.info()
