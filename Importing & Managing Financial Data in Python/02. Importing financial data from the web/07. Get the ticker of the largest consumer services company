@@ -1,0 +1,32 @@
+#Get the ticker of the largest consumer services company
+#Google Finance has deprecated their API but DataReader now makes available the data source 'iex' that provides the same functionality without registration while limiting data to the last five years.
+
+#Instead of indexing your data with a conditional expression, you can also filter by certain values with .loc[row_selector, column_selector]. Additionally, you can use .set_index() to set a particular column with unique values as the index of a DataFrame, and .idxmax() to return the index of the maximum value.
+
+#In this exercise, you will apply these methods of selecting companies to find the most valuable consumer services company on any of the three exchanges, and use its ticker to plot its stock price trend. DataReader, date, pandas as pd, and matplotlib.pyplot as plt have been imported, as has the listings DataFrame from the last exercise.
+
+#Instructions
+#100 XP
+#Use .set_index() to set the 'Stock Symbol' column as the index for listings, assigning it to listings_ss.
+#Use .loc[] to filter rows where 'Sector' is equal to 'Consumer Services', select the column 'Market Capitalization', and apply .idxmax() to assign the ticker of the largest Consumer Services company to ticker.
+#Using date(), set start to January 1, 2015.
+#Use DataReader() to extract the stock data for the ticker from 'iex' since start and store in data.
+#Plot the 'close' and 'volume' values in data, with arguments secondary_y='volume' and title=ticker.
+
+# Set the index of listings to Stock Symbol
+listings_ss = listings.set_index('Stock Symbol')
+
+# Get ticker of the largest Consumer Services company
+ticker = listings_ss.loc[listings_ss.Sector=='Consumer Services', 'Market Capitalization'].idxmax()
+
+# Set the start date
+start = date(2015,1,1)
+
+# Import the stock data
+data = DataReader(ticker,data_source='iex',start=start)
+
+# Plot close and volume
+data[['close', 'volume']].plot(secondary_y='volume', title=ticker)
+
+# Show the plot
+plt.show()
