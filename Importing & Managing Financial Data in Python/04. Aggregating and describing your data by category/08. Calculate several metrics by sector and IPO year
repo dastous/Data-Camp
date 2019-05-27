@@ -1,0 +1,40 @@
+#Calculate several metrics by sector and IPO year
+#The seaborn pointplot() function facilitates the comparison of summary statistics of a numerical variable for different levels of categorical variables:
+
+#seaborn.pointplot(x=None, y=None, hue=None, data=None, ...)
+#In the video, you saw a visualization for the market capitalization (the numerical variable) differentiated by whether the IPO (the categorical variable) occurred before (first level) or after (second level) the year 2000.
+
+#In this exercise, you will compare the mean market capitalization for each year since 2000 for the NYSE and the NASDAQ, after excluding outliers beyond the 95th percentile. pandas as pd and matplotlib.pyplot as plt have been imported, and the listings DataFrame with reference column 'Exchange' is available in your workspace.
+
+#Instructions
+#100 XP
+#Import seaborn as sns.
+#Filter listings to have companies with IPOs after 2000 from all exchanges except the 'amex'.
+#Convert the data in column 'IPO Year' to integers.
+#Create the column market_cap_m to express market cap in USD million.
+#Filter market_cap_m to exclude values above the 95th percentile.
+#Create a pointplot of listings using the column 'IPO Year' for x, 'market_cap_m' for y, and 'Exchange' for hue. Show the result after rotating the xticks by 45 degrees.
+
+# Import the seaborn library as sns
+import seaborn as sns
+
+# Exclude IPOs before 2000 and from the 'amex'
+listings = listings[(listings['IPO Year'] > 2000) & (listings.Exchange != 'amex')]
+
+# Convert IPO Year to integer
+listings['IPO Year'] = listings['IPO Year'].astype(int)
+
+# Create market_cap_m
+listings['market_cap_m'] = listings['Market Capitalization'].div(1e6)
+
+# Exclude outliers
+listings = listings[listings.market_cap_m < listings.market_cap_m.quantile(.95)]
+
+# Create the pointplot
+sns.pointplot(x='IPO Year', y='market_cap_m', hue='Exchange', data=listings)
+
+# Rotate xticks
+plt.xticks(rotation=45)
+
+# Show the plot
+plt.show()
