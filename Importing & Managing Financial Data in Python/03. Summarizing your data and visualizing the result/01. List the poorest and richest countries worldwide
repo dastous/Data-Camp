@@ -1,0 +1,27 @@
+#List the poorest and richest countries worldwide
+#The values of numerical variables are numbers. They can be described by measures of central tendency, or the most typical value in a dataset, and dispersion, which represents the spread of a distribution.
+
+#In the next few exercises, you will use these statistics to explore the data in 'per_capita_income.csv', which contains the average income earned per person in a given country. The first step in analyzing aspects of the global income distribution is to inspect and familiarize yourself with the data.
+
+#pandas has been imported as pd.
+
+#Instructions
+#100 XP
+#Load the 'per_capita_income.csv' file into income. No additional arguments other than the file name are needed. (Note that this is a csv file.)
+#Inspect the column names and data types with .info().
+#Using .sort_values(), sort (in descending order) the income DataFrame by the column which contains the income information.
+#Display the first five rows of income using .head() and the last five rows using .tail().
+
+
+# Import the data
+income = pd.read_csv('per_capita_income.csv')
+
+# Inspect the result
+income.info()
+
+# Sort the data by income
+income = income.sort_values('Income per Capita', ascending=False)
+
+# Display the first and last five rows
+print(income.head())
+print(income.tail())
