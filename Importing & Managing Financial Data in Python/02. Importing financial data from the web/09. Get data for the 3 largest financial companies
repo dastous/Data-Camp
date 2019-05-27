@@ -1,0 +1,47 @@
+#Get data for the 3 largest financial companies
+#Google Finance has deprecated their API but DataReader now makes available instead the data source 'iex'.
+
+#The functionality using 'iex' is the same except: data is limited to the last five years, column headers are lower case, and for multiple tickers the return value is a dictionary rather than a pandas.Panel. We have included a few lines of code in the exercise to convert the dictionary into a DataFrame with MultiIndex like in the video.
+
+#A pd.MultiIndex() object has more than one identifier per row. This allows you to get the data based on criteria for multiple companies at once.
+
+#Let's apply this new skill to get the stock prices for the largest companies in the financial sector. DataReader, date, pandas as pd, and matplotlib.pyplot as plt have been imported, as has the listings DataFrame from the last exercise.
+
+#Instructions
+#100 XP
+#Set 'Stock Symbol' as the index for listings, assigning it to listings_ss.
+#Use .loc[] to filter rows where the company sector is 'Finance'and extract the 'Market Capitalization' column. Apply .nlargest() to assign the 3 largest companies by market cap to top_3_companies.
+#Convert the index of the result to a list and assign it to top_3_tickers.
+#Use date() to set start to January 1, 2015.
+#Use the DataReader() to get the stock data for the top_3_tickers from 'iex' since start and assign it to result.
+#We are then creating a DataFrame by iterating over the ticker-data pairs and create a MultiIndex by appending 'ticker' to 'date' in the Index.
+#Select 'close' from data, apply .unstack(), and inspect the resulting DataFrame, now in wide format, with .info().
+
+
+# Set Stock Symbol as the index
+listings_ss = listings.set_index('Stock Symbol')
+
+# Get ticker of 3 largest finance companies
+top_3_companies = listings_ss.loc[listings_ss.Sector=='Finance','Market Capitalization'].nlargest(n=3)
+
+# Convert index to list
+top_3_tickers = top_3_companies.index.tolist()
+
+# Set start date
+start = date(2015,1,1)
+
+# Import stock data
+result = DataReader(top_3_tickers,data_source='iex',start=start)
+data = pd.DataFrame()
+for ticker in result.columns.levels[1]:
+    index = pd.MultiIndex.from_arrays([
+            [ticker] * len(result),
+            result.index.values
+            ], names=['ticker', 'date'])
+    ticker_df = pd.DataFrame(index=index)
+    for col in result.columns.levels[0]:
+        ticker_df[col] = result[col][ticker].values
+    data = pd.concat([data, ticker_df])
+
+# Unstack and inspect result
+data['close'].unstack().info()
