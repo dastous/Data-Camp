@@ -1,0 +1,33 @@
+#Global incomes: Dispersion
+#A quantile is a measure of dispersion created by dividing a frequency distribution of a DataFrame into even groups. You can return values at the given quantile q of a DataFrame df with the command df.quantile(q); likewise, supplying a list as q will return a value for each given quantile.
+
+#Here, you will continue your analysis of global income distribution using two measures of dispersion: the standard deviation, or square root of variance, and the interquartile range (IQR).
+
+#pandas has been imported as pd, and the income DataFrame from the previous exercise is in your workspace.
+
+#Instructions
+#100 XP
+#Using the appropriate functions, calculate the mean of income per capita as mean and the standard deviation as std.
+#Without using .quantile(), calculate and print the upper and lower bounds of an interval of one standard deviation around the mean in a list bounds:
+#subtract std from mean as the first element
+#add std to mean as the second element
+#Using .quantile() and a list of two appropriate decimal values, calculate and print the first and the third quartile of 'Income per Capita' as quantiles. Do the values match?
+#Calculate and print the IQR, iqr, using the simple subtraction expression you learned in the video.
+
+# Calculate mean
+mean = income['Income per Capita'].mean()
+
+# Calculate standard deviation
+std = income['Income per Capita'].std()
+
+# Calculate and print lower and upper bounds
+bounds = [mean-std, mean+std]
+print(bounds)
+
+# Calculate and print first and third quartiles
+quantiles = income['Income per Capita'].quantile([0.25, 0.75])
+print(quantiles)
+
+# Calculate and print IQR
+iqr = quantiles[0.75] - quantiles[0.25]
+print(iqr)
