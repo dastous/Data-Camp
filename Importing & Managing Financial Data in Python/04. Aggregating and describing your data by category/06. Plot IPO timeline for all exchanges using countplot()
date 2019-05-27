@@ -1,0 +1,29 @@
+#Plot IPO timeline for all exchanges using countplot()
+#To create a basic visualization of the number of observations per category in a dataset, the seaborn countplot() function is usually the way to go:
+
+#seaborn.countplot(x=None, hue=None, data=None, ...)
+#The x parameter contains the names of the variables in the data argument, which is the DataFrame to be plotted. hue identifies an additional categorical variable with color. These are three optional parameters out of many accepted by the function; for a full list, check out the seaborn documentation.
+
+#Let's use this tool to compare the timeline of IPO activity across the three exchanges. pandas as pd, matplotlib.pyplot as plt, and seaborn as sns have been imported, and the listings DataFrame with reference column 'Exchange' is available in your workspace.
+
+#Instructions
+#100 XP
+#Filter listings to only include IPO years after the year 2000.
+#Convert the data in the column 'IPO Year' to integers.
+#Plot a sns.countplot() of listings using 'IPO Year' as the x variable and 'Exchange' for hue.
+#Rotate the xticks() by 45 degrees and show the result.
+
+# Select IPOs after 2000
+listings = listings[listings['IPO Year'] > 2000]
+
+# Convert IPO Year to integer
+listings['IPO Year'] = listings['IPO Year'].astype(int)
+
+# Create a countplot
+sns.countplot(x='IPO Year', hue='Exchange', data=listings)
+
+# Rotate xticks and show result
+plt.xticks(rotation=45)
+
+# Show the plot
+plt.show()
