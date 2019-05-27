@@ -1,0 +1,26 @@
+#Load all listing data and iterate over key-value dictionary pairs
+#You already know that a pd.DataFrame() object is a two-dimensional labeled data structure. As you saw in the video, the pd.concat() function is used to concatenate, or vertically combine, two or more DataFrames. You can also use broadcasting to add new columns to DataFrames.
+
+#In this exercise, you will practice using this new pandas function with the data from the NYSE and NASDAQ exchanges. pandas has been imported as pd.
+
+#Instructions
+#100 XP
+#Import data in listings.xlsx from sheets 'nyse' and 'nasdaq' into the variables nyse and nasdaq, respectively. Read 'n/a' to represent missing values.
+#Inspect the contents of both DataFrames with .info() to find out how many companies are reported.
+#With broadcasting, create a new reference column called 'Exchange' holding the values 'NYSE' or 'NASDAQ' for each DataFrame.
+#Use pd.concat() to concatenate the nyse and nasdaq DataFrames, in that order, and assign to combined_listings.
+
+# Import the NYSE and NASDAQ listings
+nyse = pd.read_excel('listings.xlsx', sheet_name='nyse', na_values='n/a')
+nasdaq = pd.read_excel('listings.xlsx', sheet_name='nasdaq', na_values='n/a')
+
+# Inspect nyse and nasdaq
+nyse.info()
+nasdaq.info()
+
+# Add Exchange reference columns
+nyse['Exchange'] = 'NYSE'
+nasdaq['Exchange'] = 'NASDAQ'
+
+# Concatenate DataFrames  
+combined_listings = pd.concat([nyse, nasdaq]) 
