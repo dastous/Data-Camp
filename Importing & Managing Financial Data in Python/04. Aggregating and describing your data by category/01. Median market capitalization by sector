@@ -1,0 +1,38 @@
+#Median market capitalization by sector
+#Aggregate data is data combined from several measurements. As you learned in the video, the .groupby() function is helpful in aggregating your data by a specific category.
+
+#You have seen previously that the market capitalization data has large outliers. To get a more robust summary of the market value of companies in each sector, you will calculate the median market capitalization by sector. pandas as pd and matplotlib.pyplot as plt have been imported, and the NYSE stock exchange listings are available in your workspace as the DataFrame nyse.
+
+#Instructions
+#100 XP
+#Inspect nyse using .info().
+#With broadcasting and .div(), create a new column market_cap_m that contains the market capitalization in million USD.
+#Omit the column 'Market Capitalization' with .drop().
+#Apply the .groupby() method to nyse, using 'Sector' as the column to group your data by.
+#Calculate the median of the market_cap_m column as median_mcap_by_sector.
+#Plot the result as a horizontal bar chart with the title 'NYSE - Median Market Capitalization'. Use plt.xlabel() with 'USD mn' to add a label.
+#Show the result.
+
+# Inspect NYSE data
+nyse.info()
+
+# Create market_cap_m
+nyse['market_cap_m'] = nyse['Market Capitalization'].div(1e6)
+
+# Drop market cap column
+nyse = nyse.drop('Market Capitalization', axis=1)
+
+# Group nyse by sector
+mcap_by_sector = nyse.groupby('Sector')
+
+# Calculate median
+median_mcap_by_sector = mcap_by_sector.market_cap_m.median()
+
+# Plot and show as horizontal bar chart
+median_mcap_by_sector.plot(kind='bar', title='NYSE - Median Market Capitalization')
+
+# Add the label
+plt.xlabel('USD mn')
+
+# Show the plot
+plt.show()
