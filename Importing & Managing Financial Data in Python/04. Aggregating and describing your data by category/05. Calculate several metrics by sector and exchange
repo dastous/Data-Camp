@@ -1,0 +1,27 @@
+#Calculate several metrics by sector and exchange
+#The .agg() function allows you to aggregate your data in even more ways by accepting two kinds of arguments. Providing a list of names of statistical methods calculates more than one summary statistic at once, and providing a dictionary where keys are column names and values are statistical methods applies a particular summary statistic to a designated column.
+
+#In this exercise, you will calculate the mean, median, and standard deviation of market capitalizations in millions of USD. pandas as pd and matplotlib.pyplot as plt have been imported, and the listings DataFrame, with reference column 'Exchange' is available in your workspace.
+
+#Instructions
+#100 XP
+#With broadcasting and .div(), create a new column 'market_cap_m' that contains the market capitalization data in millions of USD.
+#Group your data by both 'Sector' and 'Exchange', assigning the result to by_sector_exchange.
+#Assign the market_cap_m column of by_sector_exchange to a variable bse_mcm.
+#Use .agg() and a dictionary argument to calculate the mean, median, and standard deviation for market_cap_m storing the results in 'Average', 'Median', and 'Standard Deviation', respectively, and assign to summary.
+#Print the result to your console.
+
+# Create market_cap_m
+listings['market_cap_m'] = listings['Market Capitalization'].div(1e6)
+
+# Group listing by both Sector and Exchange
+by_sector_exchange = listings.groupby(['Sector', 'Exchange'])
+
+# Subset market_cap_m of by_sector_exchange
+bse_mcm = by_sector_exchange['market_cap_m']
+
+# Calculate mean, median, and std in summary
+summary = bse_mcm.agg({'Average': 'mean', 'Median': 'median', 'Standard Deviation': 'std'})
+
+# Print the summary
+print(summary)
