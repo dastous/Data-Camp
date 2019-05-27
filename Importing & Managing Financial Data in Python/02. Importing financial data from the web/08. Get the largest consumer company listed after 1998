@@ -1,0 +1,36 @@
+#Get the largest consumer company listed after 1998
+#Google Finance has deprecated their API but DataReader now makes available instead the data source 'iex'.
+
+#The functionality using 'iex' is the same except: data is limited to the last five years, column headers are lower case.
+
+#You can filter your data by even more conditions by enclosing each condition in parentheses and using logical operators like & and |.
+
+#Here, you will find out which company is the largest consumer services company that went public after Amazon did in 1997. The data is contained in the column 'IPO Year'; an Initial Public Offering (IPO) is a financial term that describes the first time that the stock of a private company is offered to the public.
+
+#DataReader, date, pandas as pd, and matplotlib.pyplot as plt have been imported. The listings DataFrame from the last exercise is also available.
+
+#Instructions
+#100 XP
+#Set 'Stock Symbol' as the index for listings.
+#Use .loc[] to filter rows where 'Sector' is 'Consumer Services' and IPO Year starting 1998, and also select the 'Market Capitalization' column. Apply .idxmax() and assign the result to ticker.
+#Set the start date to January 1, 2015.
+#Use the DataReader to get the stock data for the ticker from 'iex' since start.
+#Plot the 'close' and 'volume' prices of this company, using 'volume' for secondary_y and ticker as the title.
+
+# Set Stock Symbol as the index
+listings = listings.set_index('Stock Symbol')
+
+# Get ticker of the largest consumer services company listed after 1997
+ticker = listings.loc[(listings.Sector == 'Consumer Services') & (listings['IPO Year'] > 1998), 'Market Capitalization'].idxmax()
+
+# Set the start date
+start = date(2015,1,1)
+
+# Import the stock data
+data = DataReader(ticker,data_source='iex',start=start)
+
+# Plot close and volume
+data[['close', 'volume']].plot(secondary_y='volume',title=ticker)
+
+# Show the plot
+plt.show()
