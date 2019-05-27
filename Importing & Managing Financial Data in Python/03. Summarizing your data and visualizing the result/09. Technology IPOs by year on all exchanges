@@ -1,0 +1,45 @@
+#Technology IPOs by year on all exchanges
+#Each company in the listings dictionary has an IPO year between 1972 and 2017. Therefore, in this context, it is appropriate to consider the 'IPO Year' column of each sheet as a categorical variable with a well-defined order even though it is of dtype float64.
+
+#Here you will combine data from all three exchanges and plot the distribution of IPO years for companies in the Technology sector. pandas as pd and matplotlib.pyplot as plt have been imported, and the listings dictionary from the previous exercise is in your workspace.
+
+#Instructions
+#100 XP
+#Use a for loop with iterator variable exchange that contains the name of each exchange.
+#In each iteration, append the DataFrame corresponding to the key exchange in listings to all_listings.
+#After the loop completes, use pd.concat() to combine the three DataFrames in all_listings and assign the result to listing_data.
+#Filter listing_data for 'Technology' companies and assign the result to tech_companies.
+#Assign the 'IPO Year' column from tech_companies to ipo years.
+#For this data, use .dropna() to remove missing values and .astype() to convert to int.
+#Apply .value_counts() to ipo_years, sort the years in ascending order, and create a bar plot titled 'Tech IPOs by Year'.
+#Rotate xticks by 45 degrees and show the result.
+
+
+# Create lists
+exchanges = ['amex', 'nasdaq', 'nyse']
+all_listings = []
+
+# Use for loop to create listing_data
+for exchange in exchanges:
+    all_listings.append(listings[exchange])
+    
+# Combine DataFrames
+listing_data = pd.concat(all_listings)
+
+# Select tech companies
+tech_companies = listing_data[listing_data.Sector == 'Technology']
+
+# Create ipo_years
+ipo_years = tech_companies['IPO Year']
+
+# Drop missing values and convert to int
+ipo_years = ipo_years.dropna().astype(int)
+
+# Count values, sort ascending by year, and create a bar plot
+ipo_years.value_counts(ascending=True).plot(kind='bar', title='Tech IPOs by Year')
+
+# Rotate xticks and show result
+plt.xticks(rotation=45)
+
+# Show the plot
+plt.show()
