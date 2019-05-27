@@ -1,0 +1,28 @@
+#Distribution of inflation rates in China, India, and the US
+#As you saw in the video, the boxplot() function displays key quantiles of a distribution with respect to categories, where y represents a quantitative variable, and x a categorical variable. In statistics, this kind of distribution is known as a box-and-whisker plot.
+
+#A complement to a box plot is a swarmplot(), which draws a categorical scatterplot that displays all categorical observations without overlapping; it takes similar arguments to boxplot():
+
+#seaborn.boxplot(x=None, y=None, data=None, ...)
+#seaborn.swarmplot(x=None, y=None, data=None, ...)
+#In this final exercise, you will compare the historical distributions of inflation rates by country - specifically China, India, and the US - instead of by time series trends. pandas as pd, matplotlib.pyplot as plt, and seaborn as sns have been imported for you. The FRED inflation data is in your workspace as inflation.
+
+#Instructions
+#100 XP
+#Create and show a boxplot of the inflation data with 'Country' for x and 'Inflation' for y.
+#Create and show sns.swarmplot() with the same arguments.
+
+# Create boxplot
+sns.boxplot(x='Country', y='Inflation', data=inflation)
+
+# Show the plot
+plt.show()
+
+# Close the plot
+plt.close()
+
+# Create swarmplot
+sns.swarmplot(x='Country', y='Inflation', data=inflation)
+
+# Show the plot
+plt.show()
