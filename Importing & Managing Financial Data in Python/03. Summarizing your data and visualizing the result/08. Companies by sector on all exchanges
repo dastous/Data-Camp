@@ -1,0 +1,25 @@
+#Companies by sector on all exchanges
+#A categorical variable is a variable that is one of a limited number of values based on some qualitative property. A frequency distribution is a representation of the number of times that a categorical variable occurs.
+
+#Think back to the stock exchange data from the earlier chapters. The .mean() function isn't very helpful for understanding the frequency of 'Sector' values such as 'Technology' and 'Finance', whereas .value_counts() and .nunique() are.
+
+#In this exercise, you will compare the distribution of listings in the AMEX, NASDAQ, and NYSE per sector. pandas as pd and matplotlib.pyplot as plt have been imported, and the listings information from previous exercises has been loaded into a dictionary listings for which the keys are 'amex', 'nasdaq', and 'nyse'.
+
+#Instructions
+#100 XP
+#Create a list exchanges containing the exact strings of the names of the exchanges in the order listed above.
+#Use a for loop to iterate over exchanges with an iterator variable exchange that contains the name of each exchange. In each iteration:
+#Apply .value_counts() to 'Sector' and assign the result to sectors.
+#Sort sectors in descending order and plot them in a bar plot.
+#Show the result.
+
+# Create the list exchanges
+exchanges = ['amex', 'nasdaq', 'nyse']
+
+# Iterate over exchanges then plot and show result
+for exchange in exchanges:
+    sectors = listings[exchange].Sector.value_counts()
+    # Sort in descending order and plot
+    sectors.sort_values(ascending=False).plot(kind='bar')
+    # Show the plot
+    plt.show()
