@@ -1,0 +1,28 @@
+#Growth rates in Brazil, China, and the US
+#It's time to extend your analysis beyond the levels of international per capita income to the growth rates. The 'income_growth.csv' file contains the growth rates of per capita income over the last 40 years for Brazil, China, and the US.
+
+#You will plot the distribution of the historical growth rates for each country on the same chart using a KDE plot to faciliate visual comparison of the ranges of growth that these markets have experienced over this time period.
+
+#From this point in the course onwards, you should always inspect any DataFrame with .info() in your console even if this isn't explicitly in the instructions. pandas as pd, seaborn as sns, and matplotlib.pyplot as plt have been imported.
+
+#Instructions
+#100 XP
+#Load the file 'income_growth.csv' into the variable growth. Parse the 'DATE' column into dtype datetime64 and set it as the index.
+#Inspect the summary statistics for these three growth rates using the appropriate function.
+#Iterate over the growth.columns attribute in a for loop to access their labels. Most of the code has been outlined for you.
+#In each iteration of distplot(), pass in the iteration variable column to select the respective column, set the keyword hist to False, and set label to column.
+#Show the result.
+
+
+# Load the file into growth
+growth = pd.read_csv('income_growth.csv', parse_dates=['DATE']).set_index(['DATE'])
+
+# Inspect the summary statistics for the growth rates
+growth.describe()
+
+# Iterate over the three columns
+for column in growth.keys():
+    sns.distplot(growth[column], hist=False, label=column)
+    
+# Show the plot
+plt.show()
