@@ -1,0 +1,25 @@
+#Load listing data from two sheets
+#The import process is just as intuitive when using the sheet_names attribute of a pd.ExcelFile() object.
+
+#Passing in a list as the sheetname argument of pd.read_excel(), whether you assign the list to a variable holding the sheet_names attribute of a pd.ExcelFile() object or type the list out yourself, constructs a dictionary. In this dictionary, the keys are the names of the sheets, and the values are the DataFrames containing the data from the corresponding sheet. You can extract values from a dictionary by providing a particular key in brackets.
+
+#In this exercise, you will retrieve the list of stock exchanges from listings.xlsx and then use this list to read the data for all three exchanges into a dictionary. pandas has been imported as pd.
+
+#Instructions
+#100 XP
+#Create a pd.ExcelFile() object using the file 'listings.xlsx' and assign to xls.
+#Save the sheet_names attribute of xls as exchanges.
+#Using exchanges to specify sheet names and n/a to specify missing values in pd.read_excel(), read the data from all sheets in xls, and assign to a dictionary listings.
+#Inspect only the 'nasdaq' data in this new dictionary with .info().
+
+# Create pd.ExcelFile() object
+xls = pd.ExcelFile('listings.xlsx')
+
+# Extract sheet names and store in exchanges
+exchanges = xls.sheet_names
+
+# Create listings dictionary with all sheet data
+listings = pd.read_excel(xls, sheet_name=exchanges, na_values='n/a')
+
+# Inspect NASDAQ listings
+listings['nasdaq'].info()
