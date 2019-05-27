@@ -1,0 +1,28 @@
+#Compare bond and stock performance
+#Bonds and stocks are the most important investment alternatives. Now that you can import data from both the Federal Reserve and Google Finance, you can compare the performance of both asset classes. You'll be using a Total Return Index for each class, which accounts for returns due to both price increases and payments like interest or dividends.
+
+#For bonds, you'll use the Bank of America Merrill Lynch US High Yield Total Return Index Value ('BAMLHYH0A0HYM2TRIV'). For stocks, you'll use the S&P 500 Index ('SP500'). Both are available for the past 10 years from the Federal Reserve's FRED service.
+
+#In this exercise, you will download both series and compare their performance. DataReader, date, pandas as pd, and matplotlib.pyplot as plt have been imported.
+
+#Instructions
+#100 XP
+#Using date(), set the start date to January 1, 2008.
+#Set the series codes as a list containing 'BAMLHYH0A0HYM2TRIV' and 'SP500'.
+#Use DataReader() to import both series from 'fred' and assign to data.
+#Plot and show data with subplots, titled 'Performance Comparison'.
+
+# Set the start date
+start = date(2008,1,1)
+
+# Set the series codes
+series = ['BAMLHYH0A0HYM2TRIV', 'SP500']
+
+# Import the data
+data = DataReader(series,data_source='fred',start=start)
+
+# Plot the results
+data.plot(subplots=True,title='Performance Comparison')
+
+# Show the plot
+plt.show()
