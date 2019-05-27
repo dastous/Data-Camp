@@ -1,0 +1,36 @@
+#Visualize a stock price trend
+#Google Finance has deprecated their API but DataReader now makes available the data source 'iex'.
+
+#The most important change to the functionality is the limitation of the data to the last five years. The DataFrame returned by the DataReader has the same columns, but in lower case.
+
+#The matplotlib.pyplot package is essential to visualizing stock price trends in Python.
+
+#In this exercise, you will import 2016 stock price data for Facebook, and then plot its closing price for the entire period! DataReader and date have already been imported.
+
+#Instructions
+#100 XP
+#Import matplotlib.pyplot as plt.
+#Using date(), set the start and end dates to January 1, 2016 and December 31, 2016, respectively.
+#Set ticker to Facebook's stock ticker 'FB' and data_source to 'iex'.
+#Create a DataReader() object to import the stock prices and assign to stock_prices.
+#Plot the 'close' data in stock_prices, set ticker as the title, and show the result.
+
+# Import matplotlib.pyplot
+import matplotlib.pyplot as plt
+
+# Set start and end dates
+start = date(2016,1,1)
+end = date(2016,12,31)
+
+# Set the ticker and data_source
+ticker = 'FB'
+data_source = 'iex'
+
+# Import the data using DataReader
+stock_prices = DataReader(ticker,data_source,start,end)
+
+# Plot close
+stock_prices['close'].plot(title=ticker)
+
+# Show the plot
+plt.show()
