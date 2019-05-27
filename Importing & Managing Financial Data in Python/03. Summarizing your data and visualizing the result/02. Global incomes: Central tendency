@@ -1,0 +1,24 @@
+#Global incomes: Central tendency
+#The most common measures of central tendency are the mean, which is equal to the sum of all values divided by the total number of values, median, which separates the upper half of data from the lower half, and mode, which is the most frequent value in the data set. The pandas package contains functions that can calculate each of these.
+
+#In this data set, the values for 'Income per Capita' are floats, and there are no repeat values, so running income['Income per Capita'].mode() in your console returns an empty series. Here, you will use the floor division operator // to add a new column that measures income in thousands, rounded down, so that a value such as 11,543.43 becomes just 11. Then, you will run the above functions to better understand how incomes are distributed.
+
+#pandas has been imported as pd, and the income DataFrame from the previous exercise is in your workspace.
+
+#Instructions
+#100 XP
+#Use the appropriate function to calculate the global mean of 'Income per Capita'.
+#Use the appropriate function to calculate the global median of 'Income per Capita'.
+#Using broadcasting, create a new column 'Income per Capita (,000)' equal to income['Income per Capita'] // 1000. Then use the appropriate function to calculate the mode for this new column.
+
+# Calculate the mean
+print(income['Income per Capita'].mean())
+
+# Calculate the median
+print(income['Income per Capita'].median())
+
+# Create the new column
+income['Income per Capita (,000)'] = income['Income per Capita'] // 1000
+
+# Calculate the mode of the new column
+income['Income per Capita (,000)'].mode()
