@@ -1,0 +1,36 @@
+#Company value by exchange and sector
+#You can generate more fine-grained summaries of your data by providing a list of columns inside .groupby() and/or applying a statistical method such as .mean() directly to one or more numerical columns.
+
+#Here, you will calculate the median market capitalization for each sector, differentiated by the exchange that the companies are listed on. You will also use .unstack() to pivot the exchange labels from the rows into the columns. It's a good idea to inspect listings in your console before starting the exercise!
+
+#pandas as pd and matplotlib.pyplot as plt have been imported, and the listings DataFrame, with reference column 'Exchange' and a new column market_cap_m that contains the market cap in millions of USD, is available in your workspace.
+
+#Instructions
+#100 XP
+#Group your data by both 'Sector' and 'Exchange', assigning the result to by_sector_exchange.
+#Calculate the median market capitalization for by_sector_exchange and assign to mcap_by_sector_exchange.
+#Display the first 5 rows of the result with .head().
+#Call .unstack() on mcap_by_sector_exchange to move the Exchange labels to the columns, and assign to mcap_unstacked.
+#Plot the result as a bar chart with the title 'Median Market Capitalization by Exchange' and xlabel set to 'USD mn',
+#Show the result.
+
+# Group listings by Sector and Exchange
+by_sector_exchange = listings.groupby(['Sector', 'Exchange'])
+
+# Calculate the median market cap
+mcap_by_sector_exchange = by_sector_exchange.market_cap_m.median()
+
+# Display the head of the result
+print(mcap_by_sector_exchange.head())
+
+# Unstack mcap_by_sector_exchange
+mcap_unstacked = mcap_by_sector_exchange.unstack()
+
+# Plot as a bar chart
+mcap_unstacked.plot(kind='bar', title='Median Market Capitalization by Exchange')
+
+# Set the x label
+plt.xlabel('USD mn')
+
+# Show the plot
+plt.show()
