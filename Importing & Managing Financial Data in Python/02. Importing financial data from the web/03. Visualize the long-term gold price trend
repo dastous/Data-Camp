@@ -1,0 +1,29 @@
+#Visualize the long-term gold price trend
+#In the previous video, you learned how to retrieve data from the Federal Reserve Economic Data (FRED) portal.
+
+#Here, you will use this new data source to visualize the gold price trend over the last 50 years, specifically, the Gold Fixing Price 10:30 AM (London time) in London Bullion Market, in US Dollars. DataReader, date, pandas as pd, and matplotlib.pyplot as plt have been imported.
+
+#Instructions
+#100 XP
+#Use date() to set start to January 1, 1968, and set series to series code 'GOLDAMGBD228NLBM'.
+#Pass series as the data,'fred' as the data source, and start as the start date to DataReader(). Assign to gold_price.
+#Inspect gold_price using .info().
+#Plot and show the gold_price series with title 'Gold Price'.
+
+# Set start date
+start = date(1968,1,1)
+
+# Set series code
+series = 'GOLDAMGBD228NLBM'
+
+# Import the data
+gold_price = DataReader(series, data_source='fred', start=start)
+
+# Inspect the price of gold
+gold_price.info()
+
+# Plot the price of gold
+gold_price.plot(title='Gold Price')
+
+# Show the plot
+plt.show()
