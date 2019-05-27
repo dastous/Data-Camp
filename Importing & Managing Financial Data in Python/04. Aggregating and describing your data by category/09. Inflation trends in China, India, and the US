@@ -1,0 +1,23 @@
+#Inflation trends in China, India, and the US
+#Finally, the seaborn package includes functions that allow you to visualize the distribution of levels of categorical variables.
+
+#In the next two exercises, you will examine the historical inflation data in China, India, and the US over the past 50+ years in data from FRED. Before jumping into using the functions you have just learned, you should first familiarize yourself with the raw data. pandas as pd, matplotlib.pyplot as plt, and seaborn as sns have been imported for you. The FRED inflation data is in your workspace as inflation.
+
+#Instructions
+#100 XP
+#Inspect inflation using .info().
+#Group inflation by 'Country' and assign to inflation_by_country.
+#In a for loop, iterate over country, data pairs returned by inflation_by_country. In each iteration, use .plot() on data with title set to country to show the historical time series.
+
+# Inspect the inflation data
+inflation.info()
+
+# Create inflation_by_country
+inflation_by_country = inflation.groupby('Country')
+
+# Iterate over inflation_by_country and plot the inflation time series per country
+for country, data in inflation_by_country:
+    # Plot the data
+    data.plot(title=country)
+    # Show the plot
+    plt.show()
