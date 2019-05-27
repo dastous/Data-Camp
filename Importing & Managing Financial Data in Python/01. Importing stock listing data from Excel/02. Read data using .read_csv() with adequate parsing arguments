@@ -1,0 +1,18 @@
+#Read data using .read_csv() with adequate parsing arguments
+#You have successfully identified the issues you must address when importing the given csv file.
+
+#In this exercise, you will once again load the NASDAQ data into a pandas DataFrame, but with a more robust function. pandas has been imported as pd.
+
+#Instructions
+#100 XP
+#Read the file nasdaq-listings.csv into nasdaq with pd.read_csv(), adding the arguments na_values and parse_dates equal to the appropriate values. You should use 'NAN' for missing values, and parse dates in the Last Update column.
+#Display and inspect the result using .head() and .info() to verify that the data has been imported correctly.
+
+# Import the data
+nasdaq = pd.read_csv('nasdaq-listings.csv', na_values='NAN', parse_dates=['Last Update'])
+
+# Display the head of the data
+print(nasdaq.head())
+
+# Inspect the data
+nasdaq.info()
