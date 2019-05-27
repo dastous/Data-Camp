@@ -1,0 +1,19 @@
+#Select the top 5 listed consumer companies
+#As you have just learned, it is possible to filter stocks based on criteria with the sort_values() method and an argument that specifies the column to filter by. Additionally, you can include the argument ascending=False to sort entries from highest to lowest.
+
+#Here, you will use this function to find out the five most valuable companies in the Consumer Services sector. This is measured with market capitalization, or the combined value of all shares in a company. pandas has been imported as pd, as has the listings DataFrame from the first chapter. As a refresher, it contains data from the AMEX, NYSE, and NASDAQ.
+
+#Instructions
+#100 XP
+#Without using .loc[], filter listings based on the condition that the 'Sector' is equal to 'Consumer Services' and assign to consumer_services.
+#Sort consumer_services by 'Market Capitalization' in descending order and assign it to consumer_services2.
+#Using .head(), display the first 5 rows of the 'Company Name', 'Exchange', and 'Market Capitalization' columns.
+
+# Select companies in Consumer Services
+consumer_services = listings[listings.Sector == 'Consumer Services']
+
+# Sort consumer_services by market cap
+consumer_services2 = consumer_services.sort_values('Market Capitalization', ascending=False)
+
+# Display first 5 rows of designated columns
+print(consumer_services2[['Company Name', 'Exchange', 'Market Capitalization']].head())
