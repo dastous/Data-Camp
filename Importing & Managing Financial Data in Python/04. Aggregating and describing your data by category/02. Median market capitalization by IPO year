@@ -1,0 +1,40 @@
+#Median market capitalization by IPO year
+#In the last lesson of the previous chapter, you created a timeline for the number of IPOs per year for technology companies.
+
+#Let's now analyze how market capitalization has evolved for different IPO years. You can combine data from all three exchanges to get a more comprehensive view.
+
+#pandas as pd and matplotlib.pyplot as plt have been imported, and the listings DataFrame from previous exercises which now includes an added reference column 'exchange' that contains the exchange for each listed company, is available in your workspace.
+
+#Instructions
+#100 XP
+#Inspect and display listings using .info() and .head().
+#Using broadcasting, create a new column market_cap_m for listings that contains the market cap in millions of USD.
+#Select all companies with an 'IPO Year' after 1985.
+#Drop all missing values in the 'IPO Year' column, and convert the remaining values to dtype integer.
+#Group listings by 'IPO Year', select the market_cap_m column and calculate the median, sort with .sort_index(), and assign the result to ipo_by_year.
+#Plot and show the results as a bar chart.
+
+
+# Inspect listings
+listings.info()
+
+# Show listings head
+print(listings.head())
+
+# Create market_cap_m
+listings['market_cap_m'] = listings['Market Capitalization'].div(1e6)
+
+# Select companies with IPO after 1985
+listings = listings[listings['IPO Year'] > 1985]
+
+# Drop missing values and convert to integers
+listings['IPO Year'] = listings['IPO Year'].dropna().astype(int)
+
+# Calculate the median market cap by IPO Year and sort the index
+ipo_by_year = listings.groupby('IPO Year').market_cap_m.median().sort_index()
+
+# Plot results as a bar chart
+ipo_by_year.plot(kind='bar')
+
+# Show the plot
+plt.show()
