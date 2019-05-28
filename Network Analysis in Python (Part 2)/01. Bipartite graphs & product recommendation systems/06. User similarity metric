@@ -1,0 +1,29 @@
+#User similarity metric
+#Having written a function to calculate the set of nodes that are shared between two nodes, you're now going to write a function to compute a metric of similarity between two users: the number of projects shared between two users divided by the total number of nodes in the other partition. This can then be used to find users that are similar to one another.
+
+#Instructions
+#100 XP
+#Complete the user_similarity() function to calculate the similarity between user1 and user2.
+#Use assert statements to check that user1 and user2 belong to the 'users' partition.
+#Use your shared_partition_nodes() function from the previous exercise to get the set of nodes shared between the two users user1 and user2.
+#Return the fraction of nodes in the projects partition. That is, divide the number of shared_nodes by the total number of nodes in the 'projects' partition.
+#Compute the similarity score between users 'u4560' and 'u1880'. To do this:
+#First obtain the nodes in the 'projects' partition using your get_nodes_from_partition() function.
+#Then use your user_similarity() function to compute the score.
+
+def user_similarity(G, user1, user2, proj_nodes):
+    # Check that the nodes belong to the 'users' partition
+    assert G.node[user1]['bipartite'] == 'users'
+    assert G.node[user2]['bipartite'] == 'users'
+
+    # Get the set of nodes shared between the two users
+    shared_nodes = shared_partition_nodes(G, user1, user2)
+
+    # Return the fraction of nodes in the projects partition
+    return len(shared_nodes) / len(proj_nodes)
+
+# Compute the similarity score between users 'u4560' and 'u1880'
+project_nodes = get_nodes_from_partition(G, 'projects')
+similarity_score = user_similarity(G, 'u4560', 'u1880', project_nodes)
+
+print(similarity_score)
