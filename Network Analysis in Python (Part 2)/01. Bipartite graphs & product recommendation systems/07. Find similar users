@@ -1,0 +1,42 @@
+#Find similar users
+#You're now going to build upon what you've learned so far to write a function called most_similar_users() that finds the users most similar to another given user.
+
+#The beginnings of this function have been written for you. A list of nodes, user_nodes has been created, which contains all of the users except the given user that has been passed into the function. Your task is to complete the function such that it finds the users most similar to this given user. You'll make use of your user_similarity() function from the previous exercise to help do this.
+
+#A dictionary called similarities has been setup, in which the keys are the scores and the list of values are the nodes. If you've never seen a defaultdict before, don't worry - you'll learn more about it in Chapter 3! It functions exactly like a regular Python dictionary.
+
+#Instructions
+#100 XP
+#Iterate over user_nodes and compute the similarity between user and each user_node (n) using your user_similarity() function. Store the result as similarity.
+#Append the score and node to the similarities dictionary. The key is the score - similarity - and the value is the node - n.
+#Compute the maximum similarity score. To do this, first access the keys (which contain the scores) of similarities using the .keys() method and then use the max() function. Store the result as max_similarity.
+#Return the list of users that share maximal similarity. This list of users is the value of the max_similarity key of similarities.
+#Use your most_similar_users() function to print the list of users most similar to the user 'u4560'.
+
+
+from collections import defaultdict
+
+def most_similar_users(G, user, user_nodes, proj_nodes):
+    # Data checks
+    assert G.node[user]['bipartite'] == 'users'
+
+    # Get other nodes from user partition
+    user_nodes = set(user_nodes) 
+    user_nodes.remove(user)
+
+    # Create the dictionary: similarities
+    similarities = defaultdict(list)
+    for n in user_nodes:
+        similarity = user_similarity(G, user, n, proj_nodes)
+        similarities[similarity].append(n)
+
+    # Compute maximum similarity score: max_similarity
+    max_similarity = max(similarities.keys())
+
+    # Return list of users that share maximal similarity
+    return similarities[max_similarity]
+
+user_nodes = get_nodes_from_partition(G, 'users')
+project_nodes = get_nodes_from_partition(G, 'projects')
+
+print(most_similar_users(G, 'u4560', user_nodes, project_nodes))
