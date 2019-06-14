@@ -1,0 +1,22 @@
+#In this exercise, you will complete a function to visually compare model and data, and compute and print the RSS. You will call it more than once to see how RSS changes when you change values for a0 and a1. We'll see that the values for the parameters we found earlier are the ones needed to minimize the RSS.
+
+#Instructions
+#100 XP
+#Fill in the call to model() passing in the data xd and model parameters a0 and a1.
+#Compute rss as the sum of the square of the residuals.
+#Use compute_rss_and_plot_fit() for various values of a0 and a1 to see how they change RSS.
+#Convince yourself that the original values a0=150 and a1=25 minimize RSS, and submit your answer with these.
+
+# Complete function to load data, build model, compute RSS, and plot
+def compute_rss_and_plot_fit(a0, a1):
+    xd, yd = load_data()
+    ym = model(xd, a0, a1)
+    residuals = ym - yd
+    rss = np.sum(np.square(residuals))
+    summary = "Parameters a0={}, a1={} yield RSS={:0.2f}".format(a0, a1, rss)
+    fig = plot_data_with_model(xd, yd, ym, summary)
+    return rss, summary
+
+# Chose model parameter values and pass them into RSS function
+rss, summary = compute_rss_and_plot_fit(a0=150, a1=25)
+print(summary)
