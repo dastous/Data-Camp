@@ -1,0 +1,24 @@
+#Covariance is a measure of whether two variables change ("vary") together. It is calculated by computing the products, point-by-point, of the deviations seen in the previous exercise, dx[n]*dy[n], and then finding the average of all those products.
+
+#Correlation is in essence the normalized covariance. In this exercise, you are provided with two arrays of data, which are highly correlated, and you will visualize and compute both the covariance and the correlation.
+
+#Instructions
+#100 XP
+#Compute the deviations, dx and dy by subtracting the mean, using np.mean(), and compute covariance as the mean of their product dx*dy.
+#Compute the normalize deviations, zx and zy, by dividing by the standard deviation, using np.std(), and compute the correlation as the mean of their product, zx*zy.
+#Use plot_normalized_deviations(zx, zy) to plot the product of the normalized deviations and visually check it against the correlation value.
+
+# Compute the covariance from the deviations.
+dx = x - np.mean(x)
+dy = y - np.mean(y)
+covariance = np.mean(dx * dy)
+print("Covariance: ", covariance)
+
+# Compute the correlation from the normalized deviations.
+zx = dx / np.std(x)
+zy = dy / np.std(y)
+correlation = np.mean(zx * zy)
+print("Correlation: ", correlation)
+
+# Plot the normalized deviations for visual inspection. 
+fig = plot_normalized_deviations(zx, zy)
