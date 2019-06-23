@@ -1,0 +1,40 @@
+#In the previous two exercises, we ran a permutation test for the difference in mean values. Now let's look at non-standard statistics.
+#Suppose that you're interested in understanding the distribution of the donations received from websites A and B. For this, you want to see if there's a statistically significant difference in the median and the 80th percentile of the donations. Permutation testing gives you a wonderfully flexible framework for attacking such problems.
+#Let's go through running a test to see if there's a difference in the median and the 80th percentile of the distribution of donations. As before, you're given the donations from the websites A and B in the variables donations_A and donations_B respectively.
+
+#Instructions 1/3
+#25 XP
+#Set samples_percentile and samples_median equal to the difference in the 80th percentile and medians of permuted_A_datasets and permuted_B_datasets, respectively.
+
+# Calculate the difference in 80th percentile and median for each of the permuted datasets (A and B)
+samples_percentile = np.percentile(permuted_A_datasets, 80, axis=1) - np.percentile(permuted_B_datasets, 80, axis=1)
+samples_median = np.median(permuted_A_datasets, axis=1) - np.median(permuted_B_datasets, axis=1)
+
+#Instructions 2/3
+#25 XP
+#Set test_stat_percentile and test_stat_median equal to the difference in 80th percentile and medians of donations_A and donations_B (pre-loaded).
+
+# Calculate the difference in 80th percentile and median for each of the permuted datasets (A and B)
+samples_percentile = np.percentile(permuted_A_datasets, 80, axis=1) - np.percentile(permuted_B_datasets, 80, axis=1)
+samples_median = np.median(permuted_A_datasets, axis=1) - np.median(permuted_B_datasets, axis=1)
+
+# Calculate the test statistic from the original dataset and corresponding p-values
+test_stat_percentile = np.percentile(donations_A, 80) - np.percentile(donations_B, 80)
+test_stat_median = np.median(donations_A) - np.median(donations_B)
+
+#Instructions 3/3
+#50 XP
+#Calculate the corresponding p-values p_val_percentile and p_val_median as two times the fraction of percentile and median samples, respectively, greater than or equal to the absolute value of the respective test statistics.
+
+# Calculate the difference in 80th percentile and median for each of the permuted datasets (A and B)
+samples_percentile = np.percentile(permuted_A_datasets, 80, axis=1) - np.percentile(permuted_B_datasets, 80, axis=1)
+samples_median = np.median(permuted_A_datasets, axis=1) - np.median(permuted_B_datasets, axis=1)
+
+# Calculate the test statistic from the original dataset and corresponding p-values
+test_stat_percentile = np.percentile(donations_A, 80) - np.percentile(donations_B, 80)
+test_stat_median = np.median(donations_A) - np.median(donations_B)
+p_val_percentile = 2*np.sum(samples_percentile >= np.abs(test_stat_percentile))/reps
+p_val_median = 2*np.sum(samples_median >= np.abs(test_stat_median))/reps
+
+print("80th Percentile: test statistic = {}, p-value = {}".format(test_stat_percentile, p_val_percentile))
+print("Median: test statistic = {}, p-value = {}".format(test_stat_median, p_val_median))
