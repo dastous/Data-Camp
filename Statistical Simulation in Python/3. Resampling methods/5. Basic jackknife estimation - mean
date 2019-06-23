@@ -1,0 +1,21 @@
+#Jackknife resampling is an older procedure, which isn't used as often compared as bootstrapping. However, it's still useful to know how to run a basic jackknife estimation procedure. In this first exercise, we will calculate the jackknife estimate for the mean. Let's return to the wrench factory.
+#You own a wrench factory and want to measure the average length of the wrenches to ensure that they meet some specifications. Your factory produces thousands of wrenches every day, but it's infeasible to measure the length of each wrench. However, you have access to a representative sample of 100 wrenches. Let's use jackknife estimation to get the average lengths.
+#Examine the variable wrench_lengths in the shell.
+
+#Instructions
+#100 XP
+#Get a jackknife sample by iteratively leaving one observation out of wrench_lengths and assigning it to jk_sample.
+#Calculate the mean of jk_sample and append it to mean_lengths.
+#Finally, calculate the jackknife estimate mean_lengths_jk as the mean of the mean_lengths array.
+
+# Leave one observation out from wrench_lengths to get the jackknife sample and store the mean length
+mean_lengths, n = [], len(wrench_lengths)
+index = np.arange(n)
+
+for i in range(n):
+    jk_sample = wrench_lengths[index != i]
+    mean_lengths.append(jk_sample.mean())
+
+# The jackknife estimate is the mean of the mean lengths from each sample
+mean_lengths_jk = np.mean(np.array(mean_lengths))
+print("Jackknife estimate of the mean = {}".format(mean_lengths_jk))
