@@ -1,0 +1,21 @@
+#You will be building popups for the downtown art using the title and desc columns from the urban_art DataFrame. Here, you will inspect those columns to identify and clean up any problematic values.
+
+#Instructions
+#100 XP
+#Print and inspect the values in the title column of the urban_art DataFrame.
+#Print and inspect the values in the desc column of the urban_art DataFrame.
+#Use the fillna() method to replace the NaN values in the desc column with empty strings, and use .str.replace to replace the apostrophes (') with back-ticks (`).
+#Print the descriptions again to verify your work.
+
+# Print the urban_art titles
+print(urban_art.title)
+
+#Print the urban_art descriptions
+print(urban_art.desc)
+
+# Replace Nan and ' values in description
+urban_art.desc.fillna('', inplace = True)
+urban_art.desc = urban_art.desc.str.replace("'", "`")
+
+#Print the urban_art descriptions again
+print(urban_art.desc)
