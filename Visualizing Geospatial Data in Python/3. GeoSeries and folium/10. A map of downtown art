@@ -1,0 +1,24 @@
+#Now you will assign a popup to each marker to give information about the artwork at each location. In particular you will assign the art title and description to the popup for each marker. You will do so by creating the map object downtown_map, then add the popups, and finally use the display function to show your map.
+#One warning before you start: you'll need to ensure that all instances of single quotes (') are removed from the pop-up message, otherwise your plot will not render!
+
+#Instructions
+#100 XP
+#For each row in urban_art, build a popup message that includes the title and description for the corresponding artwork.
+#Complete the code to replace all instances of single quotes (') with backticks (`) in the popup messages.
+#Display the finished map.
+
+# Construct downtown map
+downtown_map = folium.Map(location = nashville, zoom_start = 15)
+folium.GeoJson(urban_polygon).add_to(downtown_map)
+
+# Create popups inside the loop you built to create the markers
+for row in urban_art.iterrows():
+    row_values = row[1] 
+    location = [row_values['lat'], row_values['lng']]
+    popup = (str(row_values['title']) + ': ' + 
+             str(row_values['desc'])).replace("'", "`")
+    marker = folium.Marker(location = location, popup = popup)
+    marker.add_to(downtown_map)
+
+# Display the map.
+display(downtown_map)
