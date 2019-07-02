@@ -1,0 +1,22 @@
+#Now you'll find the center point of the urban_poly_3857 and plot it over the polygon.
+
+#Instructions
+#100 XP
+#Create downtown_center, from urban_poly_3857 using the GeoSeries centroid attribute.
+#Print the datatype of downtown_center.
+#Plot urban_poly_3857 as ax using lightgreen for the color.
+#Plot the downtown_center, setting ax = ax and color = black. The x-axis ticks are rotated for you. We've included the code to show the plot.
+
+# Create downtown_center from urban_poly_3857
+downtown_center = urban_poly_3857.geometry.centroid
+
+# Print the type of downtown_center 
+print(type(downtown_center))
+
+# Plot the urban_poly_3857 as ax and add the center point
+ax = urban_poly_3857.plot(color = 'lightgreen')
+downtown_center.plot(ax = ax, color = 'black')
+plt.xticks(rotation = 45)
+
+# Show the plot
+plt.show()
