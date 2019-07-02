@@ -1,0 +1,20 @@
+#This time you will create the folium map of downtown and add the Urban Residents neighborhood area from urban_polygon. The urban_polygon has been printed to your console.
+
+#Instructions
+#100 XP
+#Create an array called folium_loc from urban_polygon.center
+#Create a folium map called downtown_map. Set the location argument equal to folium_loc and initialize the map with a zoom_start of 15.
+#Pass the geometry from the urban_polygon GeoDataFrame to the folium.GeoJson() method. Then call add_to() on that.
+
+# Create array for called folium_loc from the urban_polygon center point
+point = urban_polygon.center[0]
+folium_loc = [point.y, point.x]
+
+# Construct a map from folium_loc: downtown_map
+downtown_map = folium.Map(location = folium_loc, zoom_start = 15)
+
+# Draw our neighborhood: Urban Residents
+folium.GeoJson(urban_polygon.geometry).add_to(downtown_map)
+
+# Display the map
+display(downtown_map)
