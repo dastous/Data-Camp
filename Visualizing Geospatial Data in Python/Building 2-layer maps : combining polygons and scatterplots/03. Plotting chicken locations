@@ -1,0 +1,24 @@
+#Now you will create a scatterplot that shows where the Nashville chickens are!
+
+#Instructions
+#100 XP
+#The path to the chicken dataset is in the variable chickens_path. Use the read_csv function of pandas to load it into a DataFrame called chickens.
+#Use the .head() function to look at the first few rows.
+#Next add the x and y arguments to plt.scatter() to plot the locations of the Nashville chickens. Use the default marker and color options.
+#Show the plot using plt.show().
+
+# Import pandas and matplotlib.pyplot using their customary aliases
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the dataset
+chickens = pd.read_csv(chickens_path)
+
+# Look at the first few rows of the chickens DataFrame
+print(chickens.head())
+
+# Plot the locations of all Nashville chicken permits
+plt.scatter(x = chickens.lng, y = chickens.lat)
+
+# Show the plot
+plt.show()
