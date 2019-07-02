@@ -1,0 +1,12 @@
+#Now that you have spatially joined art and neighborhoods, you can group, aggregate, and sort the data to find which neighborhood has the most public art. You can count artwork titles to see how many artworks are in each neighborhood.
+
+#Instructions
+#100 XP
+#Get just name and title from neighborhood_art and then group by each neighborhood's name (name). Save this as neighborhood_art_grouped
+#Aggregate neighborhood_art_grouped to see how many artworks are within each polygon. Use the .agg('count') function to get a count of art in each neighborhood and sort the results with .sort_values(), sorting by title with ascending set to False. Print it.
+
+# Get name and title from neighborhood_art and group by name
+neighborhood_art_grouped = neighborhood_art[['name', 'title']].groupby('name')
+
+# Aggregate the grouped data and count the artworks within each polygon
+print(neighborhood_art_grouped.agg('count').sort_values(by = 'title', ascending = False))
