@@ -1,0 +1,16 @@
+#Make a basic plot of the service districts with the chicken locations. The packages needed have already been imported for you. The chickens DataFrame and service_district GeoDataFrame are in your workspace.
+
+#Instructions
+#100 XP
+#Plot the shapefile for the service districts, using the name column to color the polygons.
+#Add chicken locations, using the lat and lng columns from the chickens DataFrame, and make them black.
+#Show your plot.
+
+# Plot the service district shapefile
+service_district.plot(column='name')
+
+# Add the chicken locations
+plt.scatter(x=chickens.lng, y=chickens.lat, c = 'black')
+
+# Show the plot
+plt.show()
