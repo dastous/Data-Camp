@@ -1,0 +1,16 @@
+#Now you are ready to divide the number of building permits issued for projects in each council district by the area of that district to get a normalized value for the permits issued. First you will verify that the districts_and_permits is still a GeoDataFrame.
+
+#Instructions
+#100 XP
+#Print the type() of districts_and_permits.
+#Add one more column to districts_and_permits. Use a lambda expression and the pandas apply() method to divide the number of building permits issued for projects in each council district by the area of that district to get a normalized value for the permits issued.
+#Print the first five rows of districts_and_permits.
+
+# Print the type of districts_and_permits
+print(type(districts_and_permits))
+
+# Create permit_density column in districts_and_permits
+districts_and_permits['permit_density'] = districts_and_permits.apply(lambda row: row.bldg_permits / row.area, axis = 1)
+
+# Print the head of districts_and_permits
+print(districts_and_permits.head())
