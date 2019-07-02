@@ -1,0 +1,25 @@
+#Now you will add a marker to the center of each council district that shows the district number along with the count of building permits issued in 2017 for that district. The map you created in the last exercise is in your workspace as m.
+#After this exercise you will be nearly done with the course! If you enjoyed it, feel free to send Mary a thank you via Twitter -she'll appreciate it! Tweet to Mary
+
+#Instructions
+#100 XP
+#Find the centroid for each council district and store it in a new column, center in the districts_and_permits GeoDataFrame.
+#Iterate through districts_and_permits and add a marker at each district's center. Remember to reverse the coordinate pair.
+#Create popups within your for loop to display the district number and the count of permits issued.
+#Add the markers to your map with .add_to() and display it.
+
+# Create center column for the centroid of each district
+districts_and_permits['center'] = districts_and_permits.geometry.centroid
+
+# Build markers and popups
+for row in districts_and_permits.iterrows():
+    row_values = row[1]
+    center_point = row_values['center']
+    location = [center_point.y, center_point.x]
+    popup = ('Council District: ' + str(row_values['district']) + 
+             ';  ' + 'permits issued: ' + str(row_values['bldg_permits']))
+    marker = folium.Marker(location = location, popup = popup)
+    marker.add_to(m)
+    
+# Display the map
+display(m)
