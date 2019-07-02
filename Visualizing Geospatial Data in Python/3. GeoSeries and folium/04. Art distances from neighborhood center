@@ -1,0 +1,21 @@
+#Now that you have the center point and the art locations in the units we need to calculate distances in meters, it's time to perform that step.
+
+#Instructions
+#100 XP
+#Import the package to help with pretty printing.
+#Create a dictionary, art_distances by iterating through art_dist_meters, using title as the key and the distance() from center as the value. Pass center as the other argument to GeoSeries.distance().
+#Pretty print art_distances using the pprint method of pprint.
+
+# Import package for pretty printing
+import pprint
+
+# Build a dictionary of titles and distances for Urban Residents art
+art_distances = {}
+for row in art_dist_meters.iterrows():
+    vals = row[1]
+    key = vals['title']
+    ctr = vals['center']
+    art_distances[key] = vals['geometry'].distance(ctr)
+
+# Pretty print the art_distances
+pprint.pprint(art_distances)
