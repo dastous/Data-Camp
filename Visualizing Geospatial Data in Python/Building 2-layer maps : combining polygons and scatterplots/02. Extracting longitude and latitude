@@ -1,0 +1,20 @@
+#A DataFrame named df has been loaded to your workspace. Complete the code to extract longitude and latitude to new, separate columns.
+
+#Instructions
+#100 XP
+#Print the first few rows with print() and df.head().
+#Use a list comprehension to extract latitude to a new column called lat.
+#Use a list comprehension to extract longitude to a new column called lng.
+#Print the first few rows with print() and df.head() again to confirm the new columns.
+
+# print the first few rows of df 
+print(df.head())
+
+# extract latitude to a new column: lat
+df['lat'] = [loc[0] for loc in df.Location]
+
+# extract longitude to a new column: lng
+df['lng'] = [loc[1] for loc in df.Location]
+
+# print the first few rows of df again
+print(df.head())
