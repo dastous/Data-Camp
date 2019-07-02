@@ -1,0 +1,17 @@
+#Let's see where service districts are in Nashville. The path to the service district shapefile has been stored in the variable shapefile_path.
+
+#Instructions
+#100 XP
+#Import geopandas with its common alias gpd.
+#Read in the service district shapefile using geopandas and look at the first 5 rows using the head() method.
+#Print the geometry field in the first row (rowname is '0') to see the data contained in that field. You will pass service_district.loc[0, 'geometry'] to the print() function to do this.
+
+# Import geopandas
+import geopandas as gpd 
+
+# Read in the services district shapefile and look at the first few rows.
+service_district = gpd.read_file(shapefile_path)
+print(service_district.head())
+
+# Print the contents of the service districts geometry in the first row
+print(service_district.loc[0, 'geometry'])
