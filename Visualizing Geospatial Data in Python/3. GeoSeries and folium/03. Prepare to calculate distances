@@ -1,0 +1,25 @@
+#In this exercise you will prepare a GeoDataFrame called art_dist_meters with the locations of downtown art converted to meters using EPSG:3857. You will use art_dist_meters in the next exercise to calculate the distance of each artwork from the center of the Urban Residents neighborhood in meters.
+
+#The art data is in your workspace, along with urban_poly_3857 and center_point, the center point of the Urban Residents neighborhood. A geometry column called geometry that uses degrees has already been created in the art DataFrame.
+
+#Instructions
+#100 XP
+#Create a GeoDataFrame called art_dist_meters, using the art DataFrame and the geometry column from art. Set crs = {'init': 'epsg:4326'} since the geometry is in decimal degrees. Print the first two rows.
+#Now explicitly set the coordinate reference system to EPSG:3857 for art_dist_meters by using to_crs(). Print the first two rows again.
+#Add a column called center to art_dist_meters, setting it equal to center_point for every row .
+
+# Import packages
+from shapely.geometry import Point
+import geopandas as gpd
+import pandas as pd
+
+# Create art_dist_meters using art and the geometry from art
+art_dist_meters = gpd.GeoDataFrame(art, geometry = art.geometry, crs = {'init': 'epsg:4326'})
+print(art_dist_meters.head(2))
+
+# Set the crs of art_dist_meters to use EPSG:3857
+art_dist_meters.geometry = art_dist_meters.geometry.to_crs(epsg = 3857)
+print(art_dist_meters.head(2))
+
+# Add a column to art_meters, center
+art_dist_meters['center'] = center_point
