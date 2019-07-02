@@ -1,0 +1,24 @@
+#We have loaded the usual libraries as pd, plt, and gpd, the chickens dataset as chickens, and the service districts as service_district. Plot the service districts and chicken permits together to see what story your visualization tells.
+
+#Instructions
+#100 XP
+#Start by plotting the GeoDataFrame with the service districts. Use the name column for your legend color.
+#Next plot latitude and longitude from the chicken data to create a scatterplot. Specify 'black' for the marker color and give them a 'white' outline.
+#Give the plot a title: 'Nashville Chicken Permits' and label the x-axis as 'longitude' and the y-axis as 'latitude'.
+#Add grid lines and show your plot.
+
+# Plot the service district shapefile
+service_district.plot(column='name', legend=True)
+
+# Add the chicken locations
+plt.scatter(x=chickens.lng, y=chickens.lat, c='black', edgecolor = 'white')
+
+
+# Add labels and title
+plt.title('Nashville Chicken Permits')
+plt.xlabel('longitude')
+plt.ylabel('latitude')
+
+# Add grid lines and show the plot
+plt.grid()
+plt.show()
