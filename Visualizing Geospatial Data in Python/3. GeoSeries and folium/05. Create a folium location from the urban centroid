@@ -1,0 +1,23 @@
+#In order to construct a folium map of the Urban Residents neighborhood, you need to build a coordinate pair location that is formatted for folium.
+
+#Instructions
+#100 XP
+#Print the head of urban_polygon, which is in your workspace.
+#Store the first occurrence of center as urban_center and print urban_center. This has been done for you.
+#Create an array from urban_center that reverses the order of longitude and latitude. Call this urban_location.
+#Print urban_location. This has been done for you.
+
+# Print the head of the urban_polygon
+print(urban_polygon.head())
+
+# Create urban_center from the urban_polygon center
+urban_center = urban_polygon.center[0]
+
+# Print urban_center
+print(urban_center)
+
+# Create array for folium called urban_location
+urban_location = [urban_center.y, urban_center.x]
+
+# Print urban_location
+print(urban_location)
