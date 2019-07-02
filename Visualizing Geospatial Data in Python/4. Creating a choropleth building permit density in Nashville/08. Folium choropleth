@@ -1,0 +1,39 @@
+#In this exercise, you will construct a folium choropleth to show the density of permitted construction projects in different Nashville council districts. You will be using a single data source, the districts_and_permits GeoDataFrame, which is in your workspace.
+
+#Instructions 1/3
+#35 XP
+#Create a map object m using the nashville point for location and a zoom_start of 10.
+
+# Center point for Nashville
+nashville = [36.1636,-86.7823]
+
+# Create map
+m = folium.Map(location=nashville, zoom_start=10)
+
+#Instructions 2/3
+#25 XP
+#Use districts_and_permits: geometry for polygons, district & permit_density to color. Use Reds and 0.5 opacity for the fill; Set line_opacity to 1.0.
+#Set key_on to feature.properties.district. Use the title provided.
+
+# Build choropleth
+m.choropleth(
+    geo_data=districts_and_permits,
+    name='geometry',
+    data=districts_and_permits,
+    columns=['district', 'permit_density'],
+    key_on='feature.properties.district',
+    fill_color='Reds',
+    fill_opacity=0.5,
+    line_opacity=1.0,
+    legend_name='2017 Permitted Building Projects per km squared'
+)
+
+#Instructions 3/3
+#0 XP
+#Next create and add a folium LayerControl(). Display the map.
+
+# Create LayerControl and add it to the map            
+folium.LayerControl().add_to(m)
+
+# Display the map
+display(m) 
