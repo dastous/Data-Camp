@@ -1,0 +1,24 @@
+#After merging the counts_df with permits_by_district, you will create a column with normalized permit_density by dividing the count of permits in each council district by the area of that council district. Then you will plot your final geopandas choropleth of the building projects in each council district.
+
+#Instructions
+#100 XP
+#Merge permits_by_district and counts_df on district to create districts_and_permits.
+#Using apply() and a lambda expression, calculate a new column in districts_and_permits called permit_density. Divide counts by areas.
+#Plot a choropleth of the districts_and_permits, using permit_density with the OrRd colormap, and black outlines.
+#Add axis labels (longitude and latitude) and the title provided. Show your plot.
+
+# Merge permits_by_district and counts_df
+districts_and_permits = pd.merge(permits_by_district, counts_df, on = 'district')
+
+# Create permit_density column
+districts_and_permits['permit_density'] = districts_and_permits.apply(lambda row: row.bldg_permits / row.area, axis = 1)
+print(districts_and_permits.head(2))
+
+# Create choropleth plot
+districts_and_permits.plot(column = 'permit_density', cmap = 'OrRd', edgecolor = 'black', legend = True)
+
+# Add axis labels and title
+plt.xlabel('longitude')
+plt.ylabel('latitude')
+plt.title('2017 Building Project Density by Council District')
+plt.show()
