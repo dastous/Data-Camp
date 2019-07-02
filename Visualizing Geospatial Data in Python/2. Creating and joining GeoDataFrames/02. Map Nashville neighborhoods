@@ -1,0 +1,23 @@
+#This time you'll read a GeoJSON file in to a GeoDataFrame to take a quick peek at where Nashville neighborhoods are.
+
+#Instructions
+#100 XP
+#Import geopandas and matplotlib.pyplot using the customary aliases.
+#Read in the neighborhoods GeoJSON file to a GeoDataFrame called neighborhoods and print the first few rows with .head(). The path to this file is stored in a variable called neighborhoods_path.
+#Plot neighborhoods coloring the polygons by the name column of the GeoDataFrame and using the Dark2 color map. This time, don't include a legend.
+#Show the plot.
+
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+# Read in the neighborhoods geojson file
+neighborhoods = gpd.read_file(neighborhoods_path)
+
+# Print the first few rows of neighborhoods
+print(neighborhoods.head())
+
+# Plot the neighborhoods, color according to name and use the Dark2 colormap
+neighborhoods.plot(column = 'name', cmap = 'Dark2')
+
+# Show the plot.
+plt.show()
