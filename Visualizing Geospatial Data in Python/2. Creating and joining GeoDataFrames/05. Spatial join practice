@@ -1,0 +1,31 @@
+#Is there a difference between art (point data) that intersects with neighborhoods (polygon data) and art (point data) within neighborhoods (polygon data)? Explore different spatial joins with the art_geo and neighborhoods GeoDataFrames, which are available in your workspace.
+
+#Instructions 1/3
+#35 XP
+#Write a spatial join to find the art in art_geo that intersects with neighborhoods. Call this art_intersect_neighborhoods and print the .shape property to see how many rows and columns resulted.
+
+# Spatially join art_geo and neighborhoods 
+art_intersect_neighborhoods = gpd.sjoin(art_geo, neighborhoods, op = 'intersects')
+
+# Print the shape property of art_intersect_neighborhoods
+print(art_intersect_neighborhoods.shape)
+
+#Instructions 2/3
+#35 XP
+#Now write a spatial join to find the art in art_geo that is within neighborhoods. Call this art_within_neighborhoods and take a look at the .shape property to see how many rows and columns resulted.
+
+# Create art_within_neighborhoods by spatially joining art_geo and neighborhoods
+art_within_neighborhoods = gpd.sjoin(art_geo, neighborhoods, op = 'within')
+
+# Print the shape property of art_within_neighborhoods
+print(art_within_neighborhoods.shape)
+
+#Instructions 3/3
+#30 XP
+#Finally, write a spatial join to find the art locations in art_geo that contain neighborhoods. Call this GeoDataFrame art_containing_neighborhoods and take a look at the .shape property to see how many rows and columns resulted.
+
+# Spatially join art_geo and neighborhoods and using the contains op
+art_containing_neighborhoods = gpd.sjoin(art_geo, neighborhoods, op = 'contains')
+
+# Print the shape property of art_containing_neighborhoods
+print(art_containing_neighborhoods.shape)
