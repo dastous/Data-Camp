@@ -1,0 +1,22 @@
+#Now that you have added the polygon for the Urban Residents neighborhood to your folium street map, it's time to add the locations of the art within the neighborhood. You can do that by creating folium markers. Each marker needs a location assigned. Use iterrows() to loop through the data to grab the values you need.
+
+#Instructions
+#100 XP
+#First take a look at the tuple returned by iterrows() by printing the first and second values.
+#Assign the second value of the iterrows() tuple to row_values. Create a location formatted for folium, use it to build a marker, and add it to the downtown_map.
+#Display the map.
+
+# Iterate through the urban_art and print each part of tuple returned
+for row in urban_art.iterrows():
+  print('first part: ', row[0])
+  print('second part: ', row[1])
+
+# Create a location and marker with each iteration for the downtown_map
+for row in urban_art.iterrows():
+    row_values = row[1] 
+    location = [row_values['lat'], row_values['lng']]
+    marker = folium.Marker(location = location)
+    marker.add_to(downtown_map)
+
+# Display the map
+display(downtown_map)
