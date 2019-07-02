@@ -1,0 +1,24 @@
+#You will continue preparing your dataset for plotting a geopandas choropleth by creating a GeoDataFrame of the building permits spatially joined to the council districts. After that, you will be able to get counts of the building permits issued in each council district.
+
+#Instructions
+#100 XP
+#Create permits_geo from permits, the council_districts.crs, and the geometry in permits.
+#Spatially join permits_geo and the council_districts to get building permits within each council district. Call this permits_by_district.
+#Count permits in each district, permit_counts, by chaining groupby() and size() methods.
+#Create counts_df from permit_counts. Reset the index, and name the columns district and bldg_permits.
+
+# Create permits_geo
+permits_geo = gpd.GeoDataFrame(permits, crs = council_districts.crs, geometry = permits.geometry)
+
+# Spatially join permits_geo and council_districts
+permits_by_district = gpd.sjoin(permits_geo, council_districts, op = 'within')
+print(permits_by_district.head(2))
+
+# Count permits in each district
+permit_counts = permits_by_district.groupby('district').size()
+
+# Convert permit_counts to a df with 2 columns: district and bldg_permits
+counts_df = permit_counts.to_frame()
+counts_df.reset_index(inplace=True)
+counts_df.columns = ['district', 'bldg_permits']
+print(counts_df.head(2))
