@@ -1,0 +1,21 @@
+#In this exercise, you'll start again with the council_districts GeoDataFrame and the permits DataFrame. You will change the council_districts to use the EPSG 3857 coordinate reference system before creating a column for area. Once the area column has been created, you will change the CRS back to EPSG 4326 so that the geometry is in decimal degrees.
+
+#Instructions
+#100 XP
+#Change the coordinate reference system for the council_districts to EPSG 3857, and print the crs and first two rows again.
+#Create a column called area. Divide the area of each polygon by sqm_to_sqkm to get the area in kilometers squared.
+#Change the coordinate reference system for the council_districts back to EPSG 4326. Print the crs and first two rows.
+
+# Change council_districts crs to epsg 3857
+council_districts = council_districts.to_crs(epsg = '3857')
+print(council_districts.crs)
+print(council_districts.head())
+
+# Create area in square km
+sqm_to_sqkm = 10**6
+council_districts['area'] = council_districts.geometry.area / sqm_to_sqkm
+
+# Change council_districts crs back to epsg 4326
+council_districts = council_districts.to_crs(epsg = '4326')
+print(council_districts.crs)
+print(council_districts.head())
