@@ -1,0 +1,25 @@
+#In this exercise, you will construct a geopandas GeoDataFrame from the Nashville Public Art DataFrame. You will need to import the Point constructor from the shapely.geometry module to create a geometry column in art before you can create a GeoDataFrame from art. This will get you ready to spatially join the art data and the neighborhoods data in order to discover which neighborhood has the most art.
+
+#The Nashville Public Art data has been loaded for you as art.
+
+#Instructions
+#100 XP
+#Import Point from the shapely.geometry module.
+#Print the head() of the art data.
+#Complete the code for a lambda expression that will create a Point geometry column from the lng and lat columns in art. Remember that longitude comes first!
+#Build a GeoDataFrame using art and call it art_geo. Set crs equal to neighborhoods.crs and set geometry equal to the column you just created. Print the type() of art_geo to verify it is a GeoDataFrame.
+
+import pandas as pd
+import geopandas as gpd
+from shapely.geometry import Point
+import matplotlib.pyplot as plt
+
+# Print the first few rows of the art DataFrame
+print(art.head())
+
+# Create a geometry column from lng & lat
+art['geometry'] = art.apply(lambda x: Point(float(x.lng), float(x.lat)), axis=1)
+
+# Create a GeoDataFrame from art and verify the type
+art_geo = gpd.GeoDataFrame(art, crs = neighborhoods.crs, geometry = art.geometry)
+print(type(art_geo))
