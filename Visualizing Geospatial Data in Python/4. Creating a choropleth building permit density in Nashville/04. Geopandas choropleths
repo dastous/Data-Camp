@@ -1,0 +1,30 @@
+#First you will plot a choropleth of the building permit density for each council district using the default colormap. Then you will polish it by changing the colormap and adding labels and a title.
+
+#Instructions 1/3
+#35 XP
+#Import matplotlib.pyplot, pandas, and geopandas with the customary aliases.
+
+# Import packages
+import matplotlib.pyplot as plt
+import pandas as pd
+import geopandas as gpd
+
+#Instructions 2/3
+#35 XP
+#Plot districts_and_permits, using the permit_density column you just created and the default colormap. Be sure to call plt.show().
+
+# Simple plot of building permit_density
+districts_and_permits.plot(column = 'permit_density', legend = True);
+plt.show()
+
+#Instructions 3/3
+#30 XP
+#Create a more polished choropleth of permit_density. Use the BuGn colormap, outline the polygons in black, create axis labels (longitude and latitude), and a title('2017 Building Project Density by Council District'). Show the plot.
+
+# Polished choropleth of building permit_density
+districts_and_permits.plot(column = 'permit_density', cmap = 'BuGn', edgecolor = 'black', legend = True)
+plt.xlabel('longitude')
+plt.ylabel('latitude')
+plt.xticks(rotation = 'vertical')
+plt.title('2017 Building Project Density by Council District')
+plt.show();
