@@ -1,0 +1,16 @@
+#Now that you have created art_geo, a GeoDataFrame, from the art DataFrame, you can join it spatially to the neighborhoods data to see what art is in each neighborhood.
+
+#Instructions
+#100 XP
+#Merge the art_geo and neighborhoods GeoDataFrames with a spatial join to create a new GeoDataFrame called neighborhood_art. Find the art that is within neighborhoods.
+#Print the first few rows of the neighborhood art GeoDataFrame.
+
+# import packages
+import geopandas as gpd
+import pandas as pd
+
+# Spatially join neighborhoods with art_geo
+neighborhood_art = gpd.sjoin(art_geo, neighborhoods, op = "within")
+
+# Print the first few rows
+print(neighborhood_art.head())
