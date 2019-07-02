@@ -1,0 +1,46 @@
+#When you want to differentiate regions, but not imply any type of relationship between the regions, a qualitative colormap is the best choice. In this exercise you'll compare a qualitative colormap to a sequential (quantitative) colormap using the school districts GeoDataFrame. It is available in your workspace as school_districts.
+
+#Instructions 1/3
+#35 XP
+#Plot school_districts with the tab20 colormap. Use 'district' to create a legend and set legend_kwds = lgnd_kwds.
+
+# Set legend style
+lgnd_kwds = {'title': 'School Districts',
+               'loc': 'upper left', 'bbox_to_anchor': (1, 1.03), 'ncol': 1}
+
+# Plot the school districts using the tab20 colormap (qualitative)
+school_districts.plot(column = 'district', cmap = 'tab20', legend = True, legend_kwds  = lgnd_kwds)
+plt.xlabel('Latitude')
+plt.ylabel('Longitude')
+plt.title('Nashville School Districts')
+plt.show();
+
+#Instructions 2/3
+#35 XP
+#Plot school_districts with the sequential summer colormap. Keep the other arguments as they are.
+
+# Set legend style
+lgnd_kwds = {'title': 'School Districts',
+               'loc': 'upper left', 'bbox_to_anchor': (1, 1.03), 'ncol': 1}
+
+# Plot the school districts using the summer colormap (sequential)
+school_districts.plot(column = 'district', cmap = 'summer', legend = True, legend_kwds = lgnd_kwds)
+plt.xlabel('Latitude')
+plt.ylabel('Longitude')
+plt.title('Nashville School Districts')
+plt.show();
+
+#Instructions 3/3
+#30 XP
+#Plot the school districts without setting the column. Use the qualitative Set3 colormap and set legend = True.
+
+# Set legend style
+lgnd_kwds = {'title': 'School Districts',
+               'loc': 'upper left', 'bbox_to_anchor': (1, 1.03), 'ncol': 1}
+
+# Plot the school districts using Set3 colormap without the column argument
+school_districts.plot(cmap = 'Set3', legend = True, legend_kwds = lgnd_kwds)
+plt.xlabel('Latitude')
+plt.ylabel('Longitude')
+plt.title('Nashville School Districts')
+plt.show();
