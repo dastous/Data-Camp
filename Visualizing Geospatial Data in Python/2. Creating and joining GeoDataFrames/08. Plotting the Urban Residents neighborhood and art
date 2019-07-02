@@ -1,0 +1,21 @@
+#Now you know that most art is in the Urban Residents neighborhood. In this exercise, you'll create a plot of art in that neighborhood. First you will subset just the urban_art from neighborhood_art and you'll subset the urban_polygon from neighborhoods. Then you will create a plot of the polygon as ax before adding a plot of the art.
+
+#Instructions
+#100 XP
+#Create a GeoDataFrame called urban_art using the .loc[] accessor to get only the art in the "Urban Residents" neighborhood.
+#Use .loc[] again to create a GeoDataFrame called urban_polygon from neighborhoods with only the "Urban Residents" polygon.
+#Plot urban_polygon as ax and set color to lightgreen.
+#Plot the art in urban_art. Pass three arguments: Set ax = ax to add this plot to the urban_polygon, use type to label the points, and set legend = True.
+
+# Create urban_art from neighborhood_art where the neighborhood name is Urban Residents
+urban_art = neighborhood_art.loc[neighborhood_art.name == 'Urban Residents']
+
+# Get just the Urban Residents neighborhood polygon and save it as urban_polygon
+urban_polygon = neighborhoods.loc[neighborhoods.name == "Urban Residents"]
+
+# Plot the urban_polygon as ax 
+ax = urban_polygon.plot(color = 'lightgreen')
+
+# Add a plot of the urban_art and show it
+urban_art.plot( ax = ax, column = 'type', legend = True);
+plt.show()
