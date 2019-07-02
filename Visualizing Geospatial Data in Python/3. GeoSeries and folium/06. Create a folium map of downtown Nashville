@@ -1,0 +1,12 @@
+#In this exercise you will create a street map of downtown Nashville using folium.
+
+#Instructions
+#100 XP
+#Construct a folium map called downtown_map. Use the urban_location array you created in the previous exercise and set the initial zoom level to 15.
+#Display your folium map object with the provided display function.
+
+# Construct a folium map with urban_location
+downtown_map = folium.Map(location = urban_location, zoom_start= 15)
+
+# Display the map
+display(downtown_map)
