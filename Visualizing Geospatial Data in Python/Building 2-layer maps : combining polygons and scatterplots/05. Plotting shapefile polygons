@@ -1,0 +1,19 @@
+#The next step is to show the map of polygons. We have imported matplotlib.pyplot as plt and geopandas as gpd, A GeoDataFrame of the service districts called service_district is in your workspace.
+
+#Instructions
+#100 XP
+#First plot the service districts without additonal arguments by calling .plot() on the GeoDataFrame.
+#Take a look at it with plt.show(). This has been done for you.
+#Now use the .plot() method again, but this time add column='name' to color the shapes according to their names and legend=True to see those names. Remember to show the plot.
+
+# Import packages
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+# Plot the Service Districts without any additional arguments
+service_district.plot()
+plt.show()
+
+# Plot the Service Districts, color them according to name, and show a legend
+service_district.plot(column = 'name', legend = True)
+plt.show()
