@@ -1,0 +1,18 @@
+#In this exercise you will learn how to find a GeoDataFrame's coordinate reference system and how to change it. The school districts GeoDataFrame is available in your workspace as school_districts.
+
+#Instructions
+#100 XP
+#Print the first row of school_districts and the crs property of this GeoDataFrame.
+#Convert the coordinate reference system of school_districts to epsg:3857.
+#Print the crs property again to confirm that it was changed.
+
+# Print the first row of school districts GeoDataFrame and the crs
+print(school_districts.head(1))
+print(school_districts.crs)
+
+# Convert the crs to epsg:3857
+school_districts.geometry = school_districts.geometry.to_crs(epsg = 3857)
+                        
+# Print the first row of school districts GeoDataFrame and the crs again
+print(school_districts.head(1))
+print(school_districts.crs)
