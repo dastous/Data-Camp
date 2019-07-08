@@ -1,0 +1,14 @@
+#Leveraging domain knowledge to engineer new features is an essential part of modeling. This quote from Andrew Ng summarizes the importance of feature engineering:
+#Coming up with features is difficult, time-consuming, requires expert knowledge. "Applied machine learning" is basically feature engineering.
+#Your job in this exercise is to create a new feature that contains information about the average length of night calls made by customers.
+
+#Instructions
+#100 XP
+#Create a new feature - 'Avg_Night_Calls' - that is the result of dividing 'Night_Mins by 'Night_Calls'.
+#Print the first five rows of this new feature.
+
+# Create the new feature
+telco['Avg_Night_Calls'] = telco['Night_Mins']/telco['Night_Calls']
+
+# Print the first five rows of 'Avg_Night_Calls'
+print(telco['Avg_Night_Calls'].head())
