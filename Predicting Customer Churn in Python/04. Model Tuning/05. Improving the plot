@@ -1,0 +1,23 @@
+#In order to make the plot more readable, we need to do achieve two goals:
+#Re-order the bars in ascending order.
+#Add labels to the plot that correspond to the feature names.
+#To do this, we'll take advantage of NumPy indexing. The .argsort() method sorts an array and returns the indices. We'll use these indices to achieve both goals.
+
+#Instructions
+#100 XP
+#Calculate the sorted indices of importances by using np.argsort() on importances.
+#Create the sorted labels by accessing the columns of X and indexing by sorted_index.
+Create the plot by indexing importances using sorted_index and specifying the keyword argument tick_label=labels.
+
+# Sort importances
+sorted_index = np.argsort(importances)
+
+# Create labels
+labels = X.columns[sorted_index]
+
+# Clear current plot
+plt.clf()
+
+# Create plot
+plt.barh(range(X.shape[1]), importances[sorted_index], tick_label=labels)
+plt.show()
