@@ -1,0 +1,22 @@
+#Having split your data into training and testing sets, you can now fit your model to the training data and then predict the labels of the test data. That's what you'll practice doing in this exercise.
+#So far, you've used Logistic Regression and Decision Trees. Here, you'll use a RandomForestClassifier, which you can think of as an ensemble of Decision Trees that generally outperforms a single Decision Tree.
+#Your work in the previous exercises has carried over, and the training and test sets are available in the variables X_train, X_test, y_train, and y_test.
+
+#Instructions
+#100 XP
+#Import RandomForestClassifier from sklearn.ensemble.
+#Instantiate a RandomForestClassifier as clf.
+#Fit clf to the training data: X_train and y_train.
+#Compute the accuracy of clf on the testing data using the .score() method.
+
+# Import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+# Instantiate the classifier
+clf = RandomForestClassifier()
+
+# Fit to the training data
+clf.fit(X_train,y_train)
+
+# Compute accuracy
+print(clf.score(X_test, y_test))
