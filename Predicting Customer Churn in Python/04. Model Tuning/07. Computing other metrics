@@ -1,0 +1,22 @@
+#In addition to accuracy, let's also compute the F1 score of this new model to get a better picture of model performance.
+#A 70-30 train-test split has already been done for you, and all necessary modules have been imported.
+
+#Instructions
+#100 XP
+#Predict the labels of the test set.
+#Print the F1 score.
+
+# Import f1_score
+from sklearn.metrics import f1_score
+
+# Instantiate the classifier
+clf = RandomForestClassifier()
+
+# Fit to the data
+clf.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = clf.predict(X_test)
+
+# Print the F1 score
+print(f1_score(y_test,y_pred))
