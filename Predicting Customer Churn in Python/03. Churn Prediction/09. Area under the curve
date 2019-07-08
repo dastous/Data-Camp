@@ -1,0 +1,18 @@
+#The ROC curve from the previous exercise is viewable on the right. Visually, it looks like a well-performing model. Let's quantify this by computing the area under the curve.
+
+#Instructions 1/2
+#50 XP
+#Import roc_auc_score from sklearn.metrics.
+
+# Import roc_auc_score
+from sklearn.metrics import roc_auc_score
+
+#Instructions 2/2
+#50 XP
+#Print the area under the ROC curve.
+
+# Import roc_auc_score
+from sklearn.metrics import roc_auc_score
+
+# Print the AUC
+print(roc_auc_score(y_test,y_pred_prob))
