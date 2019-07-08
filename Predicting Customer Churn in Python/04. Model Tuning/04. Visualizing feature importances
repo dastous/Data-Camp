@@ -1,0 +1,13 @@
+#Your random forest classifier from earlier exercises has been fit to the telco data and is available to you as clf. Let's visualize the feature importances and get a sense for what the drivers of churn are, using matplotlib's barh to create a horizontal bar plot of feature importances.
+
+#Instructions
+#100 XP
+#Calculate the feature importances of clf.
+#Use plt.barh() to create a horizontal bar plot of importances.
+
+# Calculate feature importances
+importances = clf.feature_importances_
+
+# Create plot
+plt.barh(range(X.shape[1]), importances)
+plt.show()
