@@ -1,0 +1,20 @@
+#All sklearn models have .fit() and .predict() methods like the one you used in the previous exercise for the LogisticRegression model. This feature allows you to easily try many different models to see which one gives you the best performance. To get you more confident with using the sklearn API, in this exercise you'll try fitting a DecisionTreeClassifier instead of a LogisticRegression.
+
+#Instructions
+#100 XP
+#Import DecisionTreeClassifier from sklearn.tree.
+#Instantiate the classifier, storing the result in clf.
+#Train the classifier to the data. The features are contained in the features variable, and the target variable of interest is 'Churn'.
+#Predict the label of new_customer.
+
+# Import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+# Instantiate the classifier
+clf=DecisionTreeClassifier()
+
+# Fit the classifier
+clf.fit(telco[features],telco['Churn'])
+
+# Predict the label of new_customer
+print(clf.predict(new_customer))
