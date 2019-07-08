@@ -1,0 +1,76 @@
+#You've already seen that there's not much of a difference in account lengths between churners and non-churners, but that there is a difference in the number of customer service calls left by churners.
+#Let's now visualize this difference using a box plot and incorporate other features of interest - do customers who have international plans make more customer service calls? Or do they tend to churn more? How about voicemail plans? Let's find out!
+#Recall the syntax for creating a box plot using seaborn:
+#sns.boxplot(x = "X-axis variable",
+#            y = "Y-axis variable",
+#            data = DataFrame)
+#If you want to remove outliers, you can specify the additional parameter sym="", and you can add a third variable using hue.
+
+#Instructions 1/4
+#25 XP
+#Create a box plot with 'Churn' on the x-axis and 'CustServ_Calls' on the y-axis.
+
+# Import matplotlib and seaborn
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create the box plot
+sns.boxplot(x = 'Churn',
+          y = 'CustServ_Calls',
+          data = telco)
+
+# Display the plot
+plt.show()
+
+#Instructions 2/4
+#25 XP
+#There is a very noticeable difference here between churners and non-churners! Now, remove the outliers from the box plot.
+
+# Import matplotlib and seaborn
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create the box plot
+sns.boxplot(x = 'Churn',
+            y = 'CustServ_Calls',
+            data = telco,
+            sym = "")
+
+# Display the plot
+plt.show()
+
+#Instructions 3/4
+#25 XP
+#Add a third variable to this plot - 'Vmail_Plan' - to visualize whether or not having a voice mail plan affects the number of customer service calls or churn.
+
+# Import matplotlib and seaborn
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Add "Vmail_Plan" as a third variable
+sns.boxplot(x = 'Churn',
+            y = 'CustServ_Calls',
+            data = telco,
+            sym = "",
+            hue = "Vmail_Plan")
+
+# Display the plot
+plt.show()
+
+#Instructions 4/4
+#25 XP
+#Not much of a difference there. Update your code so that the third variable is 'Intl_Plan' instead.
+
+# Import matplotlib and seaborn
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Add "Intl_Plan" as a third variable
+sns.boxplot(x = 'Churn',
+            y = 'CustServ_Calls',
+            data = telco,
+            sym = "",
+            hue = "Intl_Plan")
+
+# Display the plot
+plt.show()
