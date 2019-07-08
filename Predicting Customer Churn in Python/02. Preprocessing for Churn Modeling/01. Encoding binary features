@@ -1,0 +1,17 @@
+#Recasting data types is an important part of data preprocessing. In this exercise you will assign the values 1 to 'yes' and 0 to 'no' to the 'Vmail_Plan' and 'Churn' features, respectively.
+#You saw two approaches to doing this in the video - one using pandas, and the other using scikit-learn. For straightforward tasks like this, sticking with pandas is recommended, so that's what we'll do in this exercise. If you're trying to build machine learning pipelines, on the other hand - which is beyond the scope of this course - you can explore using LabelEncoder(). When doing data science, it's important to be aware that there is always more than one way to accomplish a task, and you need to pick the one that is most effective for your application.
+
+#Instructions
+#100 XP
+#Replace 'no' with 0 and 'yes' with 1 in the 'Vmail_Plan' column of telco.
+#Do the same for the 'Churn' column.
+
+# Replace 'no' with 0 and 'yes' with 1 in 'Vmail_Plan'
+telco['Vmail_Plan'] = telco['Vmail_Plan'].replace({'no':0,'yes':1})
+
+# Replace 'no' with 0 and 'yes' with 1 in 'Churn'
+telco['Churn'] = telco['Churn'].replace({'no':0,'yes':1})
+
+# Print the results to verify
+print(telco['Vmail_Plan'].head())
+print(telco['Churn'].head())
