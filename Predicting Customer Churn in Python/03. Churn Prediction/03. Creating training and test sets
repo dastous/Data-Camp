@@ -1,0 +1,48 @@
+#Before you create any model, it is important to split your dataset into two: a training set which will be used to build your churn model, and a test set which will be used to validate your model. To do this, you can use the train_test_split() function from sklearn.model_selection.
+#You'll practice creating training and test sets in this exercise. The telco DataFrame is available in your workspace.
+
+#Instructions 1/4
+#30 XP
+#Import train_test_split from sklearn.model_selection.
+
+# Import train_test_split
+from sklearn.model_selection import train_test_split
+
+#Instructions 2/4
+#30 XP
+#Create a feature variable X which holds all of the features of telco by dropping the target variable 'Churn' from telco.
+
+# Import train_test_split
+from sklearn.model_selection import train_test_split
+
+# Create feature variable
+X = telco.drop('Churn', axis=1)
+
+#Instructions 3/4
+#40 XP
+#Create a target variable y which holds the values of the target variable - 'Churn'.
+
+# Import train_test_split
+from sklearn.model_selection import train_test_split
+
+# Create feature variable
+X = telco.drop('Churn', axis=1)
+
+# Create target variable
+y = telco['Churn']
+
+#Instructions 4/4
+#0 XP
+#Split your model into training and testing sets such that 70% of the data is used for training. Unpack the result into X_train, X_test, y_train, and y_test.
+
+# Import train_test_split
+from sklearn.model_selection import train_test_split
+
+# Create feature variable
+X = telco.drop('Churn', axis=1)
+
+# Create target variable
+y = telco['Churn']
+
+# Create training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
