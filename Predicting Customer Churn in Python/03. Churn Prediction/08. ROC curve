@@ -1,0 +1,54 @@
+#Let's now create an ROC curve for our random forest classifier. The first step is to calculate the predicted probabilities output by the classifier for each label using its .predict_proba() method. Then, you can use the roc_curve function from sklearn.metrics to compute the false positive rate and true positive rate, which you can then plot using matplotlib.
+#A RandomForestClassifier with a training set size of 70% has been fit to the data and is available in your workspace as clf.
+
+#Instructions 1/4
+#25 XP
+#Compute the predicted probabilities of clf.
+
+# Generate the probabilities
+y_pred_prob = clf.predict_proba(X_test)[:, 1]
+
+#Instructions 2/4
+#25 XP
+#Import roc_curve from sklearn.metrics.
+
+# Generate the probabilities
+y_pred_prob = clf.predict_proba(X_test)[:, 1]
+
+# Import roc_curve
+from sklearn.metrics import roc_curve
+
+#Instructions 3/4
+#25 XP
+#Use roc_curve() to calculate the false positive rate, true positive rate, and thresholds. Unpack the output into the variables fpr, tpr, and thresholds.
+
+# Generate the probabilities
+y_pred_prob = clf.predict_proba(X_test)[:, 1]
+
+# Import roc_curve
+from sklearn.metrics import roc_curve
+
+# Calculate the roc metrics
+fpr, tpr, thresholds = roc_curve(y_test,y_pred_prob)
+
+#Instructions 4/4
+#25 XP
+#Use plt.plot() to plot the fpr on the x-axis and tpr on the y-axis.
+
+# Generate the probabilities
+y_pred_prob = clf.predict_proba(X_test)[:, 1]
+
+# Import roc_curve
+from sklearn.metrics import roc_curve
+
+# Calculate the roc metrics
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_prob)
+
+# Plot the ROC curve
+plt.plot(fpr,tpr)
+
+# Add labels and diagonal line
+plt.xlabel("False Positive Rate")
+plt.ylabel("True Positive Rate")
+plt.plot([0, 1], [0, 1], "k--")
+plt.show()
