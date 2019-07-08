@@ -1,0 +1,102 @@
+#The sklearn.metrics submodule has many functions that allow you to easily calculate interesting metrics. So far, you've calculated precision and recall by hand - this is important while you develop your intuition for both these metrics.
+#In practice, once you do, you can leverage the precision_score and recall_score functions that automatically compute precision and recall, respectively. Both work similarly to other functions in sklearn.metrics - they accept 2 arguments: the first is the actual labels (y_test), and the second is the predicted labels (y_pred).
+#Let's now try a training size of 90%.
+
+#Instructions 1/3
+#35 XP
+#Import precision_score from sklearn.metrics.
+
+# Import train_test_split
+from sklearn.model_selection import train_test_split
+
+# Create feature variable
+X = telco.drop('Churn', axis=1)
+
+# Create target variable
+y = telco['Churn']
+
+# Create training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
+
+# Import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+# Instantiate the classifier
+clf = RandomForestClassifier()
+
+# Fit to the training data
+clf.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = clf.predict(X_test)
+
+# Import precision_score
+from sklearn.metrics import precision_score
+
+#Instructions 2/3
+#35 XP
+#Print the precision of the classifier.
+
+# Import train_test_split
+from sklearn.model_selection import train_test_split
+
+# Create feature variable
+X = telco.drop('Churn', axis=1)
+
+# Create target variable
+y = telco['Churn']
+
+# Create training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
+
+# Import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+# Instantiate the classifier
+clf = RandomForestClassifier()
+
+# Fit to the training data
+clf.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = clf.predict(X_test)
+
+# Import precision_score
+from sklearn.metrics import precision_score
+
+# Print the precision
+print(precision_score(y_test,y_pred))
+
+#Instructions 3/3
+#30 XP
+#Update your code to calculate the recall_score instead of the precision_score.
+
+# Import train_test_split
+from sklearn.model_selection import train_test_split
+
+# Create feature variable
+X = telco.drop('Churn', axis=1)
+
+# Create target variable
+y = telco['Churn']
+
+# Create training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
+
+# Import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+# Instantiate the classifier
+clf = RandomForestClassifier()
+
+# Fit to the training data
+clf.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = clf.predict(X_test)
+
+# Import recall_score
+from sklearn.metrics import recall_score
+
+# Print the recall
+print(recall_score(y_test, y_pred))
