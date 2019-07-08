@@ -1,0 +1,21 @@
+#When dealing with customer data, geographic regions may play an important part in determining whether a customer will cancel their service or not. You may have noticed that there is a 'State' column in the dataset. In this exercise, you'll group 'State' and 'Churn' to count the number of churners and non-churners by state. For example, if you wanted to group by x and aggregate by y, you could use .groupby() as follows:
+#df.groupby('x')['y'].value_counts()
+
+#Instructions 1/2
+#50 XP
+#Group telco by 'State', aggregate by 'Churn', and then use value_counts() to count the number of churners and non-churners by state.
+
+# Count the number of churners and non-churners by State
+print(telco.groupby('State')['Churn'].value_counts())
+
+#Instructions 2/2
+#50 XP
+#Question
+#Take a look at the output in the IPython Shell and select the correct statement from the options below.
+
+#Possible Answers
+#California (CA) has 25 non-churners and 9 churners.**
+#Colorado (CO) has 9 non-churners and 57 churners.
+#Alabama (AL) has 49 non-churners and 3 churners.
+
+
