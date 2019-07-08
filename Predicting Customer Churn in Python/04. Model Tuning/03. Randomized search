@@ -1,0 +1,53 @@
+# Call GridSearchCV
+#grid_search = GridSearchCV(clf, param_grid)
+
+# Fit the model
+#grid_search.fit(X, y)
+#In the above chunk of code from the previous exercise, you may have noticed that the first line of code did not take much time to run, while the call to .fit() took several seconds to execute.
+#This is because .fit() is what actually performs the grid search, and in our case, it was grid with many different combinations. As the hyperparameter grid gets larger, grid search becomes slower. In order to solve this problem, instead of trying out every single combination of values, we could randomly jump around the grid and try different combinations. There's a small possibility we may miss the best combination, but we would save a lot of time, or be able to tune more hyperparameters in the same amount of time.
+#In scikit-learn, you can do this using RandomizedSearchCV. It has the same API as GridSearchCV, except that you need to specify a parameter distribution that it can sample from instead of specific hyperparameter values. Let's try it out now! The parameter distribution has been set up for you, along with a random forest classifier called clf.
+
+#Instructions 1/3
+#35 XP
+#Import RandomizedSearchCV from sklearn.model_selection.
+
+# Import RandomizedSearchCV
+from sklearn.model_selection import RandomizedSearchCV
+
+#Instructions 2/3
+#35 XP
+#Notice how "max_features" has been specified. Call RandomizedSearchCV using clf and param_dist.
+
+# Import RandomizedSearchCV
+from sklearn.model_selection import RandomizedSearchCV
+
+# Create the hyperparameter grid
+param_dist = {"max_depth": [3, None],
+              "max_features": randint(1, 11),
+              "bootstrap": [True, False],
+              "criterion": ["gini", "entropy"]}
+
+# Call RandomizedSearchCV
+random_search = RandomizedSearchCV(clf, param_dist)
+
+#Instructions 3/3
+#30 XP
+#Perform the randomized search by fitting to the data and then print the best parameters.
+
+# Import RandomizedSearchCV
+from sklearn.model_selection import RandomizedSearchCV
+
+# Create the hyperparameter grid
+param_dist = {"max_depth": [3, None],
+              "max_features": randint(1, 11),
+              "bootstrap": [True, False],
+              "criterion": ["gini", "entropy"]}
+
+# Call RandomizedSearchCV
+random_search = RandomizedSearchCV(clf, param_dist)
+
+# Fit the model
+random_search.fit(X,y)
+
+# Print best parameters
+print(random_search.best_params_)
