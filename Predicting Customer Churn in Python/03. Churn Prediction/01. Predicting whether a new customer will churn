@@ -1,0 +1,57 @@
+#As you saw in the video, to train a model using sklearn:
+
+#Import the model of interest - here, a Support Vector Classifier:
+#from sklearn.svm import SVC
+#Instantiate it:
+#svc = SVC()
+#Train it, or "fit it", to the data:
+#svc.fit(telco['data'], telco['target'])
+#Here, the first argument consists of the features, while the second argument is the label that we are trying to predict - whether or not the customer will churn. After you've fitted the model, you can use the model's .predict() method to predict the label of a new customer.
+
+#This process is true no matter which model you use, and sklearn has many! In this exercise, you'll use LogisticRegression.
+
+#Instructions 1/4
+#25 XP
+#From sklearn.linear_model, import LogisticRegression.
+
+# Import LogisticRegression
+from sklearn.linear_model import LogisticRegression
+
+#Instructions 2/4
+#25 XP
+#Instantiate LogisticRegression(), storing the result in clf (short for classifier).
+
+# Import LogisticRegression
+from sklearn.linear_model import LogisticRegression
+
+# Instantiate the classifier
+clf=LogisticRegression()
+
+#Instructions 3/4
+#25 XP
+#Fit clf to the data. Here, the features are contained in the features variable, and the target variable of interest is 'Churn'.
+
+# Import LogisticRegression
+from sklearn.linear_model import LogisticRegression
+
+# Instantiate the classifier
+clf = LogisticRegression()
+
+# Fit the classifier
+clf.fit(telco[features], telco['Churn'])
+
+#Instructions 4/4
+#25 XP
+#The features of a new customer are contained in the variable new_customer. Use your fitted classifier to predict whether or not this customer will churn.
+
+# Import LogisticRegression
+from sklearn.linear_model import LogisticRegression
+
+# Instantiate the classifier
+clf = LogisticRegression()
+
+# Fit the classifier
+clf.fit(telco[features], telco['Churn'])
+
+# Predict the label of new_customer
+print(clf.predict(new_customer))
