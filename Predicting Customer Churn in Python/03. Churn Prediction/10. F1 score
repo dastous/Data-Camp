@@ -1,0 +1,23 @@
+#As you've discovered, there's a tradeoff between precision and recall. Both are important metrics, and depending on how the business is trying to model churn, you may want to focus on optimizing one over the other. Often, stakeholders are interested in a single metric that can quantify model performance. The AUC is one metric you can use in these cases, and another is the F1 score, which is calculated as below:
+#2 * (precision * recall) / (precision + recall)
+#The advantage of the F1 score is it incorporates both precision and recall into a single metric, and a high F1 score is a sign of a well-performing model, even in situations where you might have imbalanced classes. In scikit-learn, you can compute the f-1 score using using the f1_score function.
+
+#Instructions
+#100 XP
+#Import f1_score from sklearn.metrics.
+#Print the F1 score of the trained random forest.
+
+# Instantiate the classifier
+clf = RandomForestClassifier()
+
+# Fit to the training data
+clf.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = clf.predict(X_test)
+
+# Import f1_score
+from sklearn.metrics import f1_score
+
+# Print the F1 score
+print(f1_score(y_test,y_pred))
