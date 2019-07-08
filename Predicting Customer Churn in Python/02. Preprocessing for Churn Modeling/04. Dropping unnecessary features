@@ -1,0 +1,20 @@
+#Some features such as 'Area_Code' and 'Phone' are not useful when it comes to predicting customer churn, and they need to be dropped prior to modeling. The easiest way to do so in Python is using the .drop() method of pandas DataFrames, just as you saw in the video, where 'Soc_Sec' and 'Tax_ID' were dropped:
+#telco.drop(['Soc_Sec', 'Tax_ID'], axis=1)
+#Here, axis=1 indicates that you want to drop 'Soc_Sec' and 'Tax_ID' from the columns.
+
+#Instructions 1/2
+#50 XP
+#Drop 'Area_Code' and 'Phone' from telco.
+
+# Drop the unnecessary features
+telco = telco.drop(['Area_Code','Phone'],axis=1)
+
+#Instructions 2/2
+#50 XP
+#Verify that the features got dropped by printing telco.columns.
+
+# Drop the unnecessary features
+telco = telco.drop(telco[['Area_Code','Phone']], axis=1)
+
+# Verify dropped features
+print(telco.columns)
