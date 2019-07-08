@@ -1,0 +1,53 @@
+#The power of GridSearchCV really comes into play when you're tuning multiple hyperparameters, as then the algorithm tries out all possible combinations of hyperparameters to identify the best combination. Here, you'll tune the following random forest hyperparameters:
+#Hyperparameter	Purpose
+#criterion	Quality of Split
+#max_features	Number of features for best split
+#max_depth	Max depth of tree
+#bootstrap	Whether Bootstrap samples are used
+#The hyperparameter grid has been specified for you, along with a random forest classifier called clf.
+
+#Instructions 1/3
+#35 XP
+#Instantiate the GridSearchCV object using clf and param_grid.
+
+# Import GridSearchCV
+from sklearn.model_selection import GridSearchCV
+
+# Create the hyperparameter grid
+param_grid = {"max_depth": [3, None],
+              "max_features": [1, 3, 10],
+              "bootstrap": [True, False],
+              "criterion": ["gini", "entropy"]}
+
+# Call GridSearchCV
+grid_search = GridSearchCV(RandomForestClassifier(),param_grid)
+
+#Instructions 2/3
+#35 XP
+#Fit grid_search to X and y.
+
+# Import GridSearchCV
+from sklearn.model_selection import GridSearchCV
+
+# Create the hyperparameter grid
+param_grid = {"max_depth": [3, None],
+              "max_features": [1, 3, 10],
+              "bootstrap": [True, False],
+              "criterion": ["gini", "entropy"]}
+
+# Call GridSearchCV
+grid_search = GridSearchCV(clf, param_grid)
+
+# Fit the model
+grid_search.fit(X,y)
+
+#Instructions 3/3
+#30 XP
+#Question
+#Use the .best_params_ attribute of grid_search to identify the best combination of parameters, hit "Run Code", and then select the correct option.
+
+#Possible Answers
+#{'bootstrap': True, 'criterion': 'entropy', 'max_depth': None, 'max_features': 10}**
+#{'bootstrap': True, 'criterion': 'gini', 'max_depth': None, 'max_features': 10}
+#{'bootstrap': False, 'criterion': 'gini', 'max_depth': None, 'max_features': 10}
+#{'bootstrap': True, 'criterion': 'entropy', 'max_depth': None, 'max_features': 3}
