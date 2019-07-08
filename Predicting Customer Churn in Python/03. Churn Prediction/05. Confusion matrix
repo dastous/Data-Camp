@@ -1,0 +1,36 @@
+#Using scikit-learn's confusion_matrix() function, you can easily create your classifier's confusion matrix and gain a more nuanced understanding of its performance. It takes in two arguments: The actual labels of your test set - y_test - and your predicted labels.
+#The predicted labels of your Random Forest classifier from the previous exercise are stored in y_pred and were computed as follows:
+#y_pred = clf.predict(X_test)
+#Important note: sklearn, by default, computes the confusion matrix as follows:
+#Screenshot 2019-05-13 05.59.04.png
+#Notice that the axes are the opposite of what you saw in the video. The metrics themselves remain the same, but keep this in mind when interpreting the table.
+
+#Instructions 1/3
+#35 XP
+#Import confusion_matrix from sklearn.metrics.
+
+# Import confusion_matrix
+from sklearn.metrics import confusion_matrix
+
+#Instructions 2/3
+#35 XP
+#Print the confusion matrix for your classifier using y_test and y_pred.
+
+# Import confusion_matrix
+from sklearn.metrics import confusion_matrix
+
+# Print the confusion matrix
+print(confusion_matrix(y_test,y_pred))
+
+#Instructions 3/3
+#30 XP
+#Question
+#Analyze the confusion matrix printed in the IPython Shell and select the statement below that is not true.
+
+#Possible Answers
+#Your classifier made 934 correct predictions.
+#The precision of your classifier is 87.61%.
+#The sensitivity, or recall, of your classifier is 63.44%.
+#There are 92 false negatives in your classifier's predictions.**
+#There are 13 false positives in your classifier's predictions.
+
