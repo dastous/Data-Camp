@@ -1,0 +1,22 @@
+#Recall from the video the different scales of the 'Intl_Calls' and 'Night_Mins' features:
+#feature scaling
+#Your job in this exercise is to re-scale them using StandardScaler.
+#In your workspace, the telco DataFrame has been subset to only include the features you want to rescale: 'Intl_Calls' and 'Night_Mins'. To apply StandardScaler, you need to first instantiate it using StandardScaler(), and then apply the fit_transform() method, passing in the DataFrame you want to rescale. You can do this in one line of code:
+#StandardScaler().fit_transform(df)
+
+#Instructions
+#100 XP
+#Scale telco using StandardScaler() and .fit_transform().
+#Print the summary statistics of telco_scaled_df using .describe().
+
+# Import StandardScaler
+from sklearn.preprocessing import StandardScaler
+
+# Scale telco using StandardScaler
+telco_scaled = StandardScaler().fit_transform(telco)
+
+# Add column names back for readability
+telco_scaled_df = pd.DataFrame(telco_scaled, columns=["Intl_Calls", "Night_Mins"])
+
+# Print summary statistics
+print(telco_scaled_df.describe())
