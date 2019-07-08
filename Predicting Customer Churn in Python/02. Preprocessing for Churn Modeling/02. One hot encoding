@@ -1,0 +1,26 @@
+#In the video, you saw how the 'State' feature can be encoded numerically using the technique of one hot encoding:
+#ohe_part3.png
+#Doing this manually would be quite tedious, especially when you have 50 states and over 3000 customers! Fortunately, pandas has a get_dummies() function which automatically applies one hot encoding over the selected feature.
+
+#Instructions 1/2
+#50 XP
+#Use the pd.get_dummies() function to apply one hot encoding on the 'State' feature of telco.
+
+# Import pandas
+import pandas as pd
+
+# Perform one hot encoding on 'State'
+telco_state = pd.get_dummies(telco['State'])
+
+#Instructions 2/2
+#50 XP
+#Print the head of telco_state.
+
+# Import pandas
+import pandas as pd
+
+# Perform one hot encoding on 'State'
+telco_state = pd.get_dummies(telco['State'])
+
+# Print the head of telco_state
+print(telco_state.head())
