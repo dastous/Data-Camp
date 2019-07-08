@@ -1,0 +1,57 @@
+#The default hyperparameters used by your models are not optimized for your data. The goal of grid search cross-validation is to identify those hyperparameters that lead to optimal model performance. In the video, you saw how the random forest's n_estimators hyperparameter was tuned. Here, you'll practice tuning the max_features hyperparameter.
+#Hyperparameter	Purpose
+#max_features	Number of features for best split
+#A random forest is an ensemble of many decision trees. The n_estimators hyperparameter controls the number of trees to use in the forest, while the max_features hyperparameter controls the number features the random forest should consider when looking for the best split at decision tree.
+#A random forest classifier has been instantiated for you as clf.
+
+#Instructions 1/4
+#25 XP
+#Import GridSearchCV from sklearn.model_selection.
+
+# Import GridSearchCV
+from sklearn.model_selection import GridSearchCV
+
+#Instructions 2/4
+#25 XP
+#Specify the hyperparameter grid by creating a dictionary with 'max_features' as the key and a list consisting of 'auto', 'sqrt', 'log2' as the value.
+
+# Import GridSearchCV
+from sklearn.model_selection import GridSearchCV
+
+# Create the hyperparameter grid
+param_grid = {'max_features': ['auto', 'sqrt', 'log2']}
+
+#Instructions 3/4
+#25 XP
+#Perform grid search cross-validation using GridSearchCV. First, instantiate the estimator, and then fit it to the data.
+
+# Import GridSearchCV
+from sklearn.model_selection import GridSearchCV
+
+# Create the hyperparameter grid
+param_grid = {'max_features': ['auto', 'sqrt', 'log2']}
+
+# Call GridSearchCV
+grid_search = GridSearchCV(RandomForestClassifier(), param_grid)
+
+# Fit the model
+grid_search.fit(X, y)
+
+#Instructions 4/4
+#25 XP
+#Print the optimal value for 'max_features' using the .best_params_ attribute of grid_search.
+
+# Import GridSearchCV
+from sklearn.model_selection import GridSearchCV
+
+# Create the hyperparameter grid
+param_grid = {'max_features': ['auto', 'sqrt', 'log2']}
+
+# Call GridSearchCV
+grid_search = GridSearchCV(clf, param_grid)
+
+# Fit the model
+grid_search.fit(X, y)
+
+# Print the optimal parameters
+print(grid_search.best_params_)
